@@ -7,6 +7,8 @@ TagManager:
   - AttackCollider
   - HP_BAR
   - Enemy
+  - Character1
+  - Character2
   layers:
   - Default
   - TransparentFX
@@ -14,8 +16,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Character1
+  - Character2
   - 
   - 
   - 
