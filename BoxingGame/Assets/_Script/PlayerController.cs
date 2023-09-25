@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
             transform.position += moveVec * speed * Time.deltaTime;
 
         }
-        Debug.Log(isMove);
+        //Debug.Log(isMove);
         //움직임 애니메이션 작동
         animator.SetBool("IsRun", isMove);
     }
