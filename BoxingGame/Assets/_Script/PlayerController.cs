@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
             transform.position += moveVec * speed * Time.deltaTime;
 
         }
-        Debug.Log(isMove);
+        //Debug.Log(isMove);
         //움직임 애니메이션 작동
         animator.SetBool("IsRun", isMove);
     }
@@ -183,10 +183,8 @@ public class PlayerController : MonoBehaviour
         //공격가능 상태일 시 작동(=기본 상태일때 버튼 누를 시 작동)
         if (canAttack)
         {
-            
             attackCollider.SetActive(true);
-
-            
+                        
             //기본 A공격 애니메이션 작동
             animator.SetTrigger("Attack_A");
             //공격중 상태 참
