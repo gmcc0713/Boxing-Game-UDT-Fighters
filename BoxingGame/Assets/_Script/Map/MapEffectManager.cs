@@ -17,7 +17,6 @@ public class MapEffectManager : MonoBehaviour
     void Awake()
     {
         MapEffectInit();
-        ChangeMapEffectTimer();
     }
 
     private void Update()
@@ -26,30 +25,17 @@ public class MapEffectManager : MonoBehaviour
     }
     public void MapEffectInit()
     {
-        IState Normal = (IState)Resources.Load("ScriptableObject/MapEffectState/Normal");
-        IState A = (IState)Resources.Load("ScriptableObject/MapEffectState/A");
-        IState B = (IState)Resources.Load("ScriptableObject/MapEffectState/B");
+        IState Normal = (IState)Resources.Load("ScriptableObject/MapEffect/MapEffectTypeNormal");
+        IState Giant = (IState)Resources.Load("ScriptableObject/MapEffect/MapEffectTypeGiant");
+        IState Dark = (IState)Resources.Load("ScriptableObject/MapEffect/MapEffectTypeDark");
+        IState Cheetah = (IState)Resources.Load("ScriptableObject/MapEffect/MapEffectTypeCheetah");
        
         MapEffectStateData data = ScriptableObject.CreateInstance<MapEffectStateData>();
 
-        data.SetData(Normal, A, B);
+        data.SetData(Normal, Giant, Cheetah, Dark);
         Debug.Log(map);
         map.SetData(data);
     }
-    public void MapEffectChange()
-    {
 
-    }
-    public int GetRandomMapEffect()
-    {
-        int newMapEffect = Random.Range(0,(int)MapEffectType.Count);
-        return newMapEffect;
-    }
-    private IEnumerator ChangeMapEffectTimer()          //30 초마다 새로운 효과
-    {
-        Debug.Log("Map Effect Timer change");
-        yield return new WaitForSeconds(30);
-        Debug.Log("Effect Change");
-    }
 
 }

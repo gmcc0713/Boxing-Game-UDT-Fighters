@@ -8,7 +8,7 @@ public class MapEffectFSM : MonoBehaviour
     IState currState;
     public void Update()
     {
-        currState.Excute();
+        currState.Execute();
     }
     public bool SetCurrState(IState state)
     {

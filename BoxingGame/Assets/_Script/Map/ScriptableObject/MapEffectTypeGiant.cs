@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MapEffectTypeA", menuName = "ScriptableObject/MapEffect/MapEffectTypeA", order = 1)]
+[CreateAssetMenu(fileName = "MapEffectTypeGiant", menuName = "ScriptableObject/MapEffect/MapEffectTypeGiant", order = 1)]
 public class MapEffectTypeGiant : MapEffectStateData, IState
 {
     public void Enter()
     {
-        Debug.Log("A타입 적용");
+        Debug.Log("거인 타입 적용");
         //캐릭터 크기 조정
         //공격력 증가
     }
-    public void Excute()
+    public void Execute()
     {
-        Debug.Log("A타입 진행");
+        Debug.Log("거인 타입 진행");
     }
     public void Exit()
     {

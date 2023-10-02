@@ -10,13 +10,11 @@
         {
             stateData = data;
             fsm = new MapEffectFSM();
-            Debug.Log(fsm);
             if (!fsm.SetCurrState(stateData.MapEffectNormal))
             {
                 Debug.Log("stateData 가 null");
             }
             ResetData();
-            Debug.Log("run");
             Run();
         }
     public void ResetData()
@@ -26,23 +24,37 @@
             fsm.ChangeState(stateData.MapEffectNormal);
         }
     }
-    public void ChangeMapEffect()
+    public void ChangeMapEffect(int type)
     {
-
+        fsm.ChangeState(stateData.IntegerToIstate(type));
     }
     void Run()
     {
          StartCoroutine(OnUpdate());
+         StartCoroutine(ChangeMapEffectTimer());
     }
 
     IEnumerator OnUpdate()
     {
-       Debug.Log(fsm);
         while(true)
         {
              fsm.Update();
              yield return null;
         }
     }
-        // Update is called once per frame
+    public int GetRandomMapEffect()
+    {
+        int newMapEffect = Random.Range(0, (int)MapEffectType.Count);
+        return newMapEffect;
+    }
+    private IEnumerator ChangeMapEffectTimer()          //30 초마다 새로운 효과
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(3);
+            ChangeMapEffect(GetRandomMapEffect());
+            Debug.Log("Effect Change");
+        }
+    }
+    // Update is called once per frame
 }
