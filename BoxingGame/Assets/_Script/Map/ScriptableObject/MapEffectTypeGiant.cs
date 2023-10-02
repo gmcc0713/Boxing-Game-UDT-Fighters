@@ -13,7 +13,6 @@ public class MapEffectTypeGiant : MapEffectStateData, IState
     }
     public void Execute()
     {
-        Debug.Log("거인 타입 진행");
     }
     public void Exit()
     {

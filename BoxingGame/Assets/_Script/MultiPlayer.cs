@@ -44,7 +44,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public float startHealth = 100;
     private float health;
     public Image healthBar;
-
+    [SerializeField] private Skill skill;
    
     private PhotonView pv;
     void Start()
@@ -54,6 +54,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         //currHp = startingHealth;
         health = startHealth;
         healthBar.fillAmount = health / startHealth;
+        skill.Initilize(this);
     }
     private void FixedUpdate()
     {
@@ -88,6 +89,11 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             Debug.Log("S press");
             OnAttackSButton();
         }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Debug.Log("D press");
+            skill.SkillUse();
+        }
     }
     private void Move()
     {
@@ -111,7 +117,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             transform.position += moveVec * speed * Time.deltaTime;
 
         }
-        Debug.Log(isMove);
         //움직임 애니메이션 작동
         animator.SetBool("IsRun", isMove);
     }

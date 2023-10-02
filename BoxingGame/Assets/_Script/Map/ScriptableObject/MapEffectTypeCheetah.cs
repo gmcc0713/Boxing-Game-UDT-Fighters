@@ -14,7 +14,6 @@ public class MapEffectTypeCheetah : MapEffectStateData, IState
     }
     public void Execute()
     {
-        Debug.Log("치타 타입 진행");
     
     }
     public void Exit()

@@ -12,7 +12,6 @@ public class MapEffectTypeDark : MapEffectStateData, IState
     }
     public void Execute()
     {
-        Debug.Log("어둠 타입 진행");
     }
     public void Exit()
     {

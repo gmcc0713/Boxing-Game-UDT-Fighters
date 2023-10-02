@@ -748,6 +748,7 @@ GameObject:
   - component: {fileID: 2744519376694538854}
   - component: {fileID: 154321752428450237}
   - component: {fileID: 7453504556928756397}
+  - component: {fileID: 1080175412770116096}
   m_Layer: 0
   m_Name: MultiZombie
   m_TagString: Player
@@ -939,6 +940,7 @@ MonoBehaviour:
   damage: 0
   startHealth: 100
   healthBar: {fileID: 6647183764668612074}
+  skill: {fileID: 1080175412770116096}
 --- !u!114 &7453504556928756397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -951,6 +953,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df159e60fd78a9447984f26e7cf82181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1080175412770116096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937081004221583560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217bfb125bcdfa0428c709f8ac21c0c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
 --- !u!1 &3189783744366541144
 GameObject:
   m_ObjectHideFlags: 0

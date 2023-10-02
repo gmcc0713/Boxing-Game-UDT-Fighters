@@ -91,6 +91,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         connectionInfoText.text = "방 참가 성공";
         // 모든 룸 참가자가 Multi 씬을 로드하게 함
         PhotonNetwork.LoadLevel("LobbyScene");
+        //PhotonNetwork.LoadLevel("MultiScene");
     }
 
 
