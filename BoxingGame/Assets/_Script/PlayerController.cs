@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Health")]
     public float startHealth = 100;
-    private float health;
+    public float health;
     public Image healthBar;
     //private PhotonView pv;
     void Start()
@@ -70,7 +70,12 @@ public class PlayerController : MonoBehaviour
     {
         //픽시드 업데이트시 상태 체크하기
         Idle();
-        
+        if (health <= 0)
+        {
+            health = 0;
+            animator.SetBool("IsDead", true);
+        }
+
     }
     void Update()
     {
@@ -164,6 +169,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
     }
 
     public void OnMove()
