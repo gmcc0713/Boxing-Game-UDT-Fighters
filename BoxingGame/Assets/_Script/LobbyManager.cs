@@ -16,7 +16,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-        Screen.SetResolution(960, 600, false); // pc실행시 해상도 설정
+        Screen.SetResolution(1280, 1080, false); // pc실행시 해상도 설정
         // 접속에 필요한 정보(게임 버전) 설정
         PhotonNetwork.GameVersion = gameVersion;
         // 설정한 정보로 마스터 서버 접속 시도
