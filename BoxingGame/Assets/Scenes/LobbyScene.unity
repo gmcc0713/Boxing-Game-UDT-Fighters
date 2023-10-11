@@ -695,6 +695,7 @@ GameObject:
   m_Component:
   - component: {fileID: 542033793}
   - component: {fileID: 542033794}
+  - component: {fileID: 542033795}
   m_Layer: 5
   m_Name: Player2
   m_TagString: Untagged
@@ -738,12 +739,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9226174441eb38f4c8453320e9c2679f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftButton: {fileID: 1385017798}
-  rightButton: {fileID: 560614841}
+  leftButtonP1: {fileID: 1774717644}
+  rightButtonP1: {fileID: 1105919854}
+  leftButtonP2: {fileID: 1385017798}
+  rightButtonP2: {fileID: 560614841}
   characters:
   - {fileID: 1312646582}
   - {fileID: 2100770884}
   - {fileID: 1263675457}
+--- !u!114 &542033795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542033792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 3
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &560614839
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,7 +805,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 200}
+  m_AnchoredPosition: {x: -300, y: 50}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &560614841
@@ -829,7 +854,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 542033794}
         m_TargetAssemblyTypeName: CharacterSelectController, Assembly-CSharp
-        m_MethodName: ClickRightButton
+        m_MethodName: ClickRightButtonP2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -887,6 +912,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661151158}
   - component: {fileID: 661151159}
+  - component: {fileID: 661151160}
   m_Layer: 5
   m_Name: Player1
   m_TagString: Untagged
@@ -930,12 +956,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9226174441eb38f4c8453320e9c2679f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftButton: {fileID: 1774717644}
-  rightButton: {fileID: 1105919854}
+  leftButtonP1: {fileID: 1774717644}
+  rightButtonP1: {fileID: 1105919854}
+  leftButtonP2: {fileID: 1385017798}
+  rightButtonP2: {fileID: 560614841}
   characters:
   - {fileID: 363297014}
   - {fileID: 757252874}
   - {fileID: 808307311}
+--- !u!114 &661151160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661151157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &673913998
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,6 +995,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 673913999}
+  - component: {fileID: 673914000}
   m_Layer: 7
   m_Name: Character2
   m_TagString: Untagged
@@ -970,6 +1021,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &673914000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673913998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 5
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &745270794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,7 +1599,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 661151159}
         m_TargetAssemblyTypeName: CharacterSelectController, Assembly-CSharp
-        m_MethodName: ClickRightButton
+        m_MethodName: ClickRightButtonP1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1700,7 +1773,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 542033794}
         m_TargetAssemblyTypeName: CharacterSelectController, Assembly-CSharp
-        m_MethodName: ClickLeftButton
+        m_MethodName: ClickLeftButtonP2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1757,6 +1830,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1407230059}
+  - component: {fileID: 1407230060}
   m_Layer: 6
   m_Name: Character1
   m_TagString: Untagged
@@ -1782,6 +1856,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1407230060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407230058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 4
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1640232164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,7 +2376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: 200}
+  m_AnchoredPosition: {x: 300, y: 50}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1774717644
@@ -2329,7 +2425,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 661151159}
         m_TargetAssemblyTypeName: CharacterSelectController, Assembly-CSharp
-        m_MethodName: ClickLeftButton
+        m_MethodName: ClickLeftButtonP1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

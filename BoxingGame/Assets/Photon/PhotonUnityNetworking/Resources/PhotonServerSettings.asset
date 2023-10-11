@@ -46,6 +46,8 @@ MonoBehaviour:
   - ApplyDamage
   - StartGame
   - UpdateGameStartButton
+  - SyncCharacterChangeP1
+  - SyncCharacterChangeP2
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
