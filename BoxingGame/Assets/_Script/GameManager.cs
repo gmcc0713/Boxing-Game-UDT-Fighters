@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 {
+    public enum Character
+    {
+        Empty = 0,
+        Horse,
+        Zombie,
+        Count,
+    }
     public static GameManager instance
     {
         get
@@ -23,28 +30,72 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     }
     private static GameManager m_instance; // 싱글톤이 할당될 static 변수
 
-    public GameObject playerPrefab;
+    public GameObject zombiePrefab;
+    public GameObject horsePrefab;
+    public static int player1 = 0;
+    public static int player2 = 0;
+    public PhotonView pv;
 
     private void Awake()
     {
         // 씬에 싱글톤 오브젝트가 된 다른 GameManager 오브젝트가 있다면
-        if (instance != this)
+        //if (instance != this)
+        //{
+        //    // 자신을 파괴
+        //    Destroy(gameObject);
+        //}
+
+        if (m_instance != null && m_instance != this)
         {
-            // 자신을 파괴
             Destroy(gameObject);
+            return;
         }
+
+        m_instance = this;
+        DontDestroyOnLoad(gameObject);
+        pv = GetComponent<PhotonView>();
     }
     // Start is called before the first frame update
-    private void Start()
+    void Start()
+    {
+        int player1Character = PlayerPrefs.GetInt("Player1Character", 1);
+        int player2Character = PlayerPrefs.GetInt("Player2Character", 1);
+        player1 = player1Character;
+        player2 = player2Character;
+        Debug.Log(player1);
+        Debug.Log(player2);
+
+        MakeCharacter();
+    }
+    private void MakeCharacter()
     {
         // 생성할 랜덤 위치 지정
         Vector3 randomSpawnPos = Random.insideUnitSphere * 5f;
         // 위치 y값은 0으로 변경
         randomSpawnPos.y = 0f;
 
+        GameObject selectedPrefab = null;
+
+        if (player1 == 1)
+        {
+            selectedPrefab = horsePrefab;
+        }
+        else if (player1 == 2)
+        {
+            selectedPrefab = zombiePrefab;
+        }
+        else if (player2 == 1)
+        {
+            selectedPrefab = horsePrefab;
+        }
+        else if (player2 == 2)
+        {
+            selectedPrefab = zombiePrefab;
+        }
         // 네트워크 상의 모든 클라이언트들에서 생성 실행
         // 단, 해당 게임 오브젝트의 주도권은, 생성 메서드를 직접 실행한 클라이언트에게 있음
-        PhotonNetwork.Instantiate(playerPrefab.name, randomSpawnPos, Quaternion.identity);
+        PhotonNetwork.Instantiate(selectedPrefab.name, randomSpawnPos, Quaternion.identity);
+
     }
 
     // Update is called once per frame
@@ -60,10 +111,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         SceneManager.LoadScene("TitleScene");
     }
 
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
