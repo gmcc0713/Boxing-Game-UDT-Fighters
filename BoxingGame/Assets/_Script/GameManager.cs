@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         // 생성할 랜덤 위치 지정
         Vector3 randomSpawnPos = Random.insideUnitSphere * 5f;
         // 위치 y값은 0으로 변경
-        randomSpawnPos.y = 0f;
+        randomSpawnPos.y = 0.1f;
 
         GameObject selectedPrefab = null;
 
