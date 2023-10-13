@@ -42,6 +42,6 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void StartGame()
     {
-        PhotonNetwork.LoadLevel("MultiScene");
+        PhotonNetwork.LoadLevel("ActionTestScene");
     }
 }

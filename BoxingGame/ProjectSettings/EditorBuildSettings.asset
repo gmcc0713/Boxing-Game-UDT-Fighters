@@ -14,10 +14,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TestScene.unity
     guid: df885505b30fd8c438c4c6a4a7f98f06
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MultiScene.unity
     guid: 097ecce472ca36546836fc5104a2cafc
   - enabled: 1
     path: Assets/Scenes/LobbyScene.unity
     guid: 9e61d5d5016a699439ae5ecb40e7ff49
+  - enabled: 1
+    path: Assets/Scenes/ActionTestScene.unity
+    guid: f3dcdb865013ddd4e8fe7f5a6fb48264
   m_configObjects: {}

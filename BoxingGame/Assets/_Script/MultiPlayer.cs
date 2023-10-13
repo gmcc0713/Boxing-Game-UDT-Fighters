@@ -43,7 +43,11 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     [Header("Health")]
     public float startHealth = 100;
     private float health;
-    public Image healthBar;
+
+    public Image MasterHealthBar;
+    public Image remoteHealthBar;
+    public GameObject MasterCanvas;
+    public GameObject RemoteCanvas;
     [SerializeField] private Skill skill;
    
     private PhotonView pv;
@@ -51,9 +55,40 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         animator = GetComponent<Animator>();
         pv = GetComponent<PhotonView>();
-        //currHp = startingHealth;
+        
         health = startHealth;
-        healthBar.fillAmount = health / startHealth;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            // 마스터 클라이언트이므로 왼쪽 상단의 UI를 할당합니다.
+            MasterHealthBar = transform.Find("MasterCanvas/Master/MasterHP").GetComponent<Image>();
+            MasterHealthBar.fillAmount = health / startHealth;
+            if (pv.IsMine)
+            {
+                // 현재 플레이어가 자신의 객체면 아닌 경우, RemoteCanvas를 비활성화합니다.
+                RemoteCanvas.SetActive(false);
+            }
+            else
+            {
+                // 현재 플레이어가 자신의 객체가 아니면, MasterCanvas를 비활성화합니다.
+                MasterCanvas.SetActive(false);
+            }
+        }
+        else
+        {
+            // 일반 클라이언트이므로 오른쪽 상단의 UI를 할당합니다.
+            remoteHealthBar = transform.Find("RemoteCanvas/Remote/RemoteHP").GetComponent<Image>();
+            remoteHealthBar.fillAmount = health / startHealth;
+            if (!pv.IsMine)
+            {
+                // 현재 플레이어가 자신의 객체가 아니면 RemoteCanvas를 비활성화합니다.
+                RemoteCanvas.SetActive(false);
+            }
+            else
+            {
+                // 현재 플레이어가 자신의 객체면 , MasterCanvas를 비활성화합니다.
+                MasterCanvas.SetActive(false);
+            }
+        }
         skill.Initilize(this);
     }
     private void FixedUpdate()
@@ -301,26 +336,29 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void TakeDamage(float damageAmount, int attackerID)
     {
-        
-
         health -= damageAmount;
-        healthBar.fillAmount = health / startHealth;
 
         if (health <= 0)
         {
             Die();
         }
-
         // 다른 클라이언트에도 데미지를 적용합니다.
         photonView.RPC("ApplyDamage", RpcTarget.Others, damageAmount, attackerID);
-
     }
 
     [PunRPC] //중복호출 방지용
     private void ApplyDamage(float damageAmount, int attackerID)
     {
         health -= damageAmount;
-        healthBar.fillAmount = health / startHealth;
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            MasterHealthBar.fillAmount = health / startHealth;
+        }
+        else
+        {
+            remoteHealthBar.fillAmount = health / startHealth;
+        }
 
         if (health <= 0)
         {
@@ -333,17 +371,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         Debug.Log("사망");
     }
     
-    //private void OnCollisionStay(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        MultiPlayer controller = collision.gameObject.GetComponent<MultiPlayer>();
-
-    //        if (controller.AttackCheck())
-    //        {
-    //        }
-    //    }
-    //}
     public bool AttackCheck()
     {
         if (isAttack)
@@ -359,11 +386,17 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             // 로컬 플레이어의 데이터를 다른 플레이어들에게 보냅니다.
             stream.SendNext(health);
+            // 추가로 healthBar의 fillAmount도 동기화합니다.
+            stream.SendNext(MasterHealthBar.fillAmount);
+            stream.SendNext(remoteHealthBar.fillAmount);
         }
         else
         {
             // 리모트 플레이어들은 다른 플레이어들로부터 데이터를 받습니다.
             health = (float)stream.ReceiveNext();
+            // 추가로 healthBar의 fillAmount도 동기화합니다.
+            MasterHealthBar.fillAmount = (float)stream.ReceiveNext();
+            remoteHealthBar.fillAmount = (float)stream.ReceiveNext();
         }
     }
 }
