@@ -915,6 +915,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: IsRun
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsDead
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0

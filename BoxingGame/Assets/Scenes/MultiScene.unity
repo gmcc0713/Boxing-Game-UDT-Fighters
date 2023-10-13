@@ -321,7 +321,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 714601313}
-  - component: {fileID: 714601312}
   - component: {fileID: 714601315}
   - component: {fileID: 714601314}
   m_Layer: 0
@@ -331,18 +330,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &714601312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 714601310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33c69eb4c2ee48f4d86593f8e62a4af9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &714601313
 Transform:
   m_ObjectHideFlags: 0
@@ -373,12 +360,12 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 1
+  Synchronization: 3
   OwnershipTransfer: 0
-  observableSearch: 0
+  observableSearch: 2
   ObservedComponents:
   - {fileID: 714601315}
-  sceneViewId: 2
+  sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &714601315
@@ -393,7 +380,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f01c35dc6709347a6d1b4fa8bcf714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1937081004221583560, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
+  zombiePrefab: {fileID: 1937081004221583560, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
+  horsePrefab: {fileID: 2131084531056822257, guid: aef83e2b5c0993142884a250199e5f92, type: 3}
+  pv: {fileID: 714601314}
 --- !u!1 &836094408
 GameObject:
   m_ObjectHideFlags: 0
