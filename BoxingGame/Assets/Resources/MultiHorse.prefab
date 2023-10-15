@@ -350,6 +350,7 @@ GameObject:
   - component: {fileID: 61658741203395534}
   - component: {fileID: 61658741203395535}
   - component: {fileID: 1760290985607270493}
+  - component: {fileID: -3983749934621556830}
   m_Layer: 0
   m_Name: MultiHorse
   m_TagString: Player
@@ -555,6 +556,19 @@ MonoBehaviour:
   MasterCanvas: {fileID: 8216268232757144635}
   RemoteCanvas: {fileID: 4121008188087471864}
   skill: {fileID: 0}
+--- !u!114 &-3983749934621556830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109985196421179912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217bfb125bcdfa0428c709f8ac21c0c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
 --- !u!1 &2222186564712770220
 GameObject:
   m_ObjectHideFlags: 0
