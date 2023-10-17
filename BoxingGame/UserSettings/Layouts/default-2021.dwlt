@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1706.6667
     height: 869.3334
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Inspector
   m_RootView: {fileID: 5}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 300}
   m_MaxSize: {x: 24288, y: 24288}
   vertical: 0
-  controlID: 122
+  controlID: 119
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -477,7 +477,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 399.3333
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
@@ -525,22 +525,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Resources
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Resources
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\ProjectF\BoxingGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 35}
-    m_SelectedIDs: f02e0100
-    m_LastClickedID: 77552
-    m_ExpandedIDs: 00000000da2e010000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 155}
+    m_SelectedIDs: 2a320100
+    m_LastClickedID: 78378
+    m_ExpandedIDs: 00000000163201001832010000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -595,7 +595,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300002a6f0000306f0000366f00003c6f0000726f0000666f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -976,9 +976,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 2.470897, y: -8.075686, z: 15.276802}
+    m_Target: {x: 0.21868615, y: -7.8044195, z: 18.882826}
     speed: 2
-    m_Value: {x: 2.470897, y: -8.075686, z: 15.276802}
+    m_Value: {x: 0.21868615, y: -7.8044195, z: 18.882826}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1025,13 +1025,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.21272273, y: 0.12949558, z: -0.028550742, w: 0.9680916}
+    m_Target: {x: 0.214561, y: 0.024390263, z: -0.005455555, w: 0.97641003}
     speed: 2
-    m_Value: {x: 0.21271886, y: 0.12949322, z: -0.02855022, w: 0.96807396}
+    m_Value: {x: 0.21309215, y: 0.024397964, z: -0.005418859, w: 0.97671247}
   m_Size:
     m_Target: 11.925186
     speed: 2
-    m_Value: 11.925186
+    m_Value: 1.2147532
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1090,7 +1090,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 5888feffae88feff4895feff8897fefff897feff2e9afeffe8a8feffbcb8feff10b9feffaac5feffeac7feff5ac8fefff0d6feffd2dafeff28dbfeffc2e7feff02eafeff72eafeff50ecfeff44f0feffb8fcfeffde17ffffe017ffff3029ffff3229fffff829fffffa29ffff7634ffff7834ffffb237ffff8441ffffd042ffff1847010050470100fe68010018690100
+      m_ExpandedIDs: 3a87feff9087feffec90feff2093feff8c93feffd4a3feffc6adfeff00affeff56affeffb2b8feffe6bafeff52bbfeff50bcfeff94cafeff38ccfeff1cd6feff6ad7feffc0d7feff4ae4feff84e6fefff0e6feff2ee8feffca0affffcc0affffce0affffd00affff0c19ffff0e19ffff7219ffff7419ffffee1bffff081cfffff01cffff5c1dffff761dffff5c1effff642effff083fffff7440ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

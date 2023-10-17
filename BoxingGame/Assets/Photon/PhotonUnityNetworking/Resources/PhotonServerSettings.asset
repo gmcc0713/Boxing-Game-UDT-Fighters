@@ -48,6 +48,8 @@ MonoBehaviour:
   - UpdateGameStartButton
   - SyncCharacterChangeP1
   - SyncCharacterChangeP2
+  - ApplyMp
+  - TakeMp
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

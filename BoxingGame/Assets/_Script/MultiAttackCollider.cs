@@ -6,6 +6,7 @@ using Photon.Pun;
 public class MultiAttackCollider : MonoBehaviourPun
 {
     public float damage = 10;
+    public float MpUp = 10;
 
     [PunRPC]
     private void OnTriggerEnter(Collider other)
@@ -25,26 +26,10 @@ public class MultiAttackCollider : MonoBehaviourPun
                 other.GetComponent<MultiPlayer>().TakeDamage(damage, attackerID); // 공격 대상 플레이어에게 데미지를 주도록 수정합니다.
             }
         }
+        else if (other.CompareTag("Player") && photonView.IsMine)
+        {
+            //int myId = photonView.ViewID;
+            other.GetComponent<MultiPlayer>().TakeMp(MpUp);
+        }
     }
-
-    //public void OnAttacked()
-    //{
-    //    Enemy enemy = GetComponent<Enemy>();
-    //    if (enemy != null)
-    //    {
-    //        enemy.TakeDamage(damage);
-    //    }
-    //}
-
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        Enemy enemy = other.GetComponent<Enemy>();
-    //        if (enemy != null)
-    //        {
-    //            enemy.TakeDamage(damage);
-    //        }
-    //    }
-    //}
 }

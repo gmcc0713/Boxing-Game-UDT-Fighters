@@ -48,6 +48,13 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public Image remoteHealthBar;
     public GameObject MasterCanvas;
     public GameObject RemoteCanvas;
+    [Header("Skill")]
+    public float startMP = 0;
+    private float mp;
+    public Image MasterMpBar;
+    public Image RemoteMpBar;
+    public GameObject MasterMpCanvas;
+    public GameObject RemoteMpCanvas;
     [SerializeField] private Skill skill;
    
     private PhotonView pv;
@@ -57,20 +64,25 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         pv = GetComponent<PhotonView>();
         
         health = startHealth;
+        mp = startMP;
         if (PhotonNetwork.IsMasterClient)
         {
             // 마스터 클라이언트이므로 왼쪽 상단의 UI를 할당합니다.
             MasterHealthBar = transform.Find("MasterCanvas/Master/MasterHP").GetComponent<Image>();
             MasterHealthBar.fillAmount = health / startHealth;
+            MasterMpBar = transform.Find("MasterMpCanvas/MasterMP/MasterMP").GetComponent<Image>();
+            MasterMpBar.fillAmount = mp / startHealth;
             if (pv.IsMine)
             {
                 // 현재 플레이어가 자신의 객체면 아닌 경우, RemoteCanvas를 비활성화합니다.
                 RemoteCanvas.SetActive(false);
+                RemoteMpCanvas.SetActive(false);
             }
             else
             {
                 // 현재 플레이어가 자신의 객체가 아니면, MasterCanvas를 비활성화합니다.
                 MasterCanvas.SetActive(false);
+                MasterMpCanvas.SetActive(false);
             }
         }
         else
@@ -78,15 +90,19 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             // 일반 클라이언트이므로 오른쪽 상단의 UI를 할당합니다.
             remoteHealthBar = transform.Find("RemoteCanvas/Remote/RemoteHP").GetComponent<Image>();
             remoteHealthBar.fillAmount = health / startHealth;
+            RemoteMpBar = transform.Find("RemoteMpCanvas/RemoteMP/RemoteMP").GetComponent<Image>();
+            RemoteMpBar.fillAmount = mp / startHealth;
             if (!pv.IsMine)
             {
                 // 현재 플레이어가 자신의 객체가 아니면 RemoteCanvas를 비활성화합니다.
                 RemoteCanvas.SetActive(false);
+                RemoteMpCanvas.SetActive(false);
             }
             else
             {
                 // 현재 플레이어가 자신의 객체면 , MasterCanvas를 비활성화합니다.
                 MasterCanvas.SetActive(false);
+                MasterMpCanvas.SetActive(false);
             }
         }
         skill.Initilize(this);
@@ -365,6 +381,38 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             Die();
         }
     }
+    [PunRPC]
+    public void TakeMp(float damageAmount)
+    {
+        mp += damageAmount;
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            MasterMpBar.fillAmount = mp / startHealth;
+        }
+        else
+        {
+            RemoteMpBar.fillAmount = mp / startHealth;
+        }
+
+        // 다른 클라이언트에도 데미지를 적용합니다.
+        photonView.RPC("ApplyMp", RpcTarget.Others, damageAmount);
+
+    }
+    [PunRPC] //중복호출 방지용
+    private void ApplyMp(float damageAmount)
+    {
+        mp += damageAmount;
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            MasterMpBar.fillAmount = mp / startHealth;
+        }
+        else
+        {
+            RemoteMpBar.fillAmount = mp / startHealth;
+        }
+    }
 
     void Die()
     {
@@ -386,17 +434,23 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             // 로컬 플레이어의 데이터를 다른 플레이어들에게 보냅니다.
             stream.SendNext(health);
+            stream.SendNext(mp);
             // 추가로 healthBar의 fillAmount도 동기화합니다.
             stream.SendNext(MasterHealthBar.fillAmount);
             stream.SendNext(remoteHealthBar.fillAmount);
+            stream.SendNext(MasterMpBar.fillAmount);
+            stream.SendNext(RemoteMpBar.fillAmount);
         }
         else
         {
             // 리모트 플레이어들은 다른 플레이어들로부터 데이터를 받습니다.
             health = (float)stream.ReceiveNext();
+            mp = (float)stream.ReceiveNext();
             // 추가로 healthBar의 fillAmount도 동기화합니다.
             MasterHealthBar.fillAmount = (float)stream.ReceiveNext();
             remoteHealthBar.fillAmount = (float)stream.ReceiveNext();
+            MasterMpBar.fillAmount = (float)stream.ReceiveNext();
+            RemoteMpBar.fillAmount = (float)stream.ReceiveNext();
         }
     }
 }
