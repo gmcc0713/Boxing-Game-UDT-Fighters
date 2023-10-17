@@ -1,4 +1,3 @@
-using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -41,6 +40,17 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
         {
             leftButtonP1.interactable = false;
             rightButtonP1.interactable = false;
+        }
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            photonView.RPC("SyncCharacterChangeP1", RpcTarget.Others, (int)curCharacterP1);
+            PlayerPrefs.SetInt("Player1Character", (int)curCharacterP1);
+        }
+        else
+        {
+            photonView.RPC("SyncCharacterChangeP2", RpcTarget.Others, (int)curCharacterP2);
+            PlayerPrefs.SetInt("Player2Character", (int)curCharacterP2);
         }
     }
     //방장의 왼쪽 버튼클릭 이벤트
