@@ -148,7 +148,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     }
     private void Move()
     {
-        OnMove();
         //공격상태가 아닐 시 이동
         if (!isAttack)
         {
@@ -356,6 +355,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
         if (health <= 0)
         {
+            Debug.Log("healt 0");
             Die();
         }
         // 다른 클라이언트에도 데미지를 적용합니다.
@@ -416,6 +416,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     void Die()
     {
+        health = 0;
+        animator.SetBool("IsDead", true);
         Debug.Log("사망");
     }
     
