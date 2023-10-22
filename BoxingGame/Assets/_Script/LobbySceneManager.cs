@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class LobbySceneManager : MonoBehaviourPunCallbacks
 {
@@ -43,5 +44,17 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
     private void StartGame()
     {
         PhotonNetwork.LoadLevel("ActionTestScene");
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+    }
+    public override void OnLeftRoom()
+    {
+        SceneManager.LoadScene("TitleScene");
     }
 }
