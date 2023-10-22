@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Photon.Pun;
 using UnityEngine.UI;
+using Photon.Pun.Demo.PunBasics;
 
 public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -56,13 +57,15 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject MasterMpCanvas;
     public GameObject RemoteMpCanvas;
     [SerializeField] private Skill skill;
-   
+
+    private GameManager gameManager;
     private PhotonView pv;
     void Start()
     {
         animator = GetComponent<Animator>();
         pv = GetComponent<PhotonView>();
-        
+
+        gameManager = FindObjectOfType<GameManager>();
         health = startHealth;
         mp = startMP;
         if (PhotonNetwork.IsMasterClient)
@@ -354,12 +357,32 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         health -= damageAmount;
 
+        //HP가 0이 됐을때 실행
         if (health <= 0)
         {
-            Die();
+            if (PhotonNetwork.IsMasterClient)
+            {
+                gameManager.player1Score++;
+                Debug.Log("플레이어1Win");
+
+            }
+            //방장에게 알림
+            else
+            {
+                photonView.RPC("NotifyPlayerDeath", RpcTarget.MasterClient);
+            }
+            //photonView.RPC("NotifyPlayerDeath", RpcTarget.MasterClient, attackerID);
         }
         // 다른 클라이언트에도 데미지를 적용합니다.
         photonView.RPC("ApplyDamage", RpcTarget.Others, damageAmount, attackerID);
+    }
+
+    [PunRPC]
+    private void NotifyPlayerDeath()
+    {
+        // 여기서 attackerID는 공격한 플레이어의 ID
+        gameManager.player2Score++;
+        Debug.Log("플레이어2Win");
     }
 
     [PunRPC] //중복호출 방지용

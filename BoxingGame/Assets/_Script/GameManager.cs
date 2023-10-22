@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     public Transform player1SpawnPoint;
     public Transform player2SpawnPoint;
 
+    public int player1Score = 0;
+    public int player2Score = 0;
+
     private void Awake()
     {
         // 씬에 싱글톤 오브젝트가 된 다른 GameManager 오브젝트가 있다면
@@ -96,6 +99,21 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         // 네트워크 상의 모든 클라이언트들에서 생성 실행
         // 단, 해당 게임 오브젝트의 주도권은, 생성 메서드를 직접 실행한 클라이언트에게 있음
         PhotonNetwork.Instantiate(selectedPrefab.name, spawnPosition, Quaternion.identity);
+    }
+
+    public void PlayerDied(int playerID)
+    {
+        if (playerID == 1)
+        {
+            player1Score++;
+            Debug.Log("플레이어1 win");
+
+        }
+        else if (playerID != 1)
+        {
+            player2Score++;
+            Debug.Log("플레이어2 win");
+        }
     }
 
     // Update is called once per frame

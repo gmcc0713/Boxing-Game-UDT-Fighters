@@ -23,8 +23,6 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        curCharacterP1 = Character.Horse;
-        curCharacterP2 = Character.Horse;
         leftButtonP1.interactable = false;
         rightButtonP1.interactable = true;
         leftButtonP2.interactable = false;
@@ -33,13 +31,13 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
         //마스터 클라이언트의 화면에선 P2의 버튼 false
         if (PhotonNetwork.IsMasterClient)
         {
-            leftButtonP2.interactable = false;
-            rightButtonP2.interactable = false;
+            leftButtonP2.gameObject.SetActive(false);
+            rightButtonP2.gameObject.SetActive(false);
         }
         else
         {
-            leftButtonP1.interactable = false;
-            rightButtonP1.interactable = false;
+            leftButtonP1.gameObject.SetActive(false);
+            rightButtonP1.gameObject.SetActive(false);
         }
 
         if (PhotonNetwork.IsMasterClient)
