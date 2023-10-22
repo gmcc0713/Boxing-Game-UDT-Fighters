@@ -1690,7 +1690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa0a4a4e354efd4e895c06ded5dafc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 154321752428450237}
   skillBall: {fileID: 8290976864878547474, guid: 99e44552c1c0f8e4eb7c4989928a58d2, type: 3}
   skillPos: {fileID: 0}
 --- !u!1 &3189783744366541144

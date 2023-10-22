@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     public Transform player1SpawnPoint;
     public Transform player2SpawnPoint;
 
+    public int round = 1;
+    public TextMeshProUGUI roundText;
     private void Awake()
     {
         // 씬에 싱글톤 오브젝트가 된 다른 GameManager 오브젝트가 있다면
@@ -79,6 +82,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             SpawnPlayer(player2, player2SpawnPoint.position);
         }
+        RoundChange(1);
     }
     void SpawnPlayer(int playerCharacter, Vector3 spawnPosition)
     {
@@ -128,5 +132,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             transform.position = (Vector3)stream.ReceiveNext();
             transform.rotation = (Quaternion)stream.ReceiveNext();
         }
+    }
+    public void RoundChange(int a)
+    {
+        round = a;
+        Debug.Log(roundText.text);
+        roundText.text = round.ToString();  
     }
 }

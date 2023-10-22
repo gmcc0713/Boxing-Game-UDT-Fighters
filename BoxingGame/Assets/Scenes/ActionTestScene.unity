@@ -9972,6 +9972,8 @@ MonoBehaviour:
   pv: {fileID: 1409422279}
   player1SpawnPoint: {fileID: 74376058}
   player2SpawnPoint: {fileID: 90939580}
+  round: 1
+  roundText: {fileID: 614672003}
 --- !u!4 &1409422281
 Transform:
   m_ObjectHideFlags: 0
