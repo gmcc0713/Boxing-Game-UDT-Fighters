@@ -174,7 +174,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: OA
-  m_Speed: 2.25
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -5554256419056128338}
@@ -331,7 +331,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: OS
-  m_Speed: 2
+  m_Speed: 1.9
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6437832781637328557}
@@ -348,7 +348,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d5be0c37e14773945b0b9db25c485efd, type: 2}
+  m_Motion: {fileID: 7400000, guid: 1a538f98efe588d4db20c46e94f88982, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -562,7 +562,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 3815336605001115067}
-    m_Position: {x: 250, y: 70, z: 0}
+    m_Position: {x: -280, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2798850835929514462}
     m_Position: {x: -50, y: -330, z: 0}
@@ -571,31 +571,31 @@ AnimatorStateMachine:
     m_Position: {x: -40, y: -1060, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5289044026320996661}
-    m_Position: {x: 750, y: -160, z: 0}
+    m_Position: {x: -840, y: -140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 530443752521482768}
-    m_Position: {x: 1280, y: -160, z: 0}
+    m_Position: {x: -1360, y: -170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4497554492553237087}
-    m_Position: {x: 1360, y: -370, z: 0}
+    m_Position: {x: -1630, y: -410, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8537702814999885823}
-    m_Position: {x: -320, y: 60, z: 0}
+    m_Position: {x: 220, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4680837001571742477}
-    m_Position: {x: -830, y: -150, z: 0}
+    m_Position: {x: 770, y: -170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2350393397624208426}
-    m_Position: {x: -1370, y: -160, z: 0}
+    m_Position: {x: 1370, y: -170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1684016948241111355}
-    m_Position: {x: -1530, y: -400, z: 0}
+    m_Position: {x: 1580, y: -420, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4962409614974256718}
-    m_Position: {x: -1010, y: -890, z: 0}
+    m_Position: {x: -870, y: -1050, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -360238742172453734}
-    m_Position: {x: 1190, y: -910, z: 0}
+    m_Position: {x: 750, y: -1070, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -686,7 +686,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: OSA
-  m_Speed: 1
+  m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4048701300503776627}
@@ -820,67 +820,67 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attack_AA
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attack_AAA
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attack_AAS
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attack_S
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attack_SS
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attack_SSS
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attack_SSA
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: GetHit
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsRun
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsDead
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -927,7 +927,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: OAA
-  m_Speed: 2
+  m_Speed: 1.4
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3997211256895191016}
@@ -1179,7 +1179,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: A
-  m_Speed: 2
+  m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -2223100255529178773}
@@ -1278,7 +1278,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: OAS
-  m_Speed: 2
+  m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1319639489163413726}
@@ -1559,7 +1559,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: S
-  m_Speed: 2.1
+  m_Speed: 1.9
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7702847300442237161}

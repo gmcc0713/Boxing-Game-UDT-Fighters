@@ -439,9 +439,11 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     void Die()
     {
+        health = 0;
+        animator.SetBool("IsDead", true);
         Debug.Log("»ç¸Á");
     }
-    
+
     public bool AttackCheck()
     {
         if (isAttack)
