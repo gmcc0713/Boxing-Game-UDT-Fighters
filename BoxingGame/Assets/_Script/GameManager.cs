@@ -39,8 +39,26 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     public Transform player1SpawnPoint;
     public Transform player2SpawnPoint;
 
-    public int player1Score = 0;
-    public int player2Score = 0;
+    [Header("Score")]
+    //이부분은 플레이어가 이겼다는걸 보여주기 위해 나중에 bool형태로 수정할 예정
+    public int m_player1Score = 0;
+    public int m_player2Score = 0;
+    //누적스코어
+    public int P1WinScore = 0;
+    public int P2WinScore = 0;
+    //누가 이겼는지 보여주기 위한 이미지들
+    public GameObject player1WinImage;
+    public GameObject player2WinImage;
+    //하드코딩으로 테스트 후 배열로 수정할 예정
+    public GameObject P1Round1;
+    public GameObject P1Round2;
+    public GameObject P1Round3;
+    public GameObject P2Round1;
+    public GameObject P2Round2;
+    public GameObject P2Round3;
+    //최종 승리자
+    public GameObject EndP1Win;
+    public GameObject EndP2Win;
 
     private void Awake()
     {
@@ -101,21 +119,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         PhotonNetwork.Instantiate(selectedPrefab.name, spawnPosition, Quaternion.identity);
     }
 
-    public void PlayerDied(int playerID)
-    {
-        if (playerID == 1)
-        {
-            player1Score++;
-            Debug.Log("플레이어1 win");
-
-        }
-        else if (playerID != 1)
-        {
-            player2Score++;
-            Debug.Log("플레이어2 win");
-        }
-    }
-
     // Update is called once per frame
     private void Update()
     {
@@ -123,6 +126,110 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             PhotonNetwork.LeaveRoom();
         }
+
+        RoundImageActive();
+    }
+
+    [PunRPC]
+    public void Player1Win()
+    {
+        m_player1Score++;
+        P1WinScore++;
+        photonView.RPC("RoundWin", RpcTarget.All); //모든pc에게 준비상태 전달
+    }
+    [PunRPC]
+    public void Player2Win()
+    {
+        m_player2Score++;
+        P2WinScore++;
+        photonView.RPC("RoundWin", RpcTarget.All);
+    }
+    [PunRPC]
+    public void RoundWin()
+    {
+        if (m_player1Score > 0)
+        {
+            player1WinImage.SetActive(true); // 이미지 활성화
+            StartCoroutine(DeactivateWinImage()); // 3초 뒤에 이미지 비활성화
+        }
+
+        if (m_player2Score > 0)
+        {
+            player2WinImage.SetActive(true); // 이미지 활성화
+            StartCoroutine(DeactivateWinImage()); // 3초 뒤에 이미지 비활성화
+        }
+    }
+    private IEnumerator DeactivateWinImage()
+    {
+        yield return new WaitForSeconds(3.0f);
+        m_player1Score = 0;
+        m_player2Score = 0;
+        player1WinImage.SetActive(false); // 이미지 비활성화
+        player2WinImage.SetActive(false);
+    }
+
+    //누적 스코어 활성화 시키기위함
+    void RoundImageActive()
+    {
+        if (P1WinScore == 1)
+            P1Round1.SetActive(true);
+        if (P1WinScore == 2)
+            P1Round2.SetActive(true);
+        if (P1WinScore == 3)
+        {
+            P1Round3.SetActive(true);
+            EndGame();
+        }
+        if (P2WinScore == 1)
+            P2Round1.SetActive(true);
+        if (P2WinScore == 2)
+            P2Round2.SetActive(true);
+        if (P2WinScore == 3)
+        {
+            P2Round3.SetActive(true);
+            EndGame();
+        }
+    }
+
+    [PunRPC]
+    public void EndGame()
+    {
+        Destroy(player1WinImage);
+        Destroy(player2WinImage);
+
+        if (P1WinScore == 3)
+        {
+            pv.RPC("ShowEndWinImage", RpcTarget.All, 1);
+            //EndP1Win.SetActive(true);
+            //StartCoroutine(FinalWinImage());
+        }
+
+        if (P2WinScore == 3)
+        {
+            pv.RPC("ShowEndWinImage", RpcTarget.All, 2);
+            //EndP2Win.SetActive(true);
+            //StartCoroutine(FinalWinImage());
+        }
+
+    }
+
+    [PunRPC]
+    public void ShowEndWinImage(int winner)
+    {
+        if (winner == 1)
+        {
+            EndP1Win.SetActive(true);
+        }
+        else if (winner == 2)
+        {
+            EndP2Win.SetActive(true);
+        }
+        StartCoroutine(FinalWinImage());
+    }
+    private IEnumerator FinalWinImage()
+    {
+        yield return new WaitForSeconds(3.0f);
+        SceneManager.LoadScene("TitleScene");
     }
     public override void OnLeftRoom()
     {

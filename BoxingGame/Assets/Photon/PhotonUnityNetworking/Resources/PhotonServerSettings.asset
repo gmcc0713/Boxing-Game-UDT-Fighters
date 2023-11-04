@@ -51,6 +51,12 @@ MonoBehaviour:
   - ApplyMp
   - TakeMp
   - NotifyPlayerDeath
+  - EndGame
+  - Player1Win
+  - Player2Win
+  - ResetPlayerHealth
+  - RoundWin
+  - ShowEndWinImage
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
