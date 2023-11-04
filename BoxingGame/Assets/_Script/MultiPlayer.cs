@@ -362,18 +362,19 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                gameManager.player1Score++;
+                gameManager.Player1Win();
                 Debug.Log("플레이어1Win");
-
+                photonView.RPC("ResetPlayerHealth", RpcTarget.All);
             }
             //방장에게 알림
             else
             {
                 photonView.RPC("NotifyPlayerDeath", RpcTarget.MasterClient);
+                photonView.RPC("ResetPlayerHealth", RpcTarget.All);
             }
-            //photonView.RPC("NotifyPlayerDeath", RpcTarget.MasterClient, attackerID);
+            
         }
-        // 다른 클라이언트에도 데미지를 적용합니다.
+        // 다른 클라이언트에도 데미지를 적용
         photonView.RPC("ApplyDamage", RpcTarget.Others, damageAmount, attackerID);
     }
 
@@ -381,8 +382,40 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     private void NotifyPlayerDeath()
     {
         // 여기서 attackerID는 공격한 플레이어의 ID
-        gameManager.player2Score++;
+        gameManager.Player2Win();
         Debug.Log("플레이어2Win");
+    }
+    [PunRPC]
+    private void ResetPlayerHealth()
+    {
+        StartCoroutine(ResetPlayerHP());
+    }
+    private IEnumerator ResetPlayerHP()
+    {
+        yield return new WaitForSeconds(3.0f);
+
+        // health = startHealth;
+        Debug.Log("전 플레이어 체력 초기화");
+  
+        foreach (MultiPlayer player in FindObjectsOfType<MultiPlayer>())
+        {
+            player.ResetHP();
+        }
+    }
+    public void ResetHP()
+    {
+        health = startHealth;
+        mp = startMP;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            MasterHealthBar.fillAmount = 100.0f;
+            MasterMpBar.fillAmount = 0f;
+        }
+        else
+        {
+            remoteHealthBar.fillAmount = 100.0f;
+            RemoteMpBar.fillAmount = 0f;
+        }
     }
 
     [PunRPC] //중복호출 방지용
