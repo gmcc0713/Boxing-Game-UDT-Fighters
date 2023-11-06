@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa28d63d5b3754e4780ed3c6efb53e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animatorMachine: {fileID: 0}
   damage: 10
   MpUp: 10
 --- !u!1 &1297158320101710674
@@ -1486,6 +1487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa28d63d5b3754e4780ed3c6efb53e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animatorMachine: {fileID: 4675809688993524424}
   damage: 10
   MpUp: 10
 --- !u!114 &7226136948128609345

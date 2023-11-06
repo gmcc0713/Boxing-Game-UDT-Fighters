@@ -2752,6 +2752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa28d63d5b3754e4780ed3c6efb53e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animatorMachine: {fileID: 3286235752765558714}
   damage: 10
   MpUp: 10
 --- !u!1 &6802713335980552247

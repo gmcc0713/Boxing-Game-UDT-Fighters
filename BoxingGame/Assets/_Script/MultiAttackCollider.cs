@@ -5,6 +5,7 @@ using Photon.Pun;
 
 public class MultiAttackCollider : MonoBehaviourPun
 {
+    public Animator animatorMachine;
     public float damage = 10;
     public float MpUp = 10;
 
