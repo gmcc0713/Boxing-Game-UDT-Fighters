@@ -410,11 +410,13 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             MasterHealthBar.fillAmount = 100.0f;
             MasterMpBar.fillAmount = 0f;
+            animator.SetBool("IsDead", false);
         }
         else
         {
             remoteHealthBar.fillAmount = 100.0f;
             RemoteMpBar.fillAmount = 0f;
+            animator.SetBool("IsDead", false);
         }
     }
 
