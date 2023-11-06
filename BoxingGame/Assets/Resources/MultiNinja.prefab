@@ -816,6 +816,15 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 0
     Name: IsRun
+  - Type: 9
+    SynchronizeType: 0
+    Name: GetHit
+  - Type: 4
+    SynchronizeType: 0
+    Name: IsDead
+  - Type: 9
+    SynchronizeType: 0
+    Name: Reset
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -2028,7 +2037,6 @@ GameObject:
   - component: {fileID: 4438534222682672769}
   - component: {fileID: 7361111154902084911}
   - component: {fileID: 5747585951035410375}
-  - component: {fileID: 3954048989829868218}
   m_Layer: 0
   m_Name: attackCollider
   m_TagString: AttackCollider
@@ -2116,19 +2124,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   MpUp: 10
---- !u!114 &3954048989829868218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7771420867611055317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18ce31cf5746545468ce1a48735f8f26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
 --- !u!1 &7794913228027831613
 GameObject:
   m_ObjectHideFlags: 0
