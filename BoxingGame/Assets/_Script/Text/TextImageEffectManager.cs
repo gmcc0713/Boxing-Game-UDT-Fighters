@@ -28,7 +28,7 @@ public class TextImageEffectManager : MonoBehaviour
     IEnumerator GameStartReadyFightImageAnimation()
     {
 		Debug.Log("Start");
-		effecters[(int)EffectImage.Ready].StartSizeUp();
+		effecters[(int)EffectImage.Ready].gameObject.SetActive(true);
 		yield return new WaitForSeconds(3.0f);
 	}
 

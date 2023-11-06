@@ -4,43 +4,27 @@ using UnityEngine;
 
 public class TextImageEffecter : MonoBehaviour
 {
-	private float size = 1f; //원하는 사이즈
-	public float speed; //커질 때의 속도
+	float time;
 
-	private float time;
-	private Vector2 originScale; //원래 크기
-
-	private void Awake()
-	{
-		originScale = transform.localScale; //원래 크기 저장
-	}
-	private void OnEnable()
+	// Update is called once per frame
+	void Update()
 	{
 
-	}
-	private IEnumerator Up()
-	{
-		while (transform.localScale.x < size)
+		transform.localScale = Vector3.one * (1 + time);
+		time += Time.deltaTime;
+		if (time > 1f)
 		{
-			Debug.Log("W");
-			transform.localScale = originScale * (1f + time * speed);
-			time += Time.deltaTime;
-
-			if (transform.localScale.x >= size)
-			{
-				Debug.Log("End");
-				time = 0;
-				break;
-			}
-			yield return null;
+			StartCoroutine(WaitDisable());
 		}
 	}
-	public void StartSizeUp()
+	IEnumerator WaitDisable()
 	{
-		StartCoroutine(Up());
+		yield return new WaitForSeconds(1.0f);
+		gameObject.SetActive(false);
 	}
-	private void OnDisable()
+	public void resetAnim()
 	{
-		gameObject.transform.localScale = originScale;
+		time = 0;
+		transform.localScale = Vector3.one;
 	}
 }
