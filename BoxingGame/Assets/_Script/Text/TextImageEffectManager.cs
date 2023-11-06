@@ -14,11 +14,11 @@ public enum EffectImage
 }
 public class TextImageEffectManager : MonoBehaviour
 {
-	public Image[] effectImages;
+	public UnityEngine.UI.Image[] effectImages;
 	public TextImageEffecter[] effecters;
 	void Start()
 	{
-		Debug.Log("Start");
+		UnityEngine.Debug.Log("Start");
 		StartCoroutine(GameStartReadyFightImageAnimation());
 	}
 
@@ -29,7 +29,7 @@ public class TextImageEffectManager : MonoBehaviour
 	}
 	IEnumerator GameStartReadyFightImageAnimation()
 	{
-		Debug.Log("Start");
+		UnityEngine.Debug.Log("Start");
 		effecters[(int)EffectImage.Ready].gameObject.SetActive(true);
 		yield return new WaitForSeconds(3.0f);
 	}

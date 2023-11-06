@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 374105639500215325}
   - component: {fileID: -8440736864515474039}
   m_Layer: 0
-  m_Name: Ninja_Duble
+  m_Name: MultiNinja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
