@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MultiNinja
       objectReference: {fileID: 0}
+    - target: {fileID: 2512808492209741518, guid: 6fef5149aec993049936da3f9b898e13, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2996189724291318900, guid: 6fef5149aec993049936da3f9b898e13, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -2795,13 +2799,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1383009541719419811, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
+      propertyPath: m_Center.y
+      value: 0.91
+      objectReference: {fileID: 0}
     - target: {fileID: 1937081004221583560, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
       propertyPath: m_Name
       value: MultiZombie
       objectReference: {fileID: 0}
     - target: {fileID: 1937081004221583560, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2129849224657324747, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
       propertyPath: m_RootOrder
