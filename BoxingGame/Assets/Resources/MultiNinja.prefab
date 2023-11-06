@@ -667,7 +667,7 @@ GameObject:
   - component: {fileID: -8440736864515474039}
   m_Layer: 0
   m_Name: MultiNinja
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2122,7 +2122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa28d63d5b3754e4780ed3c6efb53e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatorMachine: {fileID: 9184166177389321742}
   damage: 10
   MpUp: 10
 --- !u!1 &7794913228027831613
