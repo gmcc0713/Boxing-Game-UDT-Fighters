@@ -360,7 +360,9 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         //HP가 0이 됐을때 실행
         if (health <= 0)
         {
-            if (PhotonNetwork.IsMasterClient)
+			Die();
+
+			if (PhotonNetwork.IsMasterClient)
             {
                 gameManager.Player1Win();
                 Debug.Log("플레이어1Win");
@@ -434,10 +436,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             remoteHealthBar.fillAmount = health / startHealth;
         }
 
-        if (health <= 0)
-        {
-            Die();
-        }
     }
     [PunRPC]
     public void TakeMp(float damageAmount)
