@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     public enum Character
     {
         Empty = 0,
+        Random,
         Horse,
         Zombie,
         Count,
@@ -105,13 +106,18 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         GameObject selectedPrefab = null;
 
-        if (playerCharacter == 1)
+        if (playerCharacter == 2)
         {
             selectedPrefab = horsePrefab;
         }
-        else
+        else if (playerCharacter == 3)
         {
             selectedPrefab = zombiePrefab;
+        }
+        else if (playerCharacter == 1)
+        {
+            int randC = Random.Range(2, 4);
+            selectedPrefab = (randC == 2) ? horsePrefab : zombiePrefab;
         }
 
         // 네트워크 상의 모든 클라이언트들에서 생성 실행
@@ -245,6 +251,16 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             // Example: Serialize player position and rotation
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
+            stream.SendNext(player1WinImage.activeSelf);
+            stream.SendNext(player2WinImage.activeSelf);
+            stream.SendNext(P1Round1.activeSelf);
+            stream.SendNext(P1Round2.activeSelf);
+            stream.SendNext(P1Round3.activeSelf);
+            stream.SendNext(P2Round1.activeSelf);
+            stream.SendNext(P2Round2.activeSelf);
+            stream.SendNext(P2Round3.activeSelf);
+            stream.SendNext(EndP1Win.activeSelf);
+            stream.SendNext(EndP2Win.activeSelf);
         }
         else
         {
@@ -252,6 +268,16 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             // Example: Deserialize player position and rotation
             transform.position = (Vector3)stream.ReceiveNext();
             transform.rotation = (Quaternion)stream.ReceiveNext();
+            player1WinImage.SetActive((bool)stream.ReceiveNext());
+            player2WinImage.SetActive((bool)stream.ReceiveNext());
+            P1Round1.SetActive((bool)stream.ReceiveNext());
+            P1Round2.SetActive((bool)stream.ReceiveNext());
+            P1Round3.SetActive((bool)stream.ReceiveNext());
+            P2Round1.SetActive((bool)stream.ReceiveNext());
+            P2Round2.SetActive((bool)stream.ReceiveNext());
+            P2Round3.SetActive((bool)stream.ReceiveNext());
+            EndP1Win.SetActive((bool)stream.ReceiveNext());
+            EndP2Win.SetActive((bool)stream.ReceiveNext());
         }
     }
 }

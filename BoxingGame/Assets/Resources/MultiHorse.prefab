@@ -714,7 +714,7 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: IsDead
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: GetHit
   - Type: 9
     SynchronizeType: 0

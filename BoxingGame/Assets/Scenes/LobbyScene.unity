@@ -1129,7 +1129,7 @@ MonoBehaviour:
   rightButtonP2: {fileID: 560614841}
   characters:
   - {fileID: 363297014}
-  - {fileID: 0}
+  - {fileID: 852387714}
   - {fileID: 757252874}
   - {fileID: 808307311}
 --- !u!114 &661151160
@@ -1454,6 +1454,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66eaac85757272b41a8ad13db36f0502, type: 3}
+--- !u!1 &852387714 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7223528514074816869, guid: 66eaac85757272b41a8ad13db36f0502, type: 3}
+  m_PrefabInstance: {fileID: 852387713}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &920424166 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7223528514074816866, guid: 66eaac85757272b41a8ad13db36f0502, type: 3}

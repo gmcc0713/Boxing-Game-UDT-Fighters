@@ -7,6 +7,7 @@ using Photon.Pun;
 public enum Character
 {
     Empty = 0,
+    Random,
     Horse,
     Zombie,
     Count ,
