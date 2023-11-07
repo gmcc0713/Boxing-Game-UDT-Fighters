@@ -667,7 +667,7 @@ GameObject:
   - component: {fileID: -8440736864515474039}
   m_Layer: 0
   m_Name: MultiNinja
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -859,7 +859,6 @@ MonoBehaviour:
   canCombo: 0
   attackCollider: {fileID: 7771420867611055317}
   attackCombo: 0
-  damage: 0
   startHealth: 100
   MasterHealthBar: {fileID: 1664295159771482061}
   remoteHealthBar: {fileID: 725113256258267211}

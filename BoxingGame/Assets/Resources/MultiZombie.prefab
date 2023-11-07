@@ -1633,11 +1633,11 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: IsDead
   - Type: 9
-    SynchronizeType: 1
-    Name: GetHIt
-  - Type: 9
     SynchronizeType: 0
     Name: Reset
+  - Type: 9
+    SynchronizeType: 0
+    Name: GetHit
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0

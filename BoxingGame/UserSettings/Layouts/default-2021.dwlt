@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1680
     height: 967
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 350}
   m_MaxSize: {x: 10000, y: 10000}
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 110
+  controlID: 132
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -711,14 +711,14 @@ MonoBehaviour:
     - {fileID: 1107835504832676164, guid: 91dd910c250b2454b9567344fde4507b, type: 2}
     - {fileID: 1107835504832676164, guid: 2a6e934a8f5130246bc650ec75282b85, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.7147541
+    - e00: 0.49016392
       e01: 0
       e02: 0
-      e03: 143.65573
+      e03: 103.22951
       e10: 0
-      e11: 0.7147541
+      e11: 0.49016392
       e12: 0
-      e13: 127.21311
+      e13: 124.52459
       e20: 0
       e21: 0
       e22: 1
@@ -904,9 +904,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: d14f3b06beb6fb541a534ffdba1dccde, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: f7f14fba1b9f0f14091ad26ce1d362ad, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -2392223860883460992, guid: d14f3b06beb6fb541a534ffdba1dccde, type: 2}
+  - m_Target: {fileID: -2392223860883460992, guid: f7f14fba1b9f0f14091ad26ce1d362ad, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -983,9 +983,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: b08effff008fffff969bffffa09effffe8aaffffccccffffa2cdffffeccdffff76daffff7cddffffd0e9ffff10fbffff
+      m_SelectedIDs: da75ffff
+      m_LastClickedID: -35366
+      m_ExpandedIDs: c479ffff1e8bffff688bffff0e98ffff1a9bffff62a7ffff20c7ffff06c8ffff50c8ffffded4ffffe8d7ffff40e4ffffaeedffff10fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1175,22 +1175,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Script
+    - Assets/Animation/CharacterActionAnimation/Dual Wield animation
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/_Script
+  - Assets/Animation/CharacterActionAnimation/Dual Wield animation
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\20223413\Club_ProjectF\ProjectF\BoxingGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: dc6b0000
-    m_LastClickedID: 27612
-    m_ExpandedIDs: 000000003c6b0000de6b000000ca9a3b
+    m_SelectedIDs: 0c130100
+    m_LastClickedID: 70412
+    m_ExpandedIDs: 00000000ac6c0000c86c00000e13010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1218,7 +1218,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: f0610000
     m_LastClickedID: 25072
-    m_ExpandedIDs: 000000003c6b0000
+    m_ExpandedIDs: 00000000ac6c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1245,7 +1245,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300002a6f0000306f0000366f00003c6f0000726f0000666f000070d7ffff50600000046f0000722400007e6b0000be7c0000d67d000000000000186c0000f46f000098750000c2760000802400008a6c00007c240000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

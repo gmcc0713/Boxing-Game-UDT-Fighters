@@ -23,7 +23,7 @@ public class MultiAttackCollider : MonoBehaviourPun
 
             if (attackerID != targetID)
             {
-                other.GetComponent<MultiPlayer>().TakeDamage(damage, attackerID); // 공격 대상 플레이어에게 데미지를 주도록 수정합니다.
+                other.GetComponent<MultiPlayer>().TakeDamage(damage, other); // 공격 대상 플레이어에게 데미지를 주도록 수정합니다.
             }
         }
         else if (other.CompareTag("Player") && photonView.IsMine)
