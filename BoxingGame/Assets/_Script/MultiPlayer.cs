@@ -39,8 +39,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     //Å¬¸¯ È½¼ö ½ºÅ×Æ½ º¯¼ö ¼±¾ð
     public static int noOfClicks = 0;
 
-    public float damage;
-
     [Header("Health")]
     public float startHealth = 100;
     private float health;
@@ -356,12 +354,20 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public void TakeDamage(float damageAmount, int attackerID)
     {
         health -= damageAmount;
+        if(damageAmount == 10)
+        {
+            animator.SetTrigger("GetHit");
+        }
 
         //HP°¡ 0ÀÌ µÆÀ»¶§ ½ÇÇà
         if (health <= 0)
         {
+            health = 0;
+            animator.SetBool("IsDead", true);
+            Debug.Log("»ç¸Á");
 
-			if (PhotonNetwork.IsMasterClient)
+
+            if (PhotonNetwork.IsMasterClient)
             {
                 gameManager.Player1Win();
                 Debug.Log("ÇÃ·¹ÀÌ¾î1Win");
@@ -435,12 +441,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             remoteHealthBar.fillAmount = health / startHealth;
         }
 
-        if(health <= 0)
-        {
-			Die();
-		}
-
-	}
+    }
     [PunRPC]
     public void TakeMp(float damageAmount)
     {
@@ -472,13 +473,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             RemoteMpBar.fillAmount = mp / startHealth;
         }
-    }
-
-    void Die()
-    {
-        health = 0;
-        animator.SetBool("IsDead", true);
-        Debug.Log("»ç¸Á");
     }
 
     public bool AttackCheck()

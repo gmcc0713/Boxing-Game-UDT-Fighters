@@ -1660,7 +1660,6 @@ MonoBehaviour:
   canCombo: 0
   attackCollider: {fileID: 6299573051401336825}
   attackCombo: 0
-  damage: 0
   startHealth: 100
   MasterHealthBar: {fileID: 8412293416042477021}
   remoteHealthBar: {fileID: 6666587105720713736}
