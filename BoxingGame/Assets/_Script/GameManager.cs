@@ -163,12 +163,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         if (m_player1Score > 0)
         {
             player1WinImage.SetActive(true); // 이미지 활성화
+           
             StartCoroutine(DeactivateWinImage()); // 3초 뒤에 이미지 비활성화
         }
 
         if (m_player2Score > 0)
         {
             player2WinImage.SetActive(true); // 이미지 활성화
+           
             StartCoroutine(DeactivateWinImage()); // 3초 뒤에 이미지 비활성화
         }
     }
@@ -225,7 +227,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         }
 
     }
-
+    //최종 승리자 이미지 보여주는 함수
     [PunRPC]
     public void ShowEndWinImage(int winner)
     {
@@ -239,14 +241,16 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         }
         StartCoroutine(FinalWinImage());
     }
-    private IEnumerator FinalWinImage()
-    {
-        yield return new WaitForSeconds(3.0f);
-        SceneManager.LoadScene("TitleScene");
-    }
+   
     public override void OnLeftRoom()
     {
         SceneManager.LoadScene("TitleScene");
+    }
+    private IEnumerator FinalWinImage()
+    {
+        yield return new WaitForSeconds(3.0f);
+        //SceneManager.LoadScene("TitleScene");
+        OnLeftRoom();
     }
 
 

@@ -9,6 +9,7 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] Button GameStartButton;
     [SerializeField] public Button ReadyButton;
+    [SerializeField] public Button ReadyButtonRed;
     [SerializeField] GameObject CharacterInfoPanel;
 	[SerializeField] private Button characterInfoLeft;
 	[SerializeField] private Button characterInfoRight;
@@ -37,6 +38,8 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void UpdateGameStartButton(bool isPlayer2Ready)
     {
+        ReadyButton.gameObject.SetActive(false);
+        ReadyButtonRed.gameObject.SetActive(true);
         //게임시작버튼 true로
         GameStartButton.interactable = isPlayer2Ready;
     }
