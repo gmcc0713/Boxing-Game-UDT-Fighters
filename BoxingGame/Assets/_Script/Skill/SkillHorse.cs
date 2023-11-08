@@ -14,7 +14,6 @@ public class SkillHorse : Skill
     }
     public override void SkillUse()
     {
-        Debug.Log("SkillYUseeeee");
         StartCoroutine(Dash());
     }
     IEnumerator Dash()

@@ -4,18 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 public class LobbySceneManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] Button GameStartButton;
     [SerializeField] Button ReadyButton;
+    [SerializeField] GameObject CharacterInfoPanel;
+	[SerializeField] private Button characterInfoLeft;
+	[SerializeField] private Button characterInfoRight;
+	[SerializeField] private GameObject[] characterInfo;
+	[SerializeField] private TextMeshProUGUI[] infoTexts;
+	int characterInfoindex;
 
-    private bool player2Ready = false; //플레이어2 준비상태 
+	private bool player2Ready = false; //플레이어2 준비상태 
     void Start()
     {
         ReadyButton.interactable = true;
         GameStartButton.interactable = false; //처음엔 비활성화
-    }
+        characterInfoindex = 0;
+
+	}
     public void OnReadyButtonClicked()
     {
         //방장이아닌 플레이어가 클릭하였을 때
@@ -57,4 +65,41 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
     {
         SceneManager.LoadScene("TitleScene");
     }
+    public void OpenCharacterInfo()
+    {
+        Debug.Log("Character Info Open");
+        if (CharacterInfoPanel)
+        {
+            CharacterInfoPanel.SetActive(true);
+        }
+    }
+    public void CloseCharacterInfo()
+    {
+        Debug.Log("Character Info Close");
+        CharacterInfoPanel.SetActive(false);
+    }
+	public void ClickCharacterInfoLeftRightButton(int type)
+	{
+		characterInfoindex += type;
+		if (characterInfoindex < 1)
+		{
+			characterInfoLeft.gameObject.SetActive(false);
+		}
+		else if (characterInfoindex > 1)
+		{
+			characterInfoRight.gameObject.SetActive(false);
+		}
+		else
+		{
+			characterInfoLeft.gameObject.SetActive(true);
+			characterInfoRight.gameObject.SetActive(true);
+		}
+        for(int i =0;i<3;i++)
+        {
+            characterInfo[i].SetActive(false);
+            infoTexts[i].gameObject.SetActive(false);
+		}
+        characterInfo[characterInfoindex].SetActive(true);
+		infoTexts[characterInfoindex].gameObject.SetActive(true);
+	}
 }

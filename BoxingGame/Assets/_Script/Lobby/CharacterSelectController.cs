@@ -13,6 +13,11 @@ public enum Character
     Ninja,
     Count ,
 }
+public enum Direction
+{
+    Left = -1,
+    Right = 1,
+}
 public class CharacterSelectController : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Button leftButtonP1;
@@ -20,8 +25,12 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
     [SerializeField] private Button leftButtonP2;
     [SerializeField] private Button rightButtonP2;
     [SerializeField] private GameObject[]characters;
-    private Character curCharacterP1 = Character.Empty;
+
+
+	private Character curCharacterP1 = Character.Empty;
     private Character curCharacterP2 = Character.Empty;
+
+
 
     void Start()
     {
@@ -166,4 +175,5 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
         }
         characters[curCharacter].SetActive(true);
     }
+
 }
