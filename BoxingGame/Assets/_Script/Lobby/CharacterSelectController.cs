@@ -10,6 +10,7 @@ public enum Character
     Random,
     Horse,
     Zombie,
+    Ninja,
     Count ,
 }
 public class CharacterSelectController : MonoBehaviourPunCallbacks
