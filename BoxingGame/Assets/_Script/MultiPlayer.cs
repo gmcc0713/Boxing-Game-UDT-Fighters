@@ -58,6 +58,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     private GameManager gameManager;
     private PhotonView pv;
+    //초기위치
+    private Vector3 initialPosition;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -107,6 +109,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
         skill.Initilize(this);
+        initialPosition = transform.position;
     }
     private void FixedUpdate()
     {
@@ -433,6 +436,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             RemoteMpBar.fillAmount = 0f;
             animator.SetBool("IsDead", false);
         }
+        // HP초기화와 동시에 초기 위치로 이동
+        transform.position = initialPosition;
     }
 
     [PunRPC] //중복호출 방지용

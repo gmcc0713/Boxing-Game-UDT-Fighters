@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         Random,
         Horse,
         Zombie,
+        Ninja,
         Count,
     }
     public static GameManager instance
@@ -33,6 +34,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
     public GameObject zombiePrefab;
     public GameObject horsePrefab;
+    public GameObject ninjaPrefab;
+
     public static int player1 = 0;
     public static int player2 = 0;
     public PhotonView pv;
@@ -114,10 +117,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             selectedPrefab = zombiePrefab;
         }
+        else if (playerCharacter == 4)
+        {
+            selectedPrefab = ninjaPrefab;
+        }
         else if (playerCharacter == 1)
         {
-            int randC = Random.Range(2, 4);
-            selectedPrefab = (randC == 2) ? horsePrefab : zombiePrefab;
+            int randC = Random.Range(2, 5);
+            selectedPrefab = (randC == 2) ? horsePrefab : (randC == 3) ? zombiePrefab : ninjaPrefab;
         }
 
         // 네트워크 상의 모든 클라이언트들에서 생성 실행

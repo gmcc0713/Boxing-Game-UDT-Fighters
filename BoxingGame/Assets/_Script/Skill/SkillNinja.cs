@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +14,16 @@ public class SkillNinja : Skill
         shootSpeed = 20;
         dashTime = 0.25f;
     }
+    [PunRPC]
     public override void SkillUse()
     {
         Debug.Log("Zombie skill ");
+        photonView.RPC("ZombieShoot", RpcTarget.All);
+       
+    }
+    [PunRPC]
+    public void ZombieShoot()
+    {
         StartCoroutine(Shoot());
     }
     IEnumerator Shoot()

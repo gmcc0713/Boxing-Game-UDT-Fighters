@@ -26,11 +26,10 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
     [SerializeField] private Button rightButtonP2;
     [SerializeField] private GameObject[]characters;
 
+    //[SerializeField] private Button ReadyButton;
 
-	private Character curCharacterP1 = Character.Empty;
+    private Character curCharacterP1 = Character.Empty;
     private Character curCharacterP2 = Character.Empty;
-
-
 
     void Start()
     {
@@ -152,6 +151,12 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
 
             PlayerPrefs.SetInt("Player2Character", (int)curCharacterP2);
             Debug.Log((int)curCharacterP2);
+
+            LobbySceneManager lobbySceneManager = FindObjectOfType<LobbySceneManager>();
+            if (lobbySceneManager != null)
+            {
+                lobbySceneManager.ReadyButton.interactable = true;
+            }
         }
 
     }
