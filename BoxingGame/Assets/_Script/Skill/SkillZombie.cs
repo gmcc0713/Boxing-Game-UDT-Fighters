@@ -4,27 +4,24 @@ using UnityEngine;
 
 public class SkillZombie : Skill
 {
-    private float shootSpeed;
-    private float dashTime;
-    [SerializeField] private GameObject skillBall;
-    [SerializeField] private Transform skillPos;
     private void Start()
     {
-        shootSpeed = 20;
-        dashTime = 0.25f;
     }
     public override void SkillUse()
     {
-        Debug.Log("Zombie skill ");
-        StartCoroutine(Shoot());
+		Debug.Log("HealSkillUse");
+		StartCoroutine(Heal());
     }
-    IEnumerator Shoot()
+    IEnumerator Heal()
     {
-        Debug.Log("Skill on");
-        GameObject cloneSkillBall = Instantiate(skillBall,transform.position, transform.rotation);
-        Rigidbody bulletRigid = cloneSkillBall.GetComponent<Rigidbody>();
-        bulletRigid.velocity = this.transform.forward* shootSpeed;
-        yield return null;
-    }
+        Debug.Log("Heal");
+        for(int i =0;i<5;i++)
+        {
+            playerController.HPHeal(10);
+            Debug.Log(playerController.health);
+            yield return new WaitForSeconds(1.0f);
+        }
+
+	}
 }
 

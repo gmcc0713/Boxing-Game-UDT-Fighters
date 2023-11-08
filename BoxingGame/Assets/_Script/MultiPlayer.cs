@@ -41,7 +41,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     [Header("Health")]
     public float startHealth = 100;
-    private float health;
+    public float health;
 
     public Image MasterHealthBar;
     public Image remoteHealthBar;
@@ -144,7 +144,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.D))
         {
             Debug.Log("D press");
-            skill.SkillUse();
+			Debug.Log(skill);
+			skill.SkillUse();
         }
     }
     private void Move()
@@ -515,5 +516,11 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             MasterMpBar.fillAmount = (float)stream.ReceiveNext();
             RemoteMpBar.fillAmount = (float)stream.ReceiveNext();
         }
+    }
+    public void HPHeal(float amount)
+    {
+        health += amount;
+        if (health >= startHealth)
+            health = startHealth;
     }
 }

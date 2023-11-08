@@ -751,7 +751,7 @@ MonoBehaviour:
   RemoteMpBar: {fileID: 8878558158060258401}
   MasterMpCanvas: {fileID: 6759732804317439275}
   RemoteMpCanvas: {fileID: 4076684197938533322}
-  skill: {fileID: 0}
+  skill: {fileID: -3983749934621556830}
 --- !u!114 &-3983749934621556830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,7 +764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217bfb125bcdfa0428c709f8ac21c0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 1760290985607270493}
 --- !u!1 &2222186564712770220
 GameObject:
   m_ObjectHideFlags: 0

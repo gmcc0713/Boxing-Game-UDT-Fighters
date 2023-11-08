@@ -5,21 +5,24 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public int damage;
+    public float rotateSpeed;
     public Vector3 lookForward;
-    private void Start()
-    {
-       
-    }
     public void StartSkill(Vector3 skillLookForward)
     {
         lookForward = skillLookForward;
         StartCoroutine(Shoot());
     }
-    IEnumerator Shoot() 
+	private void Update()
+	{
+		transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
+	}
+	IEnumerator Shoot() 
     {
         while (true) 
         {
             transform.Translate(lookForward * 5 * Time.deltaTime);
+		    transform.Rotate(Vector3.up*rotateSpeed * Time.deltaTime);
+
             yield return null;
         }
     }

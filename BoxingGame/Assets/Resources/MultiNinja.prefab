@@ -665,6 +665,7 @@ GameObject:
   - component: {fileID: -1585062946151185458}
   - component: {fileID: 374105639500215325}
   - component: {fileID: -8440736864515474039}
+  - component: {fileID: -5979784128835483548}
   m_Layer: 0
   m_Name: MultiNinja
   m_TagString: Player
@@ -869,7 +870,22 @@ MonoBehaviour:
   RemoteMpBar: {fileID: 2238054470115817305}
   MasterMpCanvas: {fileID: 7016360241118762474}
   RemoteMpCanvas: {fileID: 6028646135292566086}
-  skill: {fileID: 0}
+  skill: {fileID: -5979784128835483548}
+--- !u!114 &-5979784128835483548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512808492209741518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad4ebf485e0347449ca1f2b6834984b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
+  skillBall: {fileID: 8092104612102729508, guid: cbeeb02d52050644eb5dbc0bf84870de, type: 3}
+  skillPos: {fileID: 0}
 --- !u!1 &2652460255648412206
 GameObject:
   m_ObjectHideFlags: 0
