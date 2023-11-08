@@ -9770,6 +9770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombiePrefab: {fileID: 1937081004221583560, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
   horsePrefab: {fileID: 2109985196421179912, guid: 9c3235d81c6f17e418a325e8ffc895c6, type: 3}
+  ninjaPrefab: {fileID: 2512808492209741518, guid: 6fef5149aec993049936da3f9b898e13, type: 3}
   pv: {fileID: 1409422279}
   player1SpawnPoint: {fileID: 74376058}
   player2SpawnPoint: {fileID: 90939580}

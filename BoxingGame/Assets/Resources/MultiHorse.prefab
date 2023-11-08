@@ -717,7 +717,7 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: GetHit
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Reset
   m_SynchronizeLayers:
   - SynchronizeType: 0
@@ -742,6 +742,7 @@ MonoBehaviour:
   attackCollider: {fileID: 954613689957190233}
   attackCombo: 0
   startHealth: 100
+  health: 0
   MasterHealthBar: {fileID: 5474419157736716692}
   remoteHealthBar: {fileID: 8666461119315883760}
   MasterCanvas: {fileID: 8216268232757144635}

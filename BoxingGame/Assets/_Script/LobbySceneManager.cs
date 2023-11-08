@@ -8,7 +8,7 @@ using TMPro;
 public class LobbySceneManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] Button GameStartButton;
-    [SerializeField] Button ReadyButton;
+    [SerializeField] public Button ReadyButton;
     [SerializeField] GameObject CharacterInfoPanel;
 	[SerializeField] private Button characterInfoLeft;
 	[SerializeField] private Button characterInfoRight;
@@ -19,7 +19,7 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
 	private bool player2Ready = false; //플레이어2 준비상태 
     void Start()
     {
-        ReadyButton.interactable = true;
+        ReadyButton.interactable = false;
         GameStartButton.interactable = false; //처음엔 비활성화
         characterInfoindex = 0;
 
