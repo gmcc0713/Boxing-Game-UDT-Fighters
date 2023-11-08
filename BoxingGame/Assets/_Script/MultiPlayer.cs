@@ -128,7 +128,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             return;
         }
 
-        OnMove();
         OnAttack();
         Move();
     }
@@ -157,7 +156,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
-    private void Move()
+    public void Move()
     {
         OnMove();
         //공격상태가 아닐 시 이동

@@ -12,29 +12,39 @@ public class JoyStikcManager : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     [SerializeField, Range(10, 250)]
     private float leverRange;
 
+    private Vector2 inputDirection;
+    private bool isInput;
+
+    private MultiPlayer controller;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        var inputPos = eventData.position - rectTransform.anchoredPosition;
-        var inputVector = inputPos.magnitude < leverRange ? inputPos : inputPos.normalized * leverRange;
-        lever.anchoredPosition = inputVector;
+        ControllJoystickLever(eventData);
+        isInput = true;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        var inputPos = eventData.position - rectTransform.anchoredPosition;
-        var inputVector = inputPos.magnitude < leverRange ? inputPos : inputPos.normalized * leverRange;
-        lever.anchoredPosition = inputVector;
+        ControllJoystickLever(eventData);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         lever.anchoredPosition = Vector2.zero;
+        isInput = false;
     }
 
+    private void ControllJoystickLever(PointerEventData eventData)
+    {
+        var inputPos = eventData.position - rectTransform.anchoredPosition;
+        var inputVector = inputPos.magnitude < leverRange ? inputPos : inputPos.normalized * leverRange;
+        lever.anchoredPosition = inputVector;
+        inputDirection = inputVector / leverRange;
+    }
 
     // Start is called before the first frame update
     void Start()
