@@ -148,7 +148,13 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             Debug.Log("D press");
 			Debug.Log(skill);
-			skill.SkillUse();
+            if(mp == 100)
+            {
+                Debug.Log("스킬게이지 100!");
+                skill.SkillUse();
+                TakeMp(-20);
+                Debug.Log("현재스킬게이지" + mp);
+            }
         }
     }
     private void Move()
@@ -438,6 +444,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
         // HP초기화와 동시에 초기 위치로 이동
         transform.position = initialPosition;
+
     }
 
     [PunRPC] //중복호출 방지용
@@ -458,6 +465,12 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void TakeMp(float damageAmount)
     {
+      
+        if(!photonView.IsMine)
+        {
+            return;
+        }
+
         mp += damageAmount;
 
         if (PhotonNetwork.IsMasterClient)
@@ -474,7 +487,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     }
     [PunRPC] //중복호출 방지용
-    private void ApplyMp(float damageAmount)
+    public void ApplyMp(float damageAmount)
     {
         mp += damageAmount;
 

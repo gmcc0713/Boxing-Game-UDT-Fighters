@@ -5,11 +5,17 @@ using Photon.Pun;
 
 public class MultiAttackCollider : MonoBehaviourPun
 {
-    public float damage = 10;
-    public float MpUp = 10;
+    public float damage = 10f;
+    public float MpUp = 20f;
 
+    private MultiPlayer player;
+
+    void Start()
+    {
+        player = transform.parent.GetComponent<MultiPlayer>();
+    }
     [PunRPC]
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (!photonView.IsMine)
         {
@@ -20,16 +26,14 @@ public class MultiAttackCollider : MonoBehaviourPun
         {
             int attackerID = photonView.ViewID; // 공격한 플레이어의 PhotonView ID를 가져옵니다.
             int targetID = other.GetComponent<PhotonView>().ViewID; // 공격 대상 플레이어의 PhotonView ID를 가져옵니다.
-
+       
             if (attackerID != targetID)
             {
                 other.GetComponent<MultiPlayer>().TakeDamage(damage, other); // 공격 대상 플레이어에게 데미지를 주도록 수정합니다.
+
+                player.TakeMp(MpUp); //자신의 Mp를 회복하게
             }
-        }
-        else if (other.CompareTag("Player") && photonView.IsMine)
-        {
-            //int myId = photonView.ViewID;
-            other.GetComponent<MultiPlayer>().TakeMp(MpUp);
+
         }
     }
 }

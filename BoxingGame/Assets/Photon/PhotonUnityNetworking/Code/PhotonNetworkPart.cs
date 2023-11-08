@@ -2568,5 +2568,10 @@ namespace Photon.Pun
                 }
             }
         }
+
+        public static Player GetPlayer(int attackerID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
