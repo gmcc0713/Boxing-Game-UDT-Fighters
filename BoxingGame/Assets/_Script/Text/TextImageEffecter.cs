@@ -10,16 +10,16 @@ public class TextImageEffecter : MonoBehaviour
 	void Update()
 	{
 
-		transform.localScale = Vector3.one * (1 + time);
+		transform.localScale = Vector3.one * (2 + time);
 		time += Time.deltaTime;
-		if (time > 1f)
+		if (time > 0.7f)
 		{
 			StartCoroutine(WaitDisable());
 		}
 	}
 	IEnumerator WaitDisable()
 	{
-		yield return new WaitForSeconds(1.0f);
+		yield return new WaitForSeconds(0.3f);
 		gameObject.SetActive(false);
 	}
 	public void resetAnim()
