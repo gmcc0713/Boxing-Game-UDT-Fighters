@@ -93,6 +93,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("LobbyScene");
         //PhotonNetwork.LoadLevel("MultiScene");
     }
-
+    
 
 }
