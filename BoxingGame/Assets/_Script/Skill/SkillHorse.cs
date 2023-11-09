@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class SkillHorse : Skill
 {
     private float dashSpeed;
@@ -12,7 +12,14 @@ public class SkillHorse : Skill
         dashSpeed = 20;
         dashTime = 0.25f;
     }
+    [PunRPC]
     public override void SkillUse()
+    {
+        Debug.Log("Horse use skill");
+        photonView.RPC("HorseDash", RpcTarget.All);
+    }
+    [PunRPC]
+    public void HorseDash()
     {
         StartCoroutine(Dash());
     }
