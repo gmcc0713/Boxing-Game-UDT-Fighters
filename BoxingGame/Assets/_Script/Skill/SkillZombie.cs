@@ -8,10 +8,16 @@ public class SkillZombie : Skill
     private void Start()
     {
     }
+    [PunRPC]
     public override void SkillUse()
     {
 		Debug.Log("HealSkillUse");
-		StartCoroutine(Heal());
+        photonView.RPC("ZombieHeal", RpcTarget.All);
+    }
+    [PunRPC]
+    public void ZombieHeal()
+    {
+        StartCoroutine(Heal());
     }
     IEnumerator Heal()
     {
