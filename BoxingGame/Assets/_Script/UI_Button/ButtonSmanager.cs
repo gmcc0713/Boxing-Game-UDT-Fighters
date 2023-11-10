@@ -15,9 +15,9 @@ public class ButtonSmanager : MonoBehaviour
         sButton.onClick.AddListener(OnClickSButton);
     }
 
-    public void OnClickSButton()
+    private void OnClickSButton()
     {
-        Debug.Log("call S Button Funtion");
+        //Debug.Log("call S Button Funtion");
         multiPlayerScript.OnAttackSButton();
     }
 }

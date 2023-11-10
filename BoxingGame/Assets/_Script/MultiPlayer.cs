@@ -282,15 +282,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
-    //이동 인풋시스템 적용함수
-    public void OnMove()
-    {
-        input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
-        moveVec = new Vector3(input.x, 0, input.y).normalized;
-        //이동 판정 부울 값 구하기
-        isMove = moveVec.magnitude != 0;
-    }
+
     //A공격 함수
     public void OnAttackAButton()
     {

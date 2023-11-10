@@ -15,9 +15,9 @@ public class ButtonAManager : MonoBehaviour
         aButton.onClick.AddListener(OnClickAButton);
     }
 
-    public void OnClickAButton()
+    private void OnClickAButton()
     {
-        Debug.Log("call A Button Funtion");
+        //Debug.Log("call A Button Funtion");
         multiPlayerScript.OnAttackAButton();
     }
 }
