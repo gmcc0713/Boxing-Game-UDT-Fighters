@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  MpUp: 20
+  MpUp: 25
 --- !u!1 &1297158320101710674
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +739,7 @@ MonoBehaviour:
   isAttack: 0
   canAttack: 0
   canCombo: 0
+  useAttack: 1
   attackCollider: {fileID: 954613689957190233}
   attackCombo: 0
   startHealth: 100

@@ -1658,6 +1658,7 @@ MonoBehaviour:
   isAttack: 0
   canAttack: 1
   canCombo: 0
+  useAttack: 1
   attackCollider: {fileID: 6299573051401336825}
   attackCombo: 0
   startHealth: 100
@@ -2751,7 +2752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  MpUp: 20
+  MpUp: 25
 --- !u!1 &6802713335980552247
 GameObject:
   m_ObjectHideFlags: 0

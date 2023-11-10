@@ -6,7 +6,7 @@ using Photon.Pun;
 public class MultiAttackCollider : MonoBehaviourPun
 {
     public float damage = 10f;
-    public float MpUp = 20f;
+    public float MpUp = 25f;
 
     private MultiPlayer player;
 

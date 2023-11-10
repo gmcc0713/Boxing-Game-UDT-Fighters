@@ -32,6 +32,10 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public bool canAttack = true;
     //콤보가능 판정 부울 변수 선언
     public bool canCombo = false;
+    //공격 중지 판정 부울 변수 선언
+    public bool useAttack = true;
+    //움직임 중지 판정 부울 변수 선언
+    public bool useMove = true;
     //공격 범위
     public GameObject attackCollider;
     //공격 콤보 변수 선언
@@ -110,6 +114,9 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
         skill.Initilize(this);
         initialPosition = transform.position;
+
+        useAttack = true;
+        useMove = true;
     }
     private void FixedUpdate()
     {
@@ -128,8 +135,15 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             return;
         }
 
-        OnAttack();
-        Move();
+        if (useAttack)
+        {
+            OnAttack();
+        }
+
+        if(useMove)
+        {
+            Move();
+        }
     }
     void OnAttack()
     {
@@ -147,11 +161,11 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             Debug.Log("D press");
 			Debug.Log(skill);
-            if(mp == 100)
+            if(mp >= 50)
             {
                 Debug.Log("스킬게이지 100!");
                 skill.SkillUse();
-                TakeMp(-20);
+                TakeMp(-50);
                 Debug.Log("현재스킬게이지" + mp);
             }
         }
@@ -382,6 +396,11 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             animator.SetBool("IsDead", true);
             Debug.Log("사망");
 
+            foreach (MultiPlayer player in FindObjectsOfType<MultiPlayer>())
+            {
+                player.useAttack = false;
+                player.useMove = false;
+            }
 
             if (PhotonNetwork.IsMasterClient)
             {
@@ -423,6 +442,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         foreach (MultiPlayer player in FindObjectsOfType<MultiPlayer>())
         {
             player.ResetHP();
+            player.useAttack = true;
+            player.useMove = true;
         }
     }
     public void ResetHP()
