@@ -297,6 +297,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4498686424699790844, guid: eb3fd52357432b4428f2c2f19405d82e, type: 3}
+      propertyPath: multiPlayerScript
+      value: 
+      objectReference: {fileID: 127792380427669427}
+    - target: {fileID: 5148360778429548051, guid: eb3fd52357432b4428f2c2f19405d82e, type: 3}
+      propertyPath: multiPlayerScript
+      value: 
+      objectReference: {fileID: 127792380427669427}
     - target: {fileID: 5315889916243928124, guid: eb3fd52357432b4428f2c2f19405d82e, type: 3}
       propertyPath: m_Name
       value: BG_UI_Canvas
@@ -1227,3 +1235,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
+--- !u!114 &127792380427669427 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 154321752428450237, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
+  m_PrefabInstance: {fileID: 127792380427669426}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d7077cda1efdb148a3fc70318e79ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
