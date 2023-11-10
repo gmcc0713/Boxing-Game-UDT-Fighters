@@ -176,19 +176,17 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         Vector3 movement = new Vector3(inputDirection.x, 0f, inputDirection.y).normalized;
 
         //이동 판정 부울 값 구하기
-        bool isMove = movement.magnitude != 0;
+        bool isMobileMove = movement.magnitude != 0;
 
-        //움직임 애니메이션 작동
-        animator.SetBool("IsRun", isMove);
-        Debug.Log(isMove);
-
+        Debug.Log(isMobileMove);
+        animator.SetBool("IsRun", isMobileMove);
 
         //공격상태가 아닐 시 이동
         if (!isAttack)
         {
             //캐릭터의 벡터 구하기
             //이동 판정 부울 값이 참일 시 움직임 시작
-            if (isMove)
+            if (isMobileMove)
             {
                 //보는 방향 앵글 XZ 값
                 float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
@@ -200,6 +198,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
             //이동하기
             transform.position += movement * speed * Time.deltaTime;
+            //움직임 애니메이션 작동
 
         }
 
