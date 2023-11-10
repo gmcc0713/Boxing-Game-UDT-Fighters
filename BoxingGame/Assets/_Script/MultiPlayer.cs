@@ -1,11 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Photon.Pun;
 using UnityEngine.UI;
-using Photon.Pun.Demo.PunBasics;
 
 public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -140,7 +136,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             OnAttack();
         }
 
-        if(useMove)
+        if (useMove)
         {
             Move();
         }
@@ -160,8 +156,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.D))
         {
             Debug.Log("D press");
-			Debug.Log(skill);
-            if(mp >= 50)
+            Debug.Log(skill);
+            if (mp >= 50)
             {
                 Debug.Log("스킬게이지 100!");
                 skill.SkillUse();
@@ -170,9 +166,53 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
+    public void MobieMove(Vector2 inputDirection)
+    {
+        //이동 값 구하기
+        Vector3 movement = new Vector3(inputDirection.x, 0f, inputDirection.y).normalized;
+
+        //이동 판정 부울 값 구하기
+        bool isMobileMove = movement.magnitude != 0;
+
+        Debug.Log(isMobileMove);
+        animator.SetBool("IsRun", isMobileMove);
+
+        //공격상태가 아닐 시 이동
+        if (!isAttack)
+        {
+            //캐릭터의 벡터 구하기
+            //이동 판정 부울 값이 참일 시 움직임 시작
+            if (isMobileMove)
+            {
+                //보는 방향 앵글 XZ 값
+                float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
+                //부드러운 움직임 유도식
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                //회전 바꾸기
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            }
+
+            //이동하기
+            transform.position += movement * speed * Time.deltaTime;
+            //움직임 애니메이션 작동
+
+        }
+
+    }
+
     public void Move()
     {
-        OnMove();
+        //이동 값 구하기
+        input.x = Input.GetAxisRaw("Horizontal");
+        input.y = Input.GetAxisRaw("Vertical");
+        moveVec = new Vector3(input.x, 0, input.y).normalized;
+
+        //이동 판정 부울 값 구하기
+        isMove = moveVec.magnitude != 0;
+
+        //움직임 애니메이션 작동
+        animator.SetBool("IsRun", isMove);
+
         //공격상태가 아닐 시 이동
         if (!isAttack)
         {
@@ -192,8 +232,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             transform.position += moveVec * speed * Time.deltaTime;
 
         }
-        //움직임 애니메이션 작동
-        animator.SetBool("IsRun", isMove);
     }
 
     //상태체크 함수
@@ -377,7 +415,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public void TakeDamage(float damageAmount, Collider other)
     {
         health -= damageAmount;
-        if(damageAmount == 10)
+        if (damageAmount == 10)
         {
             //상대의 방향 구해오기
             float otherAngle = (other.GetComponent<Transform>().transform.rotation.eulerAngles.y);
@@ -414,7 +452,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
                 photonView.RPC("NotifyPlayerDeath", RpcTarget.MasterClient);
                 photonView.RPC("ResetPlayerHealth", RpcTarget.All);
             }
-            
+
         }
         // 다른 클라이언트에도 데미지를 적용
         photonView.RPC("ApplyDamage", RpcTarget.Others, damageAmount);
@@ -438,7 +476,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
         // health = startHealth;
         Debug.Log("전 플레이어 체력 초기화");
-  
+
         foreach (MultiPlayer player in FindObjectsOfType<MultiPlayer>())
         {
             player.ResetHP();
@@ -485,8 +523,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void TakeMp(float damageAmount)
     {
-      
-        if(!photonView.IsMine)
+
+        if (!photonView.IsMine)
         {
             return;
         }
