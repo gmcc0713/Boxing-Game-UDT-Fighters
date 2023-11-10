@@ -133,28 +133,28 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     }
     void OnAttack()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Debug.Log("A press");
-            OnAttackAButton();
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Debug.Log("S press");
-            OnAttackSButton();
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Debug.Log("D press");
-			Debug.Log(skill);
-            if(mp == 100)
-            {
-                Debug.Log("스킬게이지 100!");
-                skill.SkillUse();
-                TakeMp(-20);
-                Debug.Log("현재스킬게이지" + mp);
-            }
-        }
+   //     if (Input.GetKeyDown(KeyCode.A))
+   //     {
+   //         Debug.Log("A press");
+   //         OnAttackAButton();
+   //     }
+   //     if (Input.GetKeyDown(KeyCode.S))
+   //     {
+   //         Debug.Log("S press");
+   //         OnAttackSButton();
+   //     }
+   //     if (Input.GetKeyDown(KeyCode.D))
+   //     {
+   //         Debug.Log("D press");
+			//Debug.Log(skill);
+   //         if(mp == 100)
+   //         {
+   //             Debug.Log("스킬게이지 100!");
+   //             skill.SkillUse();
+   //             TakeMp(-20);
+   //             Debug.Log("현재스킬게이지" + mp);
+   //         }
+   //     }
     }
     public void Move()
     {
@@ -240,7 +240,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         isMove = moveVec.magnitude != 0;
     }
     //A공격 함수
-    public void OnAttackAButton()
+    public void OnClickAttackA()
     {
         //클릿횟수 범위 제한
         noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
@@ -300,7 +300,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     }
 
     //S 공격함수
-    public void OnAttackSButton()
+    public void OnClickAttackS()
     {
         //클릭횟수 범위 제한
         noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
