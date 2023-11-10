@@ -10,6 +10,7 @@ TagManager:
   - Character1
   - Character2
   - bg
+  - SoundSlider
   layers:
   - Default
   - TransparentFX

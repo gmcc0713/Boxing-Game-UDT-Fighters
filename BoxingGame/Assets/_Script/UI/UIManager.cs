@@ -19,4 +19,8 @@ public class UIManager : MonoBehaviour
 			panel.SetActive(false);
 		}
 	}
+	public void ClickButton()
+	{
+		SoundManager.Instance.ClickButton();
+	}
 }
