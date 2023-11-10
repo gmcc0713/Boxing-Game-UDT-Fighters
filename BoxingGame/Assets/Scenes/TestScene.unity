@@ -297,6 +297,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2410433619140241419, guid: eb3fd52357432b4428f2c2f19405d82e, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 127792380427669427}
     - target: {fileID: 4498686424699790844, guid: eb3fd52357432b4428f2c2f19405d82e, type: 3}
       propertyPath: multiPlayerScript
       value: 

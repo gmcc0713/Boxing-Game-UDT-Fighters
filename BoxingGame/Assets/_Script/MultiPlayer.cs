@@ -170,9 +170,54 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
+    public void MobieMove(Vector2 inputDirection)
+    {
+        //이동 값 구하기
+        Vector3 movement = new Vector3(inputDirection.x, 0f, inputDirection.y).normalized;
+
+        //이동 판정 부울 값 구하기
+        bool isMove = movement.magnitude != 0;
+
+        //움직임 애니메이션 작동
+        animator.SetBool("IsRun", isMove);
+        Debug.Log(isMove);
+
+
+        //공격상태가 아닐 시 이동
+        if (!isAttack)
+        {
+            //캐릭터의 벡터 구하기
+            //이동 판정 부울 값이 참일 시 움직임 시작
+            if (isMove)
+            {
+                //보는 방향 앵글 XZ 값
+                float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
+                //부드러운 움직임 유도식
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                //회전 바꾸기
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            }
+
+            //이동하기
+            transform.position += movement * speed * Time.deltaTime;
+
+        }
+
+    }
+
     public void Move()
     {
-        OnMove();
+        //이동 값 구하기
+        input.x = Input.GetAxisRaw("Horizontal");
+        input.y = Input.GetAxisRaw("Vertical");
+        moveVec = new Vector3(input.x, 0, input.y).normalized;
+
+        //이동 판정 부울 값 구하기
+        isMove = moveVec.magnitude != 0;
+
+        //움직임 애니메이션 작동
+        animator.SetBool("IsRun", isMove);
+
         //공격상태가 아닐 시 이동
         if (!isAttack)
         {
@@ -192,8 +237,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             transform.position += moveVec * speed * Time.deltaTime;
 
         }
-        //움직임 애니메이션 작동
-        animator.SetBool("IsRun", isMove);
     }
 
     //상태체크 함수

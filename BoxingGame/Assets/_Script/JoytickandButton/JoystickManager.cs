@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class JoyStikcManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class JoystickManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField]
     private RectTransform lever;
@@ -15,7 +15,7 @@ public class JoyStikcManager : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private Vector2 inputDirection;
     private bool isInput;
 
-    private MultiPlayer controller;
+    public MultiPlayer controller;
 
     private void Awake()
     {
@@ -36,6 +36,7 @@ public class JoyStikcManager : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         lever.anchoredPosition = Vector2.zero;
         isInput = false;
+        controller.MobieMove(Vector2.zero);
     }
 
     private void ControllJoystickLever(PointerEventData eventData)
@@ -46,15 +47,17 @@ public class JoyStikcManager : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         inputDirection = inputVector / leverRange;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void InputControlVector()
     {
-        
+        controller.MobieMove(inputDirection);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (isInput)
+        {
+            InputControlVector();
+        }
     }
 }
+
