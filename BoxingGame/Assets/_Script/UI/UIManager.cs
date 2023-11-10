@@ -23,4 +23,5 @@ public class UIManager : MonoBehaviour
 	{
 		SoundManager.Instance.ClickButton();
 	}
+
 }

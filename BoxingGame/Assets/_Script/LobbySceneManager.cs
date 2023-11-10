@@ -25,6 +25,7 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
         characterInfoindex = 0;
 
 	}
+    //레디on
     public void OnReadyButtonClicked()
     {
         //방장이아닌 플레이어가 클릭하였을 때
@@ -35,13 +36,34 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
 
         }
     }
+    //레디off
+    public void OnReadyOffButtonClicked()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            player2Ready = false;  //준비상태 false
+            photonView.RPC("UpdateGameStartButton", RpcTarget.All, player2Ready); //모든pc에게 준비상태 전달
+
+        }
+    }
     [PunRPC]
     private void UpdateGameStartButton(bool isPlayer2Ready)
     {
-        ReadyButton.gameObject.SetActive(false);
-        ReadyButtonRed.gameObject.SetActive(true);
-        //게임시작버튼 true로
-        GameStartButton.interactable = isPlayer2Ready;
+        if(isPlayer2Ready == true)
+        {
+            ReadyButton.gameObject.SetActive(false);
+            ReadyButtonRed.gameObject.SetActive(true);
+            //게임시작버튼 true로
+            GameStartButton.interactable = isPlayer2Ready;
+        }
+        else
+        {
+            ReadyButton.gameObject.SetActive(true);
+            ReadyButtonRed.gameObject.SetActive(false);
+            //게임시작버튼 true로
+            GameStartButton.interactable = isPlayer2Ready;
+        }
+        
     }
     public void OnGameStartButtonClicked()
     {
