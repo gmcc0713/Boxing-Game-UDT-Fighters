@@ -3067,7 +3067,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 926549364}
         m_TargetAssemblyTypeName: LobbySceneManager, Assembly-CSharp
-        m_MethodName: OnReadyButtonClicked
+        m_MethodName: OnReadyOffButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -63,6 +63,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     //최종 승리자
     public GameObject EndP1Win;
     public GameObject EndP2Win;
+    //항복 패널
+    public GameObject P1GiveUp;
+    public GameObject P2GiveUp;
+    public GameObject OptionPanel;
 
     private void Awake()
     {
@@ -215,15 +219,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         if (P1WinScore == 3)
         {
             pv.RPC("ShowEndWinImage", RpcTarget.All, 1);
-            //EndP1Win.SetActive(true);
-            //StartCoroutine(FinalWinImage());
+            EndP1Win.SetActive(true);
+            StartCoroutine(FinalWinImage());
         }
 
         if (P2WinScore == 3)
         {
             pv.RPC("ShowEndWinImage", RpcTarget.All, 2);
-            //EndP2Win.SetActive(true);
-            //StartCoroutine(FinalWinImage());
+            EndP2Win.SetActive(true);
+            StartCoroutine(FinalWinImage());
         }
 
     }
@@ -242,18 +246,45 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         StartCoroutine(FinalWinImage());
     }
    
-    public override void OnLeftRoom()
+    
+    
+    //항복
+    [PunRPC]
+    public void GiveUpButton()
     {
-        SceneManager.LoadScene("TitleScene");
+        OptionPanel.SetActive(false);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            pv.RPC("GiveUp", RpcTarget.All, 1);
+        }
+        else
+        {
+            pv.RPC("GiveUp", RpcTarget.All, 2);
+        }
     }
+    [PunRPC]
+    public void GiveUp(int giveUpUser)
+    {
+        if(giveUpUser == 1)
+        {
+            P1GiveUp.SetActive(true);
+        }else if(giveUpUser == 2)
+        {
+            P2GiveUp.SetActive(true);
+        }
+        StartCoroutine(FinalWinImage());
+    }
+
     private IEnumerator FinalWinImage()
     {
         yield return new WaitForSeconds(3.0f);
         //SceneManager.LoadScene("TitleScene");
-        OnLeftRoom();
+        PhotonNetwork.LeaveRoom();
     }
-
-
+    public override void OnLeftRoom()
+    {
+        SceneManager.LoadScene("TitleScene");
+    }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
