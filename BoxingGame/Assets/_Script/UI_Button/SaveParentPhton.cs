@@ -5,13 +5,13 @@ using Photon.Pun;
 
 public class SaveParentPhton : MonoBehaviour
 {
-    public Component playerPhton;
+    protected Component playerPhton;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerPhton = GetComponentInParent<Animator>();
-        Debug.Log(playerPhton);
+        playerPhton = GetComponentInParent<PhotonView>();
+        Debug.Log("Save parent Phton : "+ playerPhton);
     }
 
 }

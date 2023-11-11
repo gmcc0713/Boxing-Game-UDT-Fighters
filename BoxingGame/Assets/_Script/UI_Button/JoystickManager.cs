@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class JoystickManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class JoystickManager : SaveParentPhton, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField]
     private RectTransform lever;

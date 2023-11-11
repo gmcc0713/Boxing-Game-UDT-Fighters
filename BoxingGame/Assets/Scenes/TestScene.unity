@@ -945,10 +945,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad684c3c8196f8740a1742722dcc9abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 100
-  healthBar: {fileID: 1856068406}
-  attackCollider: {fileID: 1435236042}
-  damage: 10
 --- !u!1 &1721520111
 GameObject:
   m_ObjectHideFlags: 0
