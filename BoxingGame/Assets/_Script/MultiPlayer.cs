@@ -598,5 +598,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         health += amount;
         if (health >= startHealth)
             health = startHealth;
+        ApplyDamage(-amount);
     }
 }

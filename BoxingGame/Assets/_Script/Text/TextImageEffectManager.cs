@@ -19,7 +19,7 @@ public class TextImageEffectManager : MonoBehaviour
 	void Start()
 	{
 		UnityEngine.Debug.Log("Start");
-		StartCoroutine(GameStartReadyFightImageAnimation());
+
 	}
 
 	// Update is called once per frame
@@ -32,6 +32,10 @@ public class TextImageEffectManager : MonoBehaviour
 		effecters[(int)EffectImage.Ready].gameObject.SetActive(true);
 		yield return new WaitForSeconds(1.3f);
 		effecters[(int)EffectImage.Fight].gameObject.SetActive(true);
-	}
 
+	}
+	public void ReadyFightTextStart()
+	{
+		StartCoroutine(GameStartReadyFightImageAnimation());
+	}
 }
