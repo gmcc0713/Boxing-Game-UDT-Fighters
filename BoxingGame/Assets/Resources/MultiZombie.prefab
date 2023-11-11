@@ -1654,6 +1654,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7077cda1efdb148a3fc70318e79ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plyCon: {fileID: 7216602419665446908}
+  animator: {fileID: 0}
   speed: 5
   turnSmoothTime: 0.1
   isAttack: 0
@@ -3505,8 +3507,59 @@ PrefabInstance:
       propertyPath: multiPlayerScript
       value: 
       objectReference: {fileID: 154321752428450237}
+    - target: {fileID: 8168205546753015219, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8168205546753015219, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8168205546753015219, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8559679264417962808}
+    - target: {fileID: 8168205546753015219, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8168205546753015219, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickDButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8168205546753015219, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ButtonDManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8168205546753015219, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+--- !u!1 &7216602419665446908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5511341408577776862, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+  m_PrefabInstance: {fileID: 2907832659827739426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7229745646628073931 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5480745753691208425, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+  m_PrefabInstance: {fileID: 2907832659827739426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8559679264417962808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7229745646628073931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dfd71b3324f7e542a12fcb03983ea1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiPlayerScript: {fileID: 154321752428450237}
 --- !u!224 &9202402422813856278 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6336338565400385844, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}

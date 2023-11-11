@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 {
+    public GameObject plyCon;
+   
     //애니메이션 컨트롤러 변수 선언
     public Animator animator;
 
@@ -113,16 +115,23 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
         useAttack = true;
         useMove = true;
+
+        if(!pv.IsMine)
+        {
+            plyCon.SetActive(false);
+        }
     }
     private void FixedUpdate()
     {
+        Idle();
+
         if (!pv.IsMine)
         {
             return;
         }
 
         //픽시드 업데이트시 상태 체크하기
-        Idle();
+        
     }
     void Update()
     {
@@ -172,6 +181,25 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
                 TakeMp(-50);
                 Debug.Log("현재스킬게이지" + mp);
             }
+        }
+    }
+    //모바일 전용 스킬 함수
+    public void OnSkillUse()
+    {
+        if (mp >= 50)
+        {
+            if (attackCollider.activeSelf)
+            {
+                attackCollider.SetActive(false);
+            }
+            animator.SetBool("IsSkill", true);
+            attackCollider.SetActive(true);
+
+            Debug.Log("스킬게이지 100!");
+            skill.SkillUse();
+
+            TakeMp(-50);
+            Debug.Log("현재스킬게이지" + mp);
         }
     }
     public void SkillEnd()
