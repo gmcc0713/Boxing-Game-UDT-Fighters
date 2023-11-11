@@ -168,15 +168,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         if (m_player1Score > 0)
         {
             //player1WinImage.SetActive(true); // 이미지 활성화
-           
+            textImageEffectMgr.KOTextStart();
             StartCoroutine(DeactivateWinImage()); // 3초 뒤에 이미지 비활성화
         }
 
         if (m_player2Score > 0)
         {
-            //player2WinImage.SetActive(true); // 이미지 활성화
-           
-            StartCoroutine(DeactivateWinImage()); // 3초 뒤에 이미지 비활성화
+			//player2WinImage.SetActive(true); // 이미지 활성화
+			textImageEffectMgr.KOTextStart();
+			StartCoroutine(DeactivateWinImage()); // 3초 뒤에 이미지 비활성화
         }
     }
     

@@ -196,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954613689957190233}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 0.17, y: 0.782, z: 0.82}
+  m_LocalPosition: {x: 0, y: 1, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -214,7 +214,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8468938954545496149
 Rigidbody:
@@ -720,6 +720,9 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 1
     Name: Reset
+  - Type: 4
+    SynchronizeType: 0
+    Name: IsSkill
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -735,6 +738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7077cda1efdb148a3fc70318e79ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   speed: 6
   turnSmoothTime: 0.1
   isAttack: 0

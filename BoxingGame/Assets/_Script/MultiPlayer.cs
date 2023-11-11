@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 {
     //애니메이션 컨트롤러 변수 선언
-    Animator animator;
+    public Animator animator;
 
     //이동관련 평면벡터 변수 선언
     Vector2 input;
@@ -159,13 +159,25 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             Debug.Log(skill);
             if (mp >= 50)
             {
-                Debug.Log("스킬게이지 100!");
+				if (attackCollider.activeSelf)
+				{
+					attackCollider.SetActive(false);
+				}
+				animator.SetBool("IsSkill",true);
+				attackCollider.SetActive(true);
+
+				Debug.Log("스킬게이지 100!");
                 skill.SkillUse();
+
                 TakeMp(-50);
                 Debug.Log("현재스킬게이지" + mp);
             }
         }
     }
+    public void SkillEnd()
+    {
+		animator.SetBool("IsSkill", false);
+	}
     public void MobieMove(Vector2 inputDirection)
     {
         //이동 값 구하기
@@ -300,8 +312,13 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         //공격가능 상태일 시 작동(=기본 상태일때 버튼 누를 시 작동)
         if (canAttack)
         {
-            attackCollider.SetActive(true);
+			if (attackCollider.activeSelf)
+			{
+				attackCollider.SetActive(false);
+			}
+			attackCollider.SetActive(true);
             //기본 A공격 애니메이션 작동
+
             animator.SetTrigger("Attack_A");
             //공격중 상태 참
             isAttack = true;
@@ -324,7 +341,11 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
                     //현재 누적 클릭횟수가 1이고, 작동되는 애니메이션이 A일때 버튼을 눌렀다면 AA진행
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("A"))
                     {
-                        animator.SetTrigger("Attack_AA");
+						if (attackCollider.activeSelf)
+						{
+							attackCollider.SetActive(false);
+						}
+						animator.SetTrigger("Attack_AA");
                         attackCollider.SetActive(true);
                         //클릭횟수 증가
                         noOfClicks++;
@@ -335,13 +356,21 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
                     //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OA일 때 버튼을 눌렀다면 SSA진행
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("OA"))
                     {
+                        if(attackCollider.activeSelf)
+                        {
+							attackCollider.SetActive(false);
+						}
                         animator.SetTrigger("Attack_AAA");
                         attackCollider.SetActive(true);
                     }
                     //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OS일때 버튼을 눌렀다면 AAA진행
                     else if (animator.GetCurrentAnimatorStateInfo(0).IsName("OS"))
                     {
-                        animator.SetTrigger("Attack_SSA");
+						if (attackCollider.activeSelf)
+						{
+							attackCollider.SetActive(false);
+						}
+						animator.SetTrigger("Attack_SSA");
                         attackCollider.SetActive(true);
                     }
                     break;
@@ -360,7 +389,11 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         //공격가능 상태일 시 작동(=기본 상태일때 버튼 누를 시 작동)
         if (canAttack)
         {
-            attackCollider.SetActive(true);
+			if (attackCollider.activeSelf)
+			{
+				attackCollider.SetActive(false);
+			}
+			attackCollider.SetActive(true);
             //기본 A공격 애니메이션 작동
             animator.SetTrigger("Attack_S");
             //공격중 상태 참
@@ -384,7 +417,11 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
                     //현재 누적 클릭횟수가 1이고, 작동되는 애니메이션이 S일때 버튼을 눌렀다면 SS진행
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("S"))
                     {
-                        animator.SetTrigger("Attack_SS");
+						if (attackCollider.activeSelf)
+						{
+							attackCollider.SetActive(false);
+						}
+						animator.SetTrigger("Attack_SS");
                         attackCollider.SetActive(true);
                         //클릭횟수 증가
                         noOfClicks++;
@@ -395,13 +432,21 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
                     //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OS일 때 버튼을 눌렀다면 SSS진행
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("OS"))
                     {
-                        animator.SetTrigger("Attack_SSS");
+						if (attackCollider.activeSelf)
+						{
+							attackCollider.SetActive(false);
+						}
+						animator.SetTrigger("Attack_SSS");
                         attackCollider.SetActive(true);
                     }
                     //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OA일때 버튼을 눌렀다면 AAS진행
                     else if (animator.GetCurrentAnimatorStateInfo(0).IsName("OA"))
                     {
-                        animator.SetTrigger("Attack_AAS");
+						if (attackCollider.activeSelf)
+						{
+							attackCollider.SetActive(false);
+						}
+						animator.SetTrigger("Attack_AAS");
                         attackCollider.SetActive(true);
                     }
                     break;

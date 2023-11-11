@@ -33,5 +33,7 @@ public class SkillHorse : Skill
             playerController.transform.position += transform.forward * dashSpeed * Time.deltaTime;
             yield return null;
         }
-    }
+        playerController.animator.SetBool("IsSkill", false);
+
+	}
 }

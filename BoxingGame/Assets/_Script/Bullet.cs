@@ -31,6 +31,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(this);
+
             //데미지 주기
 
         }
