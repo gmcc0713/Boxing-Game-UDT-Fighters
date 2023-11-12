@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Pun.Demo.PunBasics;
+
 public enum Character
 {
     Empty = 0,
@@ -20,13 +22,15 @@ public enum Direction
 }
 public class CharacterSelectController : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private Button leftButtonP1;
-    [SerializeField] private Button rightButtonP1;
-    [SerializeField] private Button leftButtonP2;
-    [SerializeField] private Button rightButtonP2;
+    public Button leftButtonP1;
+    public Button rightButtonP1;
+    public Button leftButtonP2;
+    public Button rightButtonP2;
     [SerializeField] private GameObject[]characters;
 
-    //[SerializeField] private Button ReadyButton;
+
+    //public bool isReady = false;
+    [SerializeField] private Button ReadyButton;
 
     private Character curCharacterP1 = Character.Empty;
     private Character curCharacterP2 = Character.Empty;
@@ -61,6 +65,23 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
             PlayerPrefs.SetInt("Player2Character", (int)curCharacterP2);
         }
     }
+    //void Update()
+    //{
+    //    if (isReady) //준비상태면 모두 못누르게
+    //    {
+    //        leftButtonP1.interactable = false;
+    //        rightButtonP1.interactable = false;
+    //        leftButtonP2.interactable = false;
+    //        rightButtonP2.interactable = false;
+    //    }
+    //    else //준비상태가 아니면 누를 수 있게
+    //    {
+    //        leftButtonP1.interactable = true;
+    //        rightButtonP1.interactable = true;
+    //        leftButtonP2.interactable = true;
+    //        rightButtonP2.interactable = true;
+    //    }
+    //}
     //방장의 왼쪽 버튼클릭 이벤트
     public void ClickLeftButtonP1()
     {

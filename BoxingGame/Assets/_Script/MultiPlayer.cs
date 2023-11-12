@@ -186,20 +186,23 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     //모바일 전용 스킬 함수
     public void OnSkillUse()
     {
-        if (mp >= 50)
+        if (useAttack)
         {
-            if (attackCollider.activeSelf)
+            if (mp >= 50)
             {
-                attackCollider.SetActive(false);
+                if (attackCollider.activeSelf)
+                {
+                    attackCollider.SetActive(false);
+                }
+                animator.SetBool("IsSkill", true);
+                attackCollider.SetActive(true);
+
+                Debug.Log("스킬게이지 100!");
+                skill.SkillUse();
+
+                TakeMp(-50);
+                Debug.Log("현재스킬게이지" + mp);
             }
-            animator.SetBool("IsSkill", true);
-            attackCollider.SetActive(true);
-
-            Debug.Log("스킬게이지 100!");
-            skill.SkillUse();
-
-            TakeMp(-50);
-            Debug.Log("현재스킬게이지" + mp);
         }
     }
     public void SkillEnd()
@@ -208,35 +211,37 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 	}
     public void MobieMove(Vector2 inputDirection)
     {
-        //이동 값 구하기
-        Vector3 movement = new Vector3(inputDirection.x, 0f, inputDirection.y).normalized;
-
-        //이동 판정 부울 값 구하기
-        bool isMobileMove = movement.magnitude != 0;
-
-        animator.SetBool("IsRun", isMobileMove);
-
-        //공격상태가 아닐 시 이동
-        if (!isAttack)
+        if(useAttack)
         {
-            //캐릭터의 벡터 구하기
-            //이동 판정 부울 값이 참일 시 움직임 시작
-            if (isMobileMove)
+            //이동 값 구하기
+            Vector3 movement = new Vector3(inputDirection.x, 0f, inputDirection.y).normalized;
+
+            //이동 판정 부울 값 구하기
+            bool isMobileMove = movement.magnitude != 0;
+
+            animator.SetBool("IsRun", isMobileMove);
+
+            //공격상태가 아닐 시 이동
+            if (!isAttack)
             {
-                //보는 방향 앵글 XZ 값
-                float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
-                //부드러운 움직임 유도식
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-                //회전 바꾸기
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                //캐릭터의 벡터 구하기
+                //이동 판정 부울 값이 참일 시 움직임 시작
+                if (isMobileMove)
+                {
+                    //보는 방향 앵글 XZ 값
+                    float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
+                    //부드러운 움직임 유도식
+                    float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                    //회전 바꾸기
+                    transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                }
+
+                //이동하기
+                transform.position += movement * speed * Time.deltaTime;
+                //움직임 애니메이션 작동
+
             }
-
-            //이동하기
-            transform.position += movement * speed * Time.deltaTime;
-            //움직임 애니메이션 작동
-
         }
-
     }
 
     public void Move()
@@ -333,74 +338,77 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     //A공격 함수
     public void OnAttackAButton()
     {
-        //클릿횟수 범위 제한
-        noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
-
-        //공격가능 상태일 시 작동(=기본 상태일때 버튼 누를 시 작동)
-        if (canAttack)
+        if (useAttack)
         {
-			if (attackCollider.activeSelf)
-			{
-				attackCollider.SetActive(false);
-			}
-			attackCollider.SetActive(true);
-            //기본 A공격 애니메이션 작동
+            //클릿횟수 범위 제한
+            noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
 
-            animator.SetTrigger("Attack_A");
-            //공격중 상태 참
-            isAttack = true;
-            //공격가능 상태 거짓(=기본상태가 아님을 의미함)
-            canAttack = false;
-            //클릭횟수 증가
-            noOfClicks++;
-        }
-        //콤보가능 상태일 시 작동(=기본 공격을 하고 난후 일정 타이밍 때 버튼 누를 시 작동)
-        if (canCombo)
-        {
-            //콤보가능 상태 거짓(버튼을 연속으로 눌러 트리거가 또 켜지는 현상 방지)
-            canCombo = false;
-
-            //클릭 횟수에 따른 공격 모션 분기
-            switch (noOfClicks)
+            //공격가능 상태일 시 작동(=기본 상태일때 버튼 누를 시 작동)
+            if (canAttack)
             {
-                //클릭횟수가 1번이었다면 작동
-                case 1:
-                    //현재 누적 클릭횟수가 1이고, 작동되는 애니메이션이 A일때 버튼을 눌렀다면 AA진행
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("A"))
-                    {
-						if (attackCollider.activeSelf)
-						{
-							attackCollider.SetActive(false);
-						}
-						animator.SetTrigger("Attack_AA");
-                        attackCollider.SetActive(true);
-                        //클릭횟수 증가
-                        noOfClicks++;
-                    }
-                    break;
-                //클릭횟수가 2번이었다면 분기가 갈라짐
-                case 2:
-                    //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OA일 때 버튼을 눌렀다면 SSA진행
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("OA"))
-                    {
-                        if(attackCollider.activeSelf)
+                if (attackCollider.activeSelf)
+                {
+                    attackCollider.SetActive(false);
+                }
+                attackCollider.SetActive(true);
+                //기본 A공격 애니메이션 작동
+
+                animator.SetTrigger("Attack_A");
+                //공격중 상태 참
+                isAttack = true;
+                //공격가능 상태 거짓(=기본상태가 아님을 의미함)
+                canAttack = false;
+                //클릭횟수 증가
+                noOfClicks++;
+            }
+            //콤보가능 상태일 시 작동(=기본 공격을 하고 난후 일정 타이밍 때 버튼 누를 시 작동)
+            if (canCombo)
+            {
+                //콤보가능 상태 거짓(버튼을 연속으로 눌러 트리거가 또 켜지는 현상 방지)
+                canCombo = false;
+
+                //클릭 횟수에 따른 공격 모션 분기
+                switch (noOfClicks)
+                {
+                    //클릭횟수가 1번이었다면 작동
+                    case 1:
+                        //현재 누적 클릭횟수가 1이고, 작동되는 애니메이션이 A일때 버튼을 눌렀다면 AA진행
+                        if (animator.GetCurrentAnimatorStateInfo(0).IsName("A"))
                         {
-							attackCollider.SetActive(false);
-						}
-                        animator.SetTrigger("Attack_AAA");
-                        attackCollider.SetActive(true);
-                    }
-                    //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OS일때 버튼을 눌렀다면 AAA진행
-                    else if (animator.GetCurrentAnimatorStateInfo(0).IsName("OS"))
-                    {
+                            if (attackCollider.activeSelf)
+                            {
+                                attackCollider.SetActive(false);
+                            }
+                            animator.SetTrigger("Attack_AA");
+                            attackCollider.SetActive(true);
+                            //클릭횟수 증가
+                            noOfClicks++;
+                        }
+                        break;
+                    //클릭횟수가 2번이었다면 분기가 갈라짐
+                    case 2:
+                        //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OA일 때 버튼을 눌렀다면 SSA진행
+                        if (animator.GetCurrentAnimatorStateInfo(0).IsName("OA"))
+                        {
+                            if (attackCollider.activeSelf)
+                            {
+                                attackCollider.SetActive(false);
+                            }
+                            animator.SetTrigger("Attack_AAA");
+                            attackCollider.SetActive(true);
+                        }
+                        //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OS일때 버튼을 눌렀다면 AAA진행
+                        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("OS"))
+                        {
 
-						animator.SetTrigger("Attack_SSA");
+                            animator.SetTrigger("Attack_SSA");
 
-                        attackCollider.SetActive(true);
-                    }
-                    break;
-                default:
-                    break;
+                            attackCollider.SetActive(true);
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
@@ -408,77 +416,81 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     //S 공격함수
     public void OnAttackSButton()
     {
-        //클릭횟수 범위 제한
-        noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
-
-        //공격가능 상태일 시 작동(=기본 상태일때 버튼 누를 시 작동)
-        if (canAttack)
+        if (useAttack)
         {
-			if (attackCollider.activeSelf)
-			{
-				attackCollider.SetActive(false);
-			}
-			attackCollider.SetActive(true);
-            //기본 A공격 애니메이션 작동
-            animator.SetTrigger("Attack_S");
-            //공격중 상태 참
-            isAttack = true;
-            //공격가능 상태 거짓(=기본상태가 아님을 의미함)
-            canAttack = false;
-            //클릭횟수 증가
-            noOfClicks++;
-        }
-        //콤보가능 상태일 시 작동(=기본 공격을 하고 난후 일정 타이밍 때 버튼 누를 시 작동)
-        if (canCombo)
-        {
-            //콤보가능 상태 거짓(버튼을 연속으로 눌러 트리거가 또 켜지는 현상 방지)
-            canCombo = false;
+            //클릭횟수 범위 제한
+            noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
 
-            //클릭 횟수에 따른 공격 모션 분기
-            switch (noOfClicks)
+            //공격가능 상태일 시 작동(=기본 상태일때 버튼 누를 시 작동)
+            if (canAttack)
             {
-                //클릭횟수가 1번이었다면 SS공격 작동
-                case 1:
-                    //현재 누적 클릭횟수가 1이고, 작동되는 애니메이션이 S일때 버튼을 눌렀다면 SS진행
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("S"))
-                    {
-						if (attackCollider.activeSelf)
-						{
-							attackCollider.SetActive(false);
-						}
-						animator.SetTrigger("Attack_SS");
-                        attackCollider.SetActive(true);
-                        //클릭횟수 증가
-                        noOfClicks++;
-                    }
-                    break;
-                //클릭횟수가 2번이었다면 분기가 갈라짐
-                case 2:
-                    //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OS일 때 버튼을 눌렀다면 SSS진행
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("OS"))
-                    {
-						if (attackCollider.activeSelf)
-						{
-							attackCollider.SetActive(false);
-						}
-						animator.SetTrigger("Attack_SSS");
-                        attackCollider.SetActive(true);
-                    }
-                    //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OA일때 버튼을 눌렀다면 AAS진행
-                    else if (animator.GetCurrentAnimatorStateInfo(0).IsName("OA"))
-                    {
-						if (attackCollider.activeSelf)
-						{
-							attackCollider.SetActive(false);
-						}
-						animator.SetTrigger("Attack_AAS");
-                        attackCollider.SetActive(true);
-                    }
-                    break;
-                default:
-                    break;
+                if (attackCollider.activeSelf)
+                {
+                    attackCollider.SetActive(false);
+                }
+                attackCollider.SetActive(true);
+                //기본 A공격 애니메이션 작동
+                animator.SetTrigger("Attack_S");
+                //공격중 상태 참
+                isAttack = true;
+                //공격가능 상태 거짓(=기본상태가 아님을 의미함)
+                canAttack = false;
+                //클릭횟수 증가
+                noOfClicks++;
+            }
+            //콤보가능 상태일 시 작동(=기본 공격을 하고 난후 일정 타이밍 때 버튼 누를 시 작동)
+            if (canCombo)
+            {
+                //콤보가능 상태 거짓(버튼을 연속으로 눌러 트리거가 또 켜지는 현상 방지)
+                canCombo = false;
+
+                //클릭 횟수에 따른 공격 모션 분기
+                switch (noOfClicks)
+                {
+                    //클릭횟수가 1번이었다면 SS공격 작동
+                    case 1:
+                        //현재 누적 클릭횟수가 1이고, 작동되는 애니메이션이 S일때 버튼을 눌렀다면 SS진행
+                        if (animator.GetCurrentAnimatorStateInfo(0).IsName("S"))
+                        {
+                            if (attackCollider.activeSelf)
+                            {
+                                attackCollider.SetActive(false);
+                            }
+                            animator.SetTrigger("Attack_SS");
+                            attackCollider.SetActive(true);
+                            //클릭횟수 증가
+                            noOfClicks++;
+                        }
+                        break;
+                    //클릭횟수가 2번이었다면 분기가 갈라짐
+                    case 2:
+                        //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OS일 때 버튼을 눌렀다면 SSS진행
+                        if (animator.GetCurrentAnimatorStateInfo(0).IsName("OS"))
+                        {
+                            if (attackCollider.activeSelf)
+                            {
+                                attackCollider.SetActive(false);
+                            }
+                            animator.SetTrigger("Attack_SSS");
+                            attackCollider.SetActive(true);
+                        }
+                        //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OA일때 버튼을 눌렀다면 AAS진행
+                        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("OA"))
+                        {
+                            if (attackCollider.activeSelf)
+                            {
+                                attackCollider.SetActive(false);
+                            }
+                            animator.SetTrigger("Attack_AAS");
+                            attackCollider.SetActive(true);
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
+       
     }
 
     [PunRPC]

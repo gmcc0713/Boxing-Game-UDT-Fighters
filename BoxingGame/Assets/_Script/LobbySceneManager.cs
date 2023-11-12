@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Photon.Pun.Demo.PunBasics;
+
 public class LobbySceneManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] Button GameStartButton;
@@ -17,9 +19,11 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
 	[SerializeField] private TextMeshProUGUI[] infoTexts;
 	int characterInfoindex;
 
+    private CharacterSelectController characterSelectController;
 	private bool player2Ready = false; //플레이어2 준비상태 
     void Start()
     {
+        characterSelectController = FindObjectOfType<CharacterSelectController>();
         ReadyButton.interactable = false;
         GameStartButton.interactable = false; //처음엔 비활성화
         characterInfoindex = 0;
@@ -32,6 +36,7 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.IsMasterClient)
         {
             player2Ready = true;  //준비상태 true
+            
             photonView.RPC("UpdateGameStartButton", RpcTarget.All, player2Ready); //모든pc에게 준비상태 전달
 
         }
@@ -42,6 +47,7 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.IsMasterClient)
         {
             player2Ready = false;  //준비상태 false
+            
             photonView.RPC("UpdateGameStartButton", RpcTarget.All, player2Ready); //모든pc에게 준비상태 전달
 
         }
@@ -51,6 +57,10 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
     {
         if(isPlayer2Ready == true)
         {
+            characterSelectController.leftButtonP1.interactable = false;
+            characterSelectController.leftButtonP2.interactable = false;
+            characterSelectController.rightButtonP1.interactable = false;
+            characterSelectController.rightButtonP2.interactable = false;
             ReadyButton.gameObject.SetActive(false);
             ReadyButtonRed.gameObject.SetActive(true);
             //게임시작버튼 true로
@@ -58,6 +68,10 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
         }
         else
         {
+            characterSelectController.leftButtonP1.interactable = true;
+            characterSelectController.leftButtonP2.interactable = true;
+            characterSelectController.rightButtonP1.interactable = true;
+            characterSelectController.rightButtonP2.interactable = true;
             ReadyButton.gameObject.SetActive(true);
             ReadyButtonRed.gameObject.SetActive(false);
             //게임시작버튼 true로
