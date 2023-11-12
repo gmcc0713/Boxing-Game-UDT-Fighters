@@ -190,6 +190,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7771420867611055317, guid: 6fef5149aec993049936da3f9b898e13, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3954048989829868218, guid: 6fef5149aec993049936da3f9b898e13, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6fef5149aec993049936da3f9b898e13, type: 3}
@@ -1259,10 +1263,14 @@ PrefabInstance:
     - target: {fileID: 2997639163250695808, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
       propertyPath: multiPlayerScript
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 92324846}
     - target: {fileID: 5248514887879215467, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
       propertyPath: multiPlayerScript
       value: 
+      objectReference: {fileID: 92324846}
+    - target: {fileID: 6299573051401336825, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7216602419665446908, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
       propertyPath: m_Name
@@ -1275,6 +1283,6 @@ PrefabInstance:
     - target: {fileID: 8649921583815542151, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
       propertyPath: controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 92324846}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
