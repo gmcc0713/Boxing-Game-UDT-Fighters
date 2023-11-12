@@ -97,20 +97,23 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         Debug.Log(player1);
         Debug.Log(player2);
 
+        Quaternion playerRotation = Quaternion.identity;
         // 플레이어 1을 player1SpawnPoint에 스폰
         if (PhotonNetwork.IsMasterClient)
         {
-            SpawnPlayer(player1, player1SpawnPoint.position);
+            playerRotation = Quaternion.Euler(0f, 90f, 0f);
+            SpawnPlayer(player1, player1SpawnPoint.position, playerRotation);
         }
 
         // 플레이어 2를 player2SpawnPoint에 스폰
         else
         {
-            SpawnPlayer(player2, player2SpawnPoint.position);
+            playerRotation = Quaternion.Euler(0f, -90f, 0f);
+            SpawnPlayer(player2, player2SpawnPoint.position, playerRotation);
         }
 		textImageEffectMgr.ReadyFightTextStart();
 	}
-    void SpawnPlayer(int playerCharacter, Vector3 spawnPosition)
+    void SpawnPlayer(int playerCharacter, Vector3 spawnPosition, Quaternion playerRotation)
     {
         GameObject selectedPrefab = null;
 
@@ -131,10 +134,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             int randC = Random.Range(2, 5);
             selectedPrefab = (randC == 2) ? horsePrefab : (randC == 3) ? zombiePrefab : ninjaPrefab;
         }
+        
 
         // 네트워크 상의 모든 클라이언트들에서 생성 실행
         // 단, 해당 게임 오브젝트의 주도권은, 생성 메서드를 직접 실행한 클라이언트에게 있음
-        PhotonNetwork.Instantiate(selectedPrefab.name, spawnPosition, Quaternion.identity);
+        PhotonNetwork.Instantiate(selectedPrefab.name, spawnPosition, playerRotation);
     }
 
     // Update is called once per frame
