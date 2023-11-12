@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Pun.Demo.PunBasics;
+using UnityEngine.SceneManagement;
 
 public enum Character
 {
@@ -47,11 +48,20 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
         {
             leftButtonP2.gameObject.SetActive(false);
             rightButtonP2.gameObject.SetActive(false);
+
+            if (!photonView.IsMine)
+            {
+                //일반 플레이어가 방에 들어왔을때 정보를 변경
+                photonView.RPC("SyncCharacterChangeP1", RpcTarget.Others, (int)curCharacterP1);
+                PlayerPrefs.SetInt("Player1Character", (int)curCharacterP1);
+            }
         }
         else
         {
             leftButtonP1.gameObject.SetActive(false);
             rightButtonP1.gameObject.SetActive(false);
+            //마스터에게 정보를 받음
+            photonView.RPC("RequestMasterClientCharacterSelection", RpcTarget.MasterClient);
         }
 
         if (PhotonNetwork.IsMasterClient)
@@ -65,23 +75,34 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
             PlayerPrefs.SetInt("Player2Character", (int)curCharacterP2);
         }
     }
-    //void Update()
+    //public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     //{
-    //    if (isReady) //준비상태면 모두 못누르게
+    //    // 플레이어2가 방에 들어왔을 때
+    //    if (newPlayer.ActorNumber == 2)
     //    {
-    //        leftButtonP1.interactable = false;
-    //        rightButtonP1.interactable = false;
-    //        leftButtonP2.interactable = false;
-    //        rightButtonP2.interactable = false;
-    //    }
-    //    else //준비상태가 아니면 누를 수 있게
-    //    {
-    //        leftButtonP1.interactable = true;
-    //        rightButtonP1.interactable = true;
-    //        leftButtonP2.interactable = true;
-    //        rightButtonP2.interactable = true;
+    //        curCharacterP2 = Character.Random;
+    //        Debug.Log("나왔다" + curCharacterP2 + "로 바꿔");
+    //        // 플레이어2의 캐릭터를 Random으로 변경
+    //        photonView.RPC("SyncCharacterChangeP2", RpcTarget.MasterClient, (int)curCharacterP2);
     //    }
     //}
+    //로비씬에서 호출됐을 경우
+    //public void ResetCharacter(int actorNumber)
+    //{
+       
+    //    if (actorNumber == 2)
+    //    {
+    //        //Debug.Log("Empty");
+    //        //curCharacterP2 = Character.Empty;
+    //        characters[(int)curCharacterP2].SetActive(false);
+    //        //photonView.RPC("SyncCharacterChangeP2", RpcTarget.MasterClient, (int)curCharacterP2);
+    //    }
+    //    else if(PhotonNetwork.IsMasterClient) 
+    //    {
+    //        PhotonNetwork.LeaveRoom();
+    //    }
+    //}
+  
     //방장의 왼쪽 버튼클릭 이벤트
     public void ClickLeftButtonP1()
     {
@@ -95,6 +116,7 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
                 leftButtonP1.interactable = false;
             }
         }
+        OnCharacterSelected((int)curCharacterP1);
         if (photonView.IsMine)
         {
             photonView.RPC("SyncCharacterChangeP1", RpcTarget.Others, (int)curCharacterP1);
@@ -117,12 +139,23 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
                 rightButtonP1.interactable = false;
             }
         }
+        OnCharacterSelected((int)curCharacterP1);
         if (photonView.IsMine)
         {
             photonView.RPC("SyncCharacterChangeP1", RpcTarget.Others, (int)curCharacterP1);
             //게임매니저에 선택한 열거형값 전달
             PlayerPrefs.SetInt("Player1Character", (int)curCharacterP1);
             Debug.Log((int)curCharacterP1);
+        }
+    }
+    [PunRPC]
+    void RequestMasterClientCharacterSelection()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            // 방장이 아닌 경우에만 방장의 캐릭터 선택 정보를 요청
+            photonView.RPC("SyncCharacterChangeP1", RpcTarget.Others, (int)curCharacterP1);
+            PlayerPrefs.SetInt("Player1Character", (int)curCharacterP1);
         }
     }
 
@@ -188,18 +221,40 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
 
         //PlayerPrefs.SetInt("Player2Character", curCharacter);
     }
+    public void OnCharacterSelected(int selectedCharacter)
+    {
+
+        // 선택된 캐릭터 정보를 RPC로 다른 플레이어들에게 전달
+        photonView.RPC("SyncCharacterSelection", RpcTarget.OthersBuffered, selectedCharacter);
+    }
+
+    [PunRPC]
+    void SyncCharacterSelection(int selectedCharacter)
+    {
+        // 다른 플레이어가 방에 들어왔을 때 이 RPC 메시지를 받아 캐릭터를 설정
+        ChangeCharacter(selectedCharacter);
+    }
+
     void ChangeCharacter(int curCharacter)
     {
         Debug.Log(curCharacter);
-        if (curCharacter == 0)
+
+        if(curCharacter == 0)
         {
             return;
         }
-        foreach(GameObject c in characters) 
+        
+        foreach (GameObject c in characters) 
         {
             c.SetActive(false);
         }
+
         characters[curCharacter].SetActive(true);
+    }
+
+    public override void OnLeftRoom()
+    {
+        SceneManager.LoadScene("TitleScene");
     }
 
 }

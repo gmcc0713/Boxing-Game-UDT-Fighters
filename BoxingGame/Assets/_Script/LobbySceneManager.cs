@@ -6,6 +6,7 @@ using Photon.Pun;
 using UnityEngine.SceneManagement;
 using TMPro;
 using Photon.Pun.Demo.PunBasics;
+using Unity.VisualScripting;
 
 public class LobbySceneManager : MonoBehaviourPunCallbacks
 {
@@ -17,7 +18,10 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
 	[SerializeField] private Button characterInfoRight;
 	[SerializeField] private GameObject[] characterInfo;
 	[SerializeField] private TextMeshProUGUI[] infoTexts;
-	int characterInfoindex;
+
+    [SerializeField] private Image masterUser;
+    [SerializeField] private Image remoteUser;
+    int characterInfoindex;
 
     private CharacterSelectController characterSelectController;
 	private bool player2Ready = false; //플레이어2 준비상태 
@@ -27,8 +31,12 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
         ReadyButton.interactable = false;
         GameStartButton.interactable = false; //처음엔 비활성화
         characterInfoindex = 0;
+        if(PhotonNetwork.IsMasterClient)
+            masterUser.gameObject.SetActive(true);
+        else
+            remoteUser.gameObject.SetActive(true);
 
-	}
+    }
     //레디on
     public void OnReadyButtonClicked()
     {
@@ -92,11 +100,11 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LoadLevel("ActionTestScene");
     }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            //photonView.RPC("ResetCharacterSelection", RpcTarget.All);
             PhotonNetwork.LeaveRoom();
         }
     }
@@ -104,6 +112,22 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
     {
         SceneManager.LoadScene("TitleScene");
     }
+    //public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+    //{
+    //    if (otherPlayer == PhotonNetwork.LocalPlayer)
+    //    {
+    //        // 방장을 제외한 일반 플레이어가 퇴장한 경우
+    //        // 방장에게 캐릭터를 숨김
+    //        photonView.RPC("HideCharacter", RpcTarget.MasterClient, PhotonNetwork.LocalPlayer.ActorNumber);
+    //    }
+    //    //else
+    //    //{
+    //    //    // 방장인 경우
+    //    //    // 퇴장한 플레이어의 캐릭터를 숨김
+    //    //    photonView.RPC("HideCharacter", RpcTarget.All, otherPlayer.ActorNumber);
+    //    //}
+    //}
+
     public void OpenCharacterInfo()
     {
         Debug.Log("Character Info Open");
@@ -141,4 +165,13 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
         characterInfo[characterInfoindex].SetActive(true);
 		infoTexts[characterInfoindex].gameObject.SetActive(true);
 	}
+
+    //[PunRPC]
+    //public void HideCharacter(int actorNumber)
+    //{
+    //    Debug.Log("리셋합니다" + actorNumber);
+    //    characterSelectController.ResetCharacter(actorNumber);
+    //}
+
+   
 }
