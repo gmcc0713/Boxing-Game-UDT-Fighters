@@ -393,11 +393,9 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
                     //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OS일때 버튼을 눌렀다면 AAA진행
                     else if (animator.GetCurrentAnimatorStateInfo(0).IsName("OS"))
                     {
-						if (attackCollider.activeSelf)
-						{
-							attackCollider.SetActive(false);
-						}
+
 						animator.SetTrigger("Attack_SSA");
+
                         attackCollider.SetActive(true);
                     }
                     break;
