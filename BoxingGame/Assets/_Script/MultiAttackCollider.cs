@@ -10,10 +10,12 @@ public class MultiAttackCollider : MonoBehaviourPun
 
     private MultiPlayer player;
     public ParticleSystem attack;
+    public int a;
 
     void Start()
     {
         player = transform.parent.GetComponent<MultiPlayer>();
+        a = player.noOfClicks;
     }
     [PunRPC]
     public void OnTriggerEnter(Collider other)
@@ -25,6 +27,7 @@ public class MultiAttackCollider : MonoBehaviourPun
 
         if (other.CompareTag("Player") && !other.GetComponent<PhotonView>().IsMine)
         {
+            Debug.Log("noOfClicks : " + a);
             int attackerID = photonView.ViewID; // 공격한 플레이어의 PhotonView ID를 가져옵니다.
             int targetID = other.GetComponent<PhotonView>().ViewID; // 공격 대상 플레이어의 PhotonView ID를 가져옵니다.
        

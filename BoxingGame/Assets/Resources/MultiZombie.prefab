@@ -1665,6 +1665,7 @@ MonoBehaviour:
   useMove: 1
   attackCollider: {fileID: 6299573051401336825}
   attackCombo: 0
+  noOfClicks: 0
   startHealth: 100
   health: 0
   MasterHealthBar: {fileID: 8412293416042477021}
@@ -2759,6 +2760,7 @@ MonoBehaviour:
   damage: 10
   MpUp: 25
   attack: {fileID: 2845317712003872119}
+  a: 0
 --- !u!1 &6802713335980552247
 GameObject:
   m_ObjectHideFlags: 0

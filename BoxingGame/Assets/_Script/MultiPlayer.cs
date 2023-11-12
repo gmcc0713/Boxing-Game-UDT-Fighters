@@ -39,7 +39,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     //공격 콤보 변수 선언
     public int attackCombo = 0;
     //클릭 횟수 스테틱 변수 선언
-    public static int noOfClicks = 0;
+    public int noOfClicks = 0;
 
     [Header("Health")]
     public float startHealth = 100;
@@ -282,29 +282,25 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public void Idle()
     {
         //조건이 기본상태일 때 작동
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && isAttack)
         {
-            //진행도가 0.2보다 작을 시 상태 변화(= 기본상태로 전환)
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.2f)
-            {
-                attackCombo = 0;
+            attackCombo = 0;
 
-                //클릭횟수 초기화
-                noOfClicks = 0;
-                //공격중 상태 거짓
-                isAttack = false;
-                //공격 가능 상태 참
-                canAttack = true;
-                //콤보 가능 상태 거짓
-                canCombo = false;
+            //클릭횟수 초기화
+            noOfClicks = 0;
+            //공격중 상태 거짓
+            isAttack = false;
+            //공격 가능 상태 참
+            canAttack = true;
+            //콤보 가능 상태 거짓
+            canCombo = false;
 
-                //콜라이더 선언
-                CapsuleCollider collider = gameObject.GetComponent<CapsuleCollider>();
-                //콜라이더 반지름
-                collider.radius = 0.4f;
-                //콜라이더 중심
-                collider.center = new Vector3(0, 1, 0f);
-            }
+            //콜라이더 선언
+            CapsuleCollider collider = gameObject.GetComponent<CapsuleCollider>();
+            //콜라이더 반지름
+            collider.radius = 0.4f;
+            //콜라이더 중심
+            collider.center = new Vector3(0, 1, 0f);
         }
 
         //조건이 기본상태가 아니고, 이동 상태도 아닐 때 작동(= 공격중일때)
