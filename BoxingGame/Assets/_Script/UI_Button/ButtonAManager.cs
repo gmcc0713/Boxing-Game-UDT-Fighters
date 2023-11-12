@@ -17,7 +17,6 @@ public class ButtonAManager : MonoBehaviour
 
     public void OnClickAButton()
     {
-        Debug.Log("call A Button Funtion");
         multiPlayerScript.OnAttackAButton();
     }
 }

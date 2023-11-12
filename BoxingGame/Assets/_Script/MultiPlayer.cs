@@ -214,7 +214,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         //이동 판정 부울 값 구하기
         bool isMobileMove = movement.magnitude != 0;
 
-        Debug.Log(isMobileMove);
         animator.SetBool("IsRun", isMobileMove);
 
         //공격상태가 아닐 시 이동
