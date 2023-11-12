@@ -9,6 +9,7 @@ public class MultiAttackCollider : MonoBehaviourPun
     public float MpUp = 25f;
 
     private MultiPlayer player;
+    public ParticleSystem attack;
 
     void Start()
     {
@@ -30,7 +31,8 @@ public class MultiAttackCollider : MonoBehaviourPun
             if (attackerID != targetID)
             {
                 other.GetComponent<MultiPlayer>().TakeDamage(damage, other); // 공격 대상 플레이어에게 데미지를 주도록 수정합니다.
-
+                attack.Play();
+                Debug.Log("play particle");
                 player.TakeMp(MpUp); //자신의 Mp를 회복하게
             }
 

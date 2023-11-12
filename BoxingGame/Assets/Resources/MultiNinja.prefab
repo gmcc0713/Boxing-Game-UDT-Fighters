@@ -2146,6 +2146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   MpUp: 25
+  attack: {fileID: 8634431758173701766}
 --- !u!1 &7794913228027831613
 GameObject:
   m_ObjectHideFlags: 0
@@ -2697,6 +2698,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2693118467847406253, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247405135154357721, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4021103657954561942, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2745,17 +2754,37 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4021103657954561960, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4021103657954561961, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
       propertyPath: m_Name
       value: HitEffectAttack12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4021103657954561961, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4096995433319591838, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4249825647893159325, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751668508166179909, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7934836172243473550, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418415662241458952, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8622112092983863465, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
       propertyPath: m_Materials.Array.size
@@ -2763,6 +2792,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
+--- !u!198 &8634431758173701766 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4021103657954561960, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
+  m_PrefabInstance: {fileID: 4620268356131113262}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8634431758173701816 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4021103657954561942, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
