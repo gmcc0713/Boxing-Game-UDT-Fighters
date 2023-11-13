@@ -25,6 +25,7 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
 
     private CharacterSelectController characterSelectController;
 	private bool player2Ready = false; //플레이어2 준비상태 
+    public bool p2Exit = false;
     void Start()
     {
         characterSelectController = FindObjectOfType<CharacterSelectController>();
@@ -104,29 +105,30 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //photonView.RPC("ResetCharacterSelection", RpcTarget.All);
-            PhotonNetwork.LeaveRoom();
+            if (PhotonNetwork.IsMasterClient)
+            {
+                // PhotonNetwork.LeaveRoom();
+                photonView.RPC("AllLeaveRoom", RpcTarget.All);
+            }
+            else
+            {
+                p2Exit = true;
+                Debug.Log(p2Exit);
+                characterSelectController.Player2Delete(p2Exit);
+                PhotonNetwork.LeaveRoom();
+            }
         }
+    }
+    [PunRPC]
+    public void AllLeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
     }
     public override void OnLeftRoom()
     {
         SceneManager.LoadScene("TitleScene");
     }
-    //public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
-    //{
-    //    if (otherPlayer == PhotonNetwork.LocalPlayer)
-    //    {
-    //        // 방장을 제외한 일반 플레이어가 퇴장한 경우
-    //        // 방장에게 캐릭터를 숨김
-    //        photonView.RPC("HideCharacter", RpcTarget.MasterClient, PhotonNetwork.LocalPlayer.ActorNumber);
-    //    }
-    //    //else
-    //    //{
-    //    //    // 방장인 경우
-    //    //    // 퇴장한 플레이어의 캐릭터를 숨김
-    //    //    photonView.RPC("HideCharacter", RpcTarget.All, otherPlayer.ActorNumber);
-    //    //}
-    //}
+  
 
     public void OpenCharacterInfo()
     {
@@ -165,13 +167,4 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
         characterInfo[characterInfoindex].SetActive(true);
 		infoTexts[characterInfoindex].gameObject.SetActive(true);
 	}
-
-    //[PunRPC]
-    //public void HideCharacter(int actorNumber)
-    //{
-    //    Debug.Log("리셋합니다" + actorNumber);
-    //    characterSelectController.ResetCharacter(actorNumber);
-    //}
-
-   
 }

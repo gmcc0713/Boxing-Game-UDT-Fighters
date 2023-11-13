@@ -62,6 +62,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     private PhotonView pv;
     //초기위치
     private Vector3 initialPosition;
+    private Quaternion initialRotation; //초기 방향
     public bool isSkill;
     void Start()
     {
@@ -113,7 +114,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
         skill.Initilize(this);
         initialPosition = transform.position;
-
+        initialRotation = transform.rotation;
         useAttack = true;
         useMove = true;
 
@@ -541,7 +542,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
         // HP초기화와 동시에 초기 위치로 이동
         transform.position = initialPosition;
-
+        transform.rotation = initialRotation;
     }
 
     [PunRPC] //중복호출 방지용
