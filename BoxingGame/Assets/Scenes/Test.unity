@@ -607,9 +607,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: MultiHorse
       objectReference: {fileID: 0}
+    - target: {fileID: 2589067545589340686, guid: 9c3235d81c6f17e418a325e8ffc895c6, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 5372691106818479100, guid: 9c3235d81c6f17e418a325e8ffc895c6, type: 3}
       propertyPath: sceneViewId
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468938954545496149, guid: 9c3235d81c6f17e418a325e8ffc895c6, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468938954545496149, guid: 9c3235d81c6f17e418a325e8ffc895c6, type: 3}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c3235d81c6f17e418a325e8ffc895c6, type: 3}

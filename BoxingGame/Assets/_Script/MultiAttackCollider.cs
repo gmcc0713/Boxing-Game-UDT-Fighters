@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Unity.VisualScripting;
 
 public class MultiAttackCollider : MonoBehaviourPun
 {
@@ -37,5 +38,16 @@ public class MultiAttackCollider : MonoBehaviourPun
             }
 
         }
+    }
+
+    void OnEnable()
+    {
+        StartCoroutine(WaitForDisable());
+    }
+
+    IEnumerator WaitForDisable()
+    {
+        yield return new WaitForSeconds(0.1f);
+        this.gameObject.SetActive(false);
     }
 }
