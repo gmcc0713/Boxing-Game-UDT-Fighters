@@ -12,6 +12,7 @@ public class MultiAttackCollider : MonoBehaviourPun
     public ParticleSystem attack;
     public int a;
 
+
     void Start()
     {
         player = transform.parent.GetComponent<MultiPlayer>();
@@ -21,39 +22,42 @@ public class MultiAttackCollider : MonoBehaviourPun
     {
         damage = dmg;
 
-	}
-	[PunRPC]
+    }
+    [PunRPC]
     public void OnTriggerEnter(Collider other)
     {
         if (!photonView.IsMine)
         {
             return; // 로컬 플레이어가 아니면 처리하지 않습니다.
         }
-
-        if (other.CompareTag("Player") && !other.GetComponent<PhotonView>().IsMine)
+        if (player.useAttack && player.useMove)
         {
-            
-            Debug.Log("noOfClicks : " + a);
-            int attackerID = photonView.ViewID; // 공격한 플레이어의 PhotonView ID를 가져옵니다.
-            int targetID = other.GetComponent<PhotonView>().ViewID; // 공격 대상 플레이어의 PhotonView ID를 가져옵니다.
-       
-            if (attackerID != targetID)
+            if (other.CompareTag("Player") && !other.GetComponent<PhotonView>().IsMine)
             {
-                MultiPlayer multiPlayer = other.GetComponent<MultiPlayer>();
-                if(multiPlayer.isSkill)
+
+                Debug.Log("noOfClicks : " + a);
+                int attackerID = photonView.ViewID; // 공격한 플레이어의 PhotonView ID를 가져옵니다.
+                int targetID = other.GetComponent<PhotonView>().ViewID; // 공격 대상 플레이어의 PhotonView ID를 가져옵니다.
+
+                if (attackerID != targetID)
                 {
-					multiPlayer.TakeDamage(damage * 2, other);
-					attack.Play();
-                    return;
-				}
+                    MultiPlayer multiPlayer = other.GetComponent<MultiPlayer>();
+                    if (multiPlayer.isSkill)
+                    {
+                        multiPlayer.TakeDamage(damage * 2, other);
+                        attack.Play();
+                        return;
+                    }
 
-                multiPlayer.TakeDamage(damage, other);               // 공격 대상 플레이어에게 데미지를 주도록 수정합니다.
+                    multiPlayer.TakeDamage(damage, other);               // 공격 대상 플레이어에게 데미지를 주도록 수정합니다.
 
-				attack.Play();
-                Debug.Log("play particle");
-                player.TakeMp(MpUp); //자신의 Mp를 회복하게
+                    attack.Play();
+                    Debug.Log("play particle");
+                    player.TakeMp(MpUp); //자신의 Mp를 회복하게
+                }
+
             }
-
         }
+
     }
 }

@@ -3,10 +3,11 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 
+
 public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 {
     public GameObject plyCon;
-   
+
     //애니메이션 컨트롤러 변수 선언
     public Animator animator;
 
@@ -60,6 +61,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     private GameManager gameManager;
     private PhotonView pv;
+    private TextImageEffectManager textImageEffectManager;
     //초기위치
     private Vector3 initialPosition;
     private Quaternion initialRotation; //초기 방향
@@ -70,6 +72,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         pv = GetComponent<PhotonView>();
 
         gameManager = FindObjectOfType<GameManager>();
+        textImageEffectManager = FindObjectOfType<TextImageEffectManager>();
         health = startHealth;
         mp = startMP;
         if (PhotonNetwork.IsMasterClient)
@@ -115,10 +118,10 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         skill.Initilize(this);
         initialPosition = transform.position;
         initialRotation = transform.rotation;
-        useAttack = true;
-        useMove = true;
+        useAttack = false;
+        useMove = false;
 
-        if(!pv.IsMine)
+        if (!pv.IsMine)
         {
             plyCon.SetActive(false);
         }
@@ -133,7 +136,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
 
         //픽시드 업데이트시 상태 체크하기
-        
+
     }
     void Update()
     {
@@ -170,13 +173,13 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             Debug.Log(skill);
             if (mp >= 50)
             {
-				animator.SetBool("IsSkill",true);
+                animator.SetBool("IsSkill", true);
 
-				Debug.Log("스킬게이지 100!");
+                Debug.Log("스킬게이지 100!");
                 skill.SkillUse();
                 isSkill = true;
 
-				TakeMp(-50);
+                TakeMp(-50);
                 Debug.Log("현재스킬게이지" + mp);
             }
         }
@@ -192,7 +195,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
                 StartCoroutine(WaitForAttackEnd(1.0f));
 
 
-				Debug.Log("스킬게이지 100!");
+                Debug.Log("스킬게이지 100!");
                 skill.SkillUse();
 
                 TakeMp(-50);
@@ -202,12 +205,12 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     }
     public void SkillEnd()
     {
-		animator.SetBool("IsSkill", false);
+        animator.SetBool("IsSkill", false);
         isSkill = false;
-	}
+    }
     public void MobieMove(Vector2 inputDirection)
     {
-        if(useAttack)
+        if (useAttack)
         {
             //이동 값 구하기
             Vector3 movement = new Vector3(inputDirection.x, 0f, inputDirection.y).normalized;
@@ -330,7 +333,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     //A공격 함수
     public void OnAttackAButton()
     {
-		if (useAttack)
+        if (useAttack)
         {
             //클릿횟수 범위 제한
             noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
@@ -352,9 +355,9 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             //콤보가능 상태일 시 작동(=기본 공격을 하고 난후 일정 타이밍 때 버튼 누를 시 작동)
             if (canCombo)
             {
-				Debug.Log("3");
-				//콤보가능 상태 거짓(버튼을 연속으로 눌러 트리거가 또 켜지는 현상 방지)
-				canCombo = false;
+                Debug.Log("3");
+                //콤보가능 상태 거짓(버튼을 연속으로 눌러 트리거가 또 켜지는 현상 방지)
+                canCombo = false;
 
                 //클릭 횟수에 따른 공격 모션 분기
                 switch (noOfClicks)
@@ -365,9 +368,9 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
                         if (animator.GetCurrentAnimatorStateInfo(0).IsName("A"))
                         {
                             animator.SetTrigger("Attack_AA");
-							StartCoroutine(WaitForAttackEnd(0.5f));
-							//클릭횟수 증가
-							noOfClicks++;
+                            StartCoroutine(WaitForAttackEnd(0.5f));
+                            //클릭횟수 증가
+                            noOfClicks++;
                         }
                         break;
                     //클릭횟수가 2번이었다면 분기가 갈라짐
@@ -448,7 +451,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
                 }
             }
         }
-       
+
     }
 
     [PunRPC]
@@ -478,6 +481,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             {
                 player.useAttack = false;
                 player.useMove = false;
+                textImageEffectManager.KOTextStart();
             }
 
             if (PhotonNetwork.IsMasterClient)
@@ -520,8 +524,10 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         foreach (MultiPlayer player in FindObjectsOfType<MultiPlayer>())
         {
             player.ResetHP();
-            player.useAttack = true;
-            player.useMove = true;
+            textImageEffectManager.ReadyFightTextStart();
+            //player.useAttack = true;
+            //player.useMove = true;
+
         }
     }
     public void ResetHP()

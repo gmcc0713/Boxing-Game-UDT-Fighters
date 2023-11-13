@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject P2GiveUp;
     public GameObject OptionPanel;
     public TextImageEffectManager textImageEffectMgr;
-	private void Awake()
+    private void Awake()
     {
         // 씬에 싱글톤 오브젝트가 된 다른 GameManager 오브젝트가 있다면
         //if (instance != this)
@@ -111,8 +111,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             playerRotation = Quaternion.Euler(0f, -90f, 0f);
             SpawnPlayer(player2, player2SpawnPoint.position, playerRotation);
         }
-		textImageEffectMgr.ReadyFightTextStart();
-	}
+        textImageEffectMgr.ReadyFightTextStart();
+    }
     void SpawnPlayer(int playerCharacter, Vector3 spawnPosition, Quaternion playerRotation)
     {
         GameObject selectedPrefab = null;
@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             int randC = Random.Range(2, 5);
             selectedPrefab = (randC == 2) ? horsePrefab : (randC == 3) ? zombiePrefab : ninjaPrefab;
         }
-        
+
 
         // 네트워크 상의 모든 클라이언트들에서 생성 실행
         // 단, 해당 게임 오브젝트의 주도권은, 생성 메서드를 직접 실행한 클라이언트에게 있음
@@ -172,18 +172,18 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         if (m_player1Score > 0)
         {
             //player1WinImage.SetActive(true); // 이미지 활성화
-            textImageEffectMgr.KOTextStart();
+            //textImageEffectMgr.KOTextStart();
             StartCoroutine(DeactivateWinImage()); // 3초 뒤에 이미지 비활성화
         }
 
         if (m_player2Score > 0)
         {
-			//player2WinImage.SetActive(true); // 이미지 활성화
-			textImageEffectMgr.KOTextStart();
-			StartCoroutine(DeactivateWinImage()); // 3초 뒤에 이미지 비활성화
+            //player2WinImage.SetActive(true); // 이미지 활성화
+            //textImageEffectMgr.KOTextStart();
+            StartCoroutine(DeactivateWinImage()); // 3초 뒤에 이미지 비활성화
         }
     }
-    
+
     private IEnumerator DeactivateWinImage()
     {
         yield return new WaitForSeconds(3.0f);
@@ -191,9 +191,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         m_player2Score = 0;
         player1WinImage.SetActive(false); // 이미지 비활성화
         player2WinImage.SetActive(false);
-        textImageEffectMgr.ReadyFightTextStart();
+        //textImageEffectMgr.ReadyFightTextStart();
 
-	}
+    }
 
     //누적 스코어 활성화 시키기위함
     void RoundImageActive()
@@ -253,9 +253,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         }
         StartCoroutine(FinalWinImage());
     }
-   
-    
-    
+
+
+
     //항복
     [PunRPC]
     public void GiveUpButton()
@@ -273,10 +273,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void GiveUp(int giveUpUser)
     {
-        if(giveUpUser == 1)
+        if (giveUpUser == 1)
         {
             P1GiveUp.SetActive(true);
-        }else if(giveUpUser == 2)
+        }
+        else if (giveUpUser == 2)
         {
             P2GiveUp.SetActive(true);
         }
