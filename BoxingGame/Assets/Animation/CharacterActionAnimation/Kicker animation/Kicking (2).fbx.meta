@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d533a62d7e69b8c4db203f74e5f50d07
+guid: 23730202a9b64dd4292f7295bfeefc70
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -37,7 +37,7 @@ ModelImporter:
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 45
+      lastFrame: 66
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -47,7 +47,7 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
-      loopBlendPositionY: 1
+      loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
@@ -57,18 +57,18 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.10687023
+      - time: 0.37356767
         functionName: Attack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 20
         intParameter: 0
         messageOptions: 0
-      - time: 0.69746643
+      - time: 0.6825397
         functionName: AttackEnd
         data: 
         objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
+        floatParameter: 20
         intParameter: 0
         messageOptions: 0
       transformMask: []
