@@ -32,7 +32,6 @@ public class Bullet : MonoBehaviour
         {
             Destroy(this);
 
-            //데미지 주기
 
         }
         //c충돌했을때

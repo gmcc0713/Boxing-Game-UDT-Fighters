@@ -36,4 +36,5 @@ public class SkillHorse : Skill
         playerController.animator.SetBool("IsSkill", false);
 
 	}
+
 }

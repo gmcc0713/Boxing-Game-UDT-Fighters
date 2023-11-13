@@ -1458,6 +1458,7 @@ GameObject:
   - component: {fileID: 2744519376694538854}
   - component: {fileID: 154321752428450237}
   - component: {fileID: 7453504556928756397}
+  - component: {fileID: -5266895504507801467}
   - component: {fileID: -8913469356915715373}
   m_Layer: 0
   m_Name: MultiZombie
@@ -1678,6 +1679,7 @@ MonoBehaviour:
   MasterMpCanvas: {fileID: 2108882849}
   RemoteMpCanvas: {fileID: 82811357}
   skill: {fileID: -8913469356915715373}
+  isSkill: 0
 --- !u!114 &7453504556928756397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1690,6 +1692,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df159e60fd78a9447984f26e7cf82181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5266895504507801467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937081004221583560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe912da76136b34ea174faf80fbcdbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCollider: {fileID: 2490297739740985372}
 --- !u!114 &-8913469356915715373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2721,7 +2736,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &7784746816008540971
 MonoBehaviour:

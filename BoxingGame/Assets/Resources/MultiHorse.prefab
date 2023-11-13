@@ -231,7 +231,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &5372691106818479100
 MonoBehaviour:
@@ -526,6 +526,7 @@ GameObject:
   - component: {fileID: 3686988287128500923}
   - component: {fileID: 2589067545589340686}
   - component: {fileID: 61658740889206444}
+  - component: {fileID: 2716637588260294363}
   - component: {fileID: 61658741203395521}
   - component: {fileID: 61658741203395534}
   - component: {fileID: 61658741203395535}
@@ -630,6 +631,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df159e60fd78a9447984f26e7cf82181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2716637588260294363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109985196421179912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe912da76136b34ea174faf80fbcdbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCollider: {fileID: 5019141053834332027}
 --- !u!114 &61658741203395521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -742,7 +756,7 @@ MonoBehaviour:
   speed: 6
   turnSmoothTime: 0.1
   isAttack: 0
-  canAttack: 0
+  canAttack: 1
   canCombo: 0
   useAttack: 1
   useMove: 1
@@ -750,7 +764,7 @@ MonoBehaviour:
   attackCombo: 0
   noOfClicks: 0
   startHealth: 100
-  health: 0
+  health: 100
   MasterHealthBar: {fileID: 5474419157736716692}
   remoteHealthBar: {fileID: 8666461119315883760}
   MasterCanvas: {fileID: 8216268232757144635}
@@ -761,6 +775,7 @@ MonoBehaviour:
   MasterMpCanvas: {fileID: 6759732804317439275}
   RemoteMpCanvas: {fileID: 4076684197938533322}
   skill: {fileID: -3983749934621556830}
+  isSkill: 0
 --- !u!114 &-3983749934621556830
 MonoBehaviour:
   m_ObjectHideFlags: 0
