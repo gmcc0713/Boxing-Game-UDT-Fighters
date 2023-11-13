@@ -866,6 +866,7 @@ MonoBehaviour:
   useMove: 1
   attackCollider: {fileID: 7771420867611055317}
   attackCombo: 0
+  noOfClicks: 0
   startHealth: 100
   health: 0
   MasterHealthBar: {fileID: 1664295159771482061}
@@ -2164,6 +2165,7 @@ MonoBehaviour:
   damage: 10
   MpUp: 25
   attack: {fileID: 8634431758173701766}
+  a: 0
 --- !u!1 &7794913228027831613
 GameObject:
   m_ObjectHideFlags: 0
@@ -2830,6 +2832,30 @@ PrefabInstance:
       propertyPath: multiPlayerScript
       value: 
       objectReference: {fileID: -8440736864515474039}
+    - target: {fileID: 1974444787420473226, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3824939858980290154}
+    - target: {fileID: 1974444787420473226, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickSButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974444787420473226, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ButtonSmanager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918795936799389906, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8346123212466601096}
+    - target: {fileID: 3918795936799389906, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickAButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918795936799389906, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ButtonAManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5511341408577776862, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
       propertyPath: m_Name
       value: PlayerController
@@ -2954,7 +2980,9 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 127071151545685410, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+    - {fileID: 6957157755671806537, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
 --- !u!224 &357444322846765632 stripped
 RectTransform:
@@ -2984,3 +3012,39 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5511341408577776862, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
   m_PrefabInstance: {fileID: 5988336068876741492}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7359895605949955519 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3835182192847509195, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+  m_PrefabInstance: {fileID: 5988336068876741492}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8346123212466601096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7359895605949955519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d461b7246d022747b1bc0b4301b450f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiPlayerScript: {fileID: -8440736864515474039}
+--- !u!1 &8548849135603018736 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2718286399014649988, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+  m_PrefabInstance: {fileID: 5988336068876741492}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3824939858980290154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8548849135603018736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323fd29ac7a95e14ea28d12ac060e6be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiPlayerScript: {fileID: -8440736864515474039}
