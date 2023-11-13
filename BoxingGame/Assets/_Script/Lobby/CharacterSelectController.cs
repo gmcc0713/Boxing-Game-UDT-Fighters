@@ -75,34 +75,7 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
             PlayerPrefs.SetInt("Player2Character", (int)curCharacterP2);
         }
     }
-    //public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
-    //{
-    //    // 플레이어2가 방에 들어왔을 때
-    //    if (newPlayer.ActorNumber == 2)
-    //    {
-    //        curCharacterP2 = Character.Random;
-    //        Debug.Log("나왔다" + curCharacterP2 + "로 바꿔");
-    //        // 플레이어2의 캐릭터를 Random으로 변경
-    //        photonView.RPC("SyncCharacterChangeP2", RpcTarget.MasterClient, (int)curCharacterP2);
-    //    }
-    //}
-    //로비씬에서 호출됐을 경우
-    //public void ResetCharacter(int actorNumber)
-    //{
-       
-    //    if (actorNumber == 2)
-    //    {
-    //        //Debug.Log("Empty");
-    //        //curCharacterP2 = Character.Empty;
-    //        characters[(int)curCharacterP2].SetActive(false);
-    //        //photonView.RPC("SyncCharacterChangeP2", RpcTarget.MasterClient, (int)curCharacterP2);
-    //    }
-    //    else if(PhotonNetwork.IsMasterClient) 
-    //    {
-    //        PhotonNetwork.LeaveRoom();
-    //    }
-    //}
-  
+    
     //방장의 왼쪽 버튼클릭 이벤트
     public void ClickLeftButtonP1()
     {
@@ -250,6 +223,21 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
         }
 
         characters[curCharacter].SetActive(true);
+    }
+    public void Player2Delete(bool p2Exit)
+    {
+        Debug.Log(p2Exit);
+        photonView.RPC("ResetPlayer2", RpcTarget.MasterClient);
+    }
+
+    [PunRPC]
+    public void ResetPlayer2()
+    {
+        Debug.Log("RPC호출");
+        characters[1].SetActive(false);
+        characters[2].SetActive(false);
+        characters[3].SetActive(false);
+        characters[4].SetActive(false);
     }
 
     public override void OnLeftRoom()
