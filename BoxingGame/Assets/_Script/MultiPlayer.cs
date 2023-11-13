@@ -488,6 +488,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             {
                 gameManager.Player1Win();
                 Debug.Log("플레이어1Win");
+                //animator.SetBool("IsWin", true);
                 photonView.RPC("ResetPlayerHealth", RpcTarget.All);
             }
             //방장에게 알림
@@ -507,6 +508,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         // 여기서 attackerID는 공격한 플레이어의 ID
         gameManager.Player2Win();
+        //animator.SetBool("IsWin", true);
         Debug.Log("플레이어2Win");
     }
     [PunRPC]
@@ -539,12 +541,13 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             MasterHealthBar.fillAmount = 100.0f;
             MasterMpBar.fillAmount = 0f;
             animator.SetBool("IsDead", false);
+            animator.SetBool("IsWin", false);
         }
         else
         {
             remoteHealthBar.fillAmount = 100.0f;
             RemoteMpBar.fillAmount = 0f;
-            animator.SetBool("IsDead", false);
+            animator.SetBool("IsWin", false);
         }
         // HP초기화와 동시에 초기 위치로 이동
         transform.position = initialPosition;
