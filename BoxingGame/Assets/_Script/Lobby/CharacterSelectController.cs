@@ -33,7 +33,7 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
     //public bool isReady = false;
     [SerializeField] private Button ReadyButton;
 
-    private Character curCharacterP1 = Character.Empty;
+    private Character curCharacterP1 = Character.Random;
     private Character curCharacterP2 = Character.Empty;
 
     void Start()
@@ -71,7 +71,8 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
         }
         else
         {
-            photonView.RPC("SyncCharacterChangeP2", RpcTarget.Others, (int)curCharacterP2);
+            curCharacterP2 = Character.Random;
+            photonView.RPC("SyncCharacterChangeP2", RpcTarget.All, (int)curCharacterP2);
             PlayerPrefs.SetInt("Player2Character", (int)curCharacterP2);
         }
     }

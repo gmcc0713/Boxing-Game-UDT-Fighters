@@ -1640,6 +1640,12 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 1
     Name: GetHit
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsSkill
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsWin
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
