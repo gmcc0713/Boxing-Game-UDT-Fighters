@@ -35,9 +35,9 @@ public class TextImageEffectManager : MonoBehaviour
         //multy.useAttack = false;
         //multy.useMove = false;
         effecters[(int)EffectImage.Ready].gameObject.SetActive(true);
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(1.5f);
         effecters[(int)EffectImage.Fight].gameObject.SetActive(true);
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(1.8f);
         multy.useAttack = true;
         multy.useMove = true;
         Debug.Log(multy.useAttack);
@@ -48,7 +48,7 @@ public class TextImageEffectManager : MonoBehaviour
         //multy.useAttack = false;
         // multy.useMove = false;
         effecters[(int)EffectImage.K].gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
 		effecters[(int)EffectImage.O].gameObject.SetActive(true);
 		//multy.useAttack = true;
 		//multy.useMove = true;
