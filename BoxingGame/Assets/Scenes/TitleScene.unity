@@ -8805,7 +8805,12 @@ MonoBehaviour:
   audioSFXClips:
   - {fileID: 8300000, guid: c4d1b76b58a3dc544be9e7ec0740169d, type: 3}
   - {fileID: 8300000, guid: 63763c20f5b8cea4d84d119b4105000e, type: 3}
-  audioCharacterClips: []
+  audioCharacterClips:
+  - {fileID: 8300000, guid: 6f2f38826ad52bf4d8ebbcd3dabb0b0b, type: 3}
+  - {fileID: 8300000, guid: 49b90eb79d6ad9a439c9a3c943eb6ed9, type: 3}
+  - {fileID: 8300000, guid: aa863ec3bbeb527449b76e7c905b7502, type: 3}
+  - {fileID: 8300000, guid: 9d350a09c376a674f852243239576325, type: 3}
+  - {fileID: 8300000, guid: 979dc2e1be6a43a469353a88787a3d0e, type: 3}
 --- !u!4 &943238352
 Transform:
   m_ObjectHideFlags: 0

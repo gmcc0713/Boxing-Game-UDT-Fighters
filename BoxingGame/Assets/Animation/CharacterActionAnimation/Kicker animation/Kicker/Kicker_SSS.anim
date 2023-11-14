@@ -16067,7 +16067,7 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 10
-    intParameter: 0
+    intParameter: 3
     messageOptions: 0
   - time: 0.66857547
     functionName: Attack
@@ -16081,7 +16081,7 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 10
-    intParameter: 0
+    intParameter: 1
     messageOptions: 0
   - time: 1.403456
     functionName: AttackEnd

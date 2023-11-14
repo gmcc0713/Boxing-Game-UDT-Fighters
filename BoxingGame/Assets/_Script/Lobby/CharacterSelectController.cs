@@ -35,16 +35,16 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
 
     private Character curCharacterP1 = Character.Random;
     private Character curCharacterP2 = Character.Empty;
-
+    private LobbySceneManager lobbyScene;
     void Start()
     {
         leftButtonP1.interactable = false;
         rightButtonP1.interactable = true;
         leftButtonP2.interactable = false;
         rightButtonP2.interactable = true;
-
-        //마스터 클라이언트의 화면에선 P2의 버튼 false
-        if (PhotonNetwork.IsMasterClient)
+        lobbyScene = FindObjectOfType<LobbySceneManager>();
+		//마스터 클라이언트의 화면에선 P2의 버튼 false
+		if (PhotonNetwork.IsMasterClient)
         {
             leftButtonP2.gameObject.SetActive(false);
             rightButtonP2.gameObject.SetActive(false);
@@ -71,8 +71,10 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
         }
         else
         {
+            //여기가 들어왔을때 플레이어2가 랜덤캐릭터로 변경하는 부분 여기서 준비가 활성화 되어야함 그치?
             curCharacterP2 = Character.Random;
-            photonView.RPC("SyncCharacterChangeP2", RpcTarget.All, (int)curCharacterP2);
+           
+			photonView.RPC("SyncCharacterChangeP2", RpcTarget.All, (int)curCharacterP2);
             PlayerPrefs.SetInt("Player2Character", (int)curCharacterP2);
         }
     }
@@ -191,7 +193,8 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
     [PunRPC]
     void SyncCharacterChangeP2(int curCharacter)
     {
-        ChangeCharacter(curCharacter);
+		//lobbyScene.ReadyButton.interactable = true;
+		ChangeCharacter(curCharacter);
 
         //PlayerPrefs.SetInt("Player2Character", curCharacter);
     }

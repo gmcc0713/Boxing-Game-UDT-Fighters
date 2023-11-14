@@ -620,7 +620,7 @@ AnimatorStateMachine:
     m_Position: {x: 1590, y: -420, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4962409614974256718}
-    m_Position: {x: -1500, y: -1080, z: 0}
+    m_Position: {x: -1490, y: -1070, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -360238742172453734}
     m_Position: {x: 1110, y: -1200, z: 0}
@@ -1234,7 +1234,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: OSS
-  m_Speed: 1.4
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -2668708161770399158}
@@ -1644,9 +1644,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.24999988
   m_TransitionOffset: 0
-  m_ExitTime: 0.8333334
+  m_ExitTime: 0.7953334
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

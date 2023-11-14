@@ -275,6 +275,10 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             transform.position += moveVec * speed * Time.deltaTime;
 
         }
+        else
+        {
+			transform.position += moveVec * speed/4 * Time.deltaTime;
+		}    
     }
 
     //상태체크 함수
@@ -341,8 +345,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             //공격가능 상태일 시 작동(=기본 상태일때 버튼 누를 시 작동)
             if (canAttack)
             {
-                Debug.Log("2");
-                //기본 A공격 애니메이션 작동
 
                 animator.SetTrigger("Attack_A");
                 //공격중 상태 참
@@ -355,7 +357,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             //콤보가능 상태일 시 작동(=기본 공격을 하고 난후 일정 타이밍 때 버튼 누를 시 작동)
             if (canCombo)
             {
-                Debug.Log("3");
                 //콤보가능 상태 거짓(버튼을 연속으로 눌러 트리거가 또 켜지는 현상 방지)
                 canCombo = false;
 

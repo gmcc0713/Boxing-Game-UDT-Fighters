@@ -188,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3613967098765444489, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
       propertyPath: m_Constraints
-      value: 126
+      value: 116
       objectReference: {fileID: 0}
     - target: {fileID: 7784746816008540971, guid: 03474912dd7c56f40b79031a2c166e09, type: 3}
       propertyPath: sceneViewId
@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 835825732}
+  soundManager: {fileID: 0}
 --- !u!114 &835825732 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5019141053834332027, guid: 9c3235d81c6f17e418a325e8ffc895c6, type: 3}

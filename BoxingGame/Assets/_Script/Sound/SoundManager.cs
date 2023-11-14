@@ -55,7 +55,10 @@ public class SoundManager : MonoBehaviour
             case Sound_Type.Sound_SFX:
                 audioSources[(int)sound_Type].PlayOneShot(audioSFXClips[(int)clip_num]);
                 break;
-        }
+			case Sound_Type.Sound_BGM:
+				audioSources[(int)sound_Type].PlayOneShot(audioBGMClips[(int)clip_num]);
+				break;
+		}
     }
     public void ChangeAudioVolume(Sound_Type sound_Type,float value)
     {
@@ -99,5 +102,9 @@ public class SoundManager : MonoBehaviour
 		audioSources[(int)Sound_Type.Sound_SFX].Play(0);
 
 	}
-
+	public void PlayCharacterAttackSound(int clipIndex)
+	{
+		audioSources[(int)Sound_Type.Sound_SFX].clip = audioBGMClips[clipIndex];
+		audioSources[(int)Sound_Type.Sound_SFX].Play(0);
+	}
 }
