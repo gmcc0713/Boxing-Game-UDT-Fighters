@@ -8,11 +8,15 @@ public enum Effect_Type
 	Bigger,
 	BiggerStop,
 	Smaller,
+	Bounce,
 }
 
 public class TextImageEffecter : MonoBehaviour
 {
 	float time;
+	public float _upSizeTime = 0.2f;
+	public float _size = 5;
+
 	[SerializeField] Effect_Type type; 
 	// Update is called once per frame
 	void BiggerStop()
@@ -47,6 +51,22 @@ public class TextImageEffecter : MonoBehaviour
 		}
 		time += Time.deltaTime;
 	}
+	void Bounce()
+	{
+		if(time <= _upSizeTime)
+		{
+			transform.localScale = Vector3.one * (1 + _size * time);
+		}
+		else if(time <= _upSizeTime*2)
+		{
+			transform.localScale = Vector3.one * (2 * _size * _upSizeTime + 1 - time * _size);
+		}
+		else
+		{
+			transform.localScale = Vector3.one;
+		}
+		time += Time.deltaTime;
+	}
 	void Update()
 	{
 		switch (type)
@@ -60,15 +80,19 @@ public class TextImageEffecter : MonoBehaviour
 			case Effect_Type.Smaller:
 				Smaller();
 				break;
-
+			case Effect_Type.Bounce:
+				Bounce();
+				break;
 		}
 	}
+
 	IEnumerator WaitDisable()
 	{
 		yield return new WaitForSeconds(1.0f);
 		gameObject.SetActive(false);
 		yield return new WaitForSeconds(1.0f);
 	}
+
 	public void resetAnim()
 	{
 		time = 0;
