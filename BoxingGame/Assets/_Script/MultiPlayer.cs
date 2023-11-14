@@ -6,16 +6,14 @@ using UnityEngine.UI;
 
 public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 {
-    public GameObject plyCon;
 
+    public GameObject plyCon;
     //애니메이션 컨트롤러 변수 선언
     public Animator animator;
-
     //이동관련 평면벡터 변수 선언
     Vector2 input;
     //이동 중 회전관련 삼차원벡터 변수 선언
     Vector3 moveVec;
-
     //이동속력 변수 선언
     [SerializeField] float speed;
     //회전시간 변수 선언
@@ -45,7 +43,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     [Header("Health")]
     public float startHealth = 100;
     public float health;
-
     public Image MasterHealthBar;
     public Image remoteHealthBar;
     public GameObject MasterCanvas;
@@ -66,6 +63,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     private Vector3 initialPosition;
     private Quaternion initialRotation; //초기 방향
     public bool isSkill;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -277,7 +275,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-			transform.position += moveVec * speed/4 * Time.deltaTime;
+			//transform.position += moveVec * speed/4 * Time.deltaTime;
 		}    
     }
 
@@ -288,7 +286,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && isAttack)
         {
             attackCombo = 0;
-
             //클릭횟수 초기화
             noOfClicks = 0;
             //공격중 상태 거짓

@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviourPun
             if (other.gameObject.CompareTag("Player") && !other.GetComponent<PhotonView>().IsMine)
             {
 			    int attackerID = me.photonView.ViewID; // 공격한 플레이어의 PhotonView ID를 가져옵니다.
-			    int targetID = other.gameObject.GetComponent<MultiPlayer>().GetComponent<PhotonView>().ViewID; // 공격 대상 플레이어의 PhotonView ID를 가져옵니다.
+			    int targetID = other.GetComponent<PhotonView>().ViewID; // 공격 대상 플레이어의 PhotonView ID를 가져옵니다.
 
 			    if (attackerID != targetID)
 			    {

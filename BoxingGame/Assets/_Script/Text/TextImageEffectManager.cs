@@ -9,7 +9,8 @@ public enum EffectImage
 {
     Ready = 0,
     Fight,
-    KO,
+    K,
+    O,
     Count,
 }
 public class TextImageEffectManager : MonoBehaviour
@@ -46,13 +47,15 @@ public class TextImageEffectManager : MonoBehaviour
     {
         //multy.useAttack = false;
         // multy.useMove = false;
-        effecters[(int)EffectImage.KO].gameObject.SetActive(true);
-        yield return new WaitForSeconds(1.3f);
-        //multy.useAttack = true;
-        //multy.useMove = true;
-    }
+        effecters[(int)EffectImage.K].gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+		effecters[(int)EffectImage.O].gameObject.SetActive(true);
+		//multy.useAttack = true;
+		//multy.useMove = true;
+	}
     public void KOTextStart()
     {
+        StartCoroutine(KOAnimation());
         StartCoroutine(KOAnimation());
     }
     public void ReadyFightTextStart()
