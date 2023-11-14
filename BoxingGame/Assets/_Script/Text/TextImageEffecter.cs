@@ -8,12 +8,14 @@ public enum Effect_Type
 	Bigger,
 	BiggerStop,
 	Smaller,
+	SmallerLong,
 	Bounce,
+	Spring,
 }
 
 public class TextImageEffecter : MonoBehaviour
 {
-	float time;
+	float time = 0.01f;
 	public float _upSizeTime = 0.2f;
 	public float _size = 5;
 
@@ -41,32 +43,64 @@ public class TextImageEffecter : MonoBehaviour
 			StartCoroutine(WaitDisable());
 		}
 	}
-	void Smaller()
+	void SmallerLong()
 	{
-		transform.localScale = Vector3.one * (1 - time);
-		if(time > 1f)
+		if (time < 0.5f)
+		{
+			transform.localScale = Vector3.one * (1 - time);
+		}
+		if(time > 1.5f)
 		{
 			time = 0;
 			gameObject.SetActive(false);
 		}
+
+		time += Time.deltaTime;
+	}
+	void Smaller()
+	{
+		if (time < 0.5f)
+		{
+			transform.localScale = Vector3.one * (1 - time);
+		}
+		if (time > 1f)
+		{
+			time = 0;
+			gameObject.SetActive(false);
+		}
+
 		time += Time.deltaTime;
 	}
 	void Bounce()
 	{
-		if(time <= _upSizeTime)
+		for(int i =0;i<3;i++)
 		{
-			transform.localScale = Vector3.one * (1 + _size * time);
+			if (time <= _upSizeTime)
+			{
+				transform.localScale = Vector3.one * (1 + _size * time);
+			}
+			else if (time <= _upSizeTime * 2)
+			{
+				transform.localScale = Vector3.one * (2 * _size * _upSizeTime + 1 - time * _size);
+			}
+			else
+			{
+				transform.localScale = Vector3.one;
+			}
+			time += Time.deltaTime;
 		}
-		else if(time <= _upSizeTime*2)
-		{
-			transform.localScale = Vector3.one * (2 * _size * _upSizeTime + 1 - time * _size);
-		}
-		else
-		{
-			transform.localScale = Vector3.one;
-		}
-		time += Time.deltaTime;
+
 	}
+	IEnumerator Spring()
+	{
+		while(true)
+		{
+
+			yield return new WaitForSeconds(1.0f);
+
+		}
+	}
+	
 	void Update()
 	{
 		switch (type)
@@ -77,11 +111,17 @@ public class TextImageEffecter : MonoBehaviour
 			case Effect_Type.Bigger:
 				Bigger();
 				break;
+			case Effect_Type.SmallerLong:
+				SmallerLong();
+				break;
 			case Effect_Type.Smaller:
 				Smaller();
 				break;
 			case Effect_Type.Bounce:
 				Bounce();
+				break;
+			case Effect_Type.Spring:
+				Spring();
 				break;
 		}
 	}
