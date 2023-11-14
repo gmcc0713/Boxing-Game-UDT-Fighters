@@ -2851,6 +2851,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2996189724291318900}
     m_Modifications:
+    - target: {fileID: 1469389336217843009, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: multiPlayerScript
+      value: 
+      objectReference: {fileID: -8440736864515474039}
+    - target: {fileID: 1910174925166965091, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: multiPlayerScript
+      value: 
+      objectReference: {fileID: -8440736864515474039}
+    - target: {fileID: 4301344086170309251, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+      propertyPath: multiPlayerScript
+      value: 
+      objectReference: {fileID: -8440736864515474039}
     - target: {fileID: 5511341408577776862, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
       propertyPath: m_Name
       value: PlayerController
