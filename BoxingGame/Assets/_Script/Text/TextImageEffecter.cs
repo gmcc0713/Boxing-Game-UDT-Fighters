@@ -6,6 +6,7 @@ using UnityEngine;
 public enum Effect_Type
 {
 	Bigger,
+	BiggerStop,
 	Smaller,
 }
 
@@ -14,11 +15,24 @@ public class TextImageEffecter : MonoBehaviour
 	float time;
 	[SerializeField] Effect_Type type; 
 	// Update is called once per frame
+	void BiggerStop()
+	{
+		if (time > 0.7f)
+		{
+			StartCoroutine(WaitDisable());
+		}
+		else
+		{
+			transform.localScale = Vector3.one * (2 + time);
+			time += Time.deltaTime;
+		}
+	}
+
 	void Bigger()
 	{
 		transform.localScale = Vector3.one * (2 + time);
 		time += Time.deltaTime;
-		if (time > 0.7f)
+		if (time > 0.5f)
 		{
 			StartCoroutine(WaitDisable());
 		}
@@ -37,6 +51,9 @@ public class TextImageEffecter : MonoBehaviour
 	{
 		switch (type)
 		{
+			case Effect_Type.BiggerStop:
+				BiggerStop();
+				break;
 			case Effect_Type.Bigger:
 				Bigger();
 				break;
@@ -48,8 +65,9 @@ public class TextImageEffecter : MonoBehaviour
 	}
 	IEnumerator WaitDisable()
 	{
-		yield return new WaitForSeconds(0.3f);
+		yield return new WaitForSeconds(1.0f);
 		gameObject.SetActive(false);
+		yield return new WaitForSeconds(1.0f);
 	}
 	public void resetAnim()
 	{
