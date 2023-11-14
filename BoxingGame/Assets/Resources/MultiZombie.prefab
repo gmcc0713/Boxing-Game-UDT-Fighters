@@ -1674,6 +1674,7 @@ MonoBehaviour:
   attackCollider: {fileID: 6299573051401336825}
   attackCombo: 0
   noOfClicks: 0
+  playSkill: {fileID: 9174685122250450760}
   startHealth: 100
   health: 0
   MasterHealthBar: {fileID: 8412293416042477021}
@@ -3661,8 +3662,14 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7226888052703040405, guid: 7e7f424513d69614eaeedd1f96c61271, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7e7f424513d69614eaeedd1f96c61271, type: 3}
+--- !u!198 &9174685122250450760 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7226888052703040407, guid: 7e7f424513d69614eaeedd1f96c61271, type: 3}
+  m_PrefabInstance: {fileID: 1952336718181807327}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9174685122250450761 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7226888052703040406, guid: 7e7f424513d69614eaeedd1f96c61271, type: 3}
