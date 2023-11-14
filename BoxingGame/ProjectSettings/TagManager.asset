@@ -11,6 +11,7 @@ TagManager:
   - Character2
   - bg
   - SoundSlider
+  - Wall
   layers:
   - Default
   - TransparentFX

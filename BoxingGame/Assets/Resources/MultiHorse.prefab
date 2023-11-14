@@ -644,6 +644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 5019141053834332027}
+  soundManager: {fileID: 0}
 --- !u!114 &61658741203395521
 MonoBehaviour:
   m_ObjectHideFlags: 0

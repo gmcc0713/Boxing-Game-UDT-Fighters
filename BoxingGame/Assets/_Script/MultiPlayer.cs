@@ -118,8 +118,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         skill.Initilize(this);
         initialPosition = transform.position;
         initialRotation = transform.rotation;
-        useAttack = false;
-        useMove = false;
+        useAttack = true;
+        useMove = true;
 
         if (!pv.IsMine)
         {
@@ -173,7 +173,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             Debug.Log(skill);
             if (mp >= 50)
             {
-                animator.SetBool("IsSkill", true);
+                animator.SetTrigger("IsSkill");
 
                 Debug.Log("스킬게이지 100!");
                 skill.SkillUse();

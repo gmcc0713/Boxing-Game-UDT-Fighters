@@ -7,6 +7,7 @@ public class SkillNinja : Skill
 {
     private float shootSpeed;
     private float dashTime;
+     public MultiPlayer player;
     [SerializeField] private GameObject skillBall;
     [SerializeField] private Transform skillPos;
     private void Start()
@@ -18,21 +19,22 @@ public class SkillNinja : Skill
     public override void SkillUse()
     {
         Debug.Log("Zombie skill ");
-        photonView.RPC("ZombieShoot", RpcTarget.All);
+        photonView.RPC("NinjaShoot", RpcTarget.All);
        
     }
     [PunRPC]
-    public void ZombieShoot()
+    public void NinjaShoot()
     {
-        StartCoroutine(Shoot());
+        Shoot();
     }
-    IEnumerator Shoot()
+    void Shoot()
     {
         Debug.Log("Skill on");
         GameObject cloneSkillBall = Instantiate(skillBall,transform.position, transform.rotation);
-        Rigidbody bulletRigid = cloneSkillBall.GetComponent<Rigidbody>();
+        cloneSkillBall.GetComponent<Bullet>().SetPlayer(player);
+		Rigidbody bulletRigid = cloneSkillBall.GetComponent<Rigidbody>();
         bulletRigid.velocity = this.transform.forward* shootSpeed;
-        yield return null;
+
     }
 }
 

@@ -27,10 +27,11 @@ public class SkillHorse : Skill
     {
         float startTime = Time.time;
 
+        Debug.Log("111");
         while (Time.time < startTime + dashTime)
         {
             Debug.Log("Dash update");
-            playerController.transform.position += transform.forward * dashSpeed * Time.deltaTime;
+            playerController. transform.position += transform.forward * dashSpeed * Time.deltaTime;
             yield return null;
         }
         playerController.animator.SetBool("IsSkill", false);

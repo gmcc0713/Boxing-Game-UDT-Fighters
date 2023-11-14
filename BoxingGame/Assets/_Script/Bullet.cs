@@ -1,12 +1,16 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Unity.VisualScripting;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviourPun
 {
     public int damage;
     public float rotateSpeed;
     public Vector3 lookForward;
+    MultiPlayer me;
     public void StartSkill(Vector3 skillLookForward)
     {
         lookForward = skillLookForward;
@@ -16,6 +20,10 @@ public class Bullet : MonoBehaviour
 	{
 		transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
 	}
+    public void SetPlayer(MultiPlayer player)
+    {
+        me = player;
+    }
 	IEnumerator Shoot() 
     {
         while (true) 
@@ -26,14 +34,22 @@ public class Bullet : MonoBehaviour
             yield return null;
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(this);
+
+            if (other.gameObject.CompareTag("Player") && !other.GetComponent<PhotonView>().IsMine)
+            {
+			    int attackerID = me.photonView.ViewID; // 공격한 플레이어의 PhotonView ID를 가져옵니다.
+			    int targetID = other.gameObject.GetComponent<MultiPlayer>().GetComponent<PhotonView>().ViewID; // 공격 대상 플레이어의 PhotonView ID를 가져옵니다.
+
+			    if (attackerID != targetID)
+			    {
+				    other.gameObject.GetComponent<MultiPlayer>().TakeDamage(40, other);
 
 
-        }
-        //c충돌했을때
+
+                    Destroy(this);
+                }
+            }   
     }
 }

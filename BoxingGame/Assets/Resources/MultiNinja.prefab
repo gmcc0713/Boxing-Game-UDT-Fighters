@@ -914,6 +914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: -8440736864515474039}
+  player: {fileID: -8440736864515474039}
   skillBall: {fileID: 8092104612102729508, guid: cbeeb02d52050644eb5dbc0bf84870de, type: 3}
   skillPos: {fileID: 0}
 --- !u!54 &-3797430383508409105
