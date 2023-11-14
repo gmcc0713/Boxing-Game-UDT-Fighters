@@ -254,14 +254,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             pv.RPC("ShowEndWinImage", RpcTarget.All, 1);
             //EndP1Win.SetActive(true);
-            StartCoroutine(FinalWinImage());
+            //StartCoroutine(FinalWinImage());
         }
 
         if (P2WinScore == 3)
         {
             pv.RPC("ShowEndWinImage", RpcTarget.All, 2);
             //EndP2Win.SetActive(true);
-            StartCoroutine(FinalWinImage());
+            //StartCoroutine(FinalWinImage());
         }
 
     }

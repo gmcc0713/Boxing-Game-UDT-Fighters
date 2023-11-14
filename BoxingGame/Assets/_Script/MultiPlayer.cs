@@ -118,8 +118,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         skill.Initilize(this);
         initialPosition = transform.position;
         initialRotation = transform.rotation;
-        useAttack = true;
-        useMove = true;
+        useAttack = false;
+        useMove = false;
 
         if (!pv.IsMine)
         {
@@ -174,7 +174,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             if (mp >= 50)
             {
                 animator.SetTrigger("IsSkill");
-                playSkill.Play();
+                photonView.RPC("PlayAttackParticle", RpcTarget.All);
 
                 Debug.Log("스킬게이지 100!");
                 skill.SkillUse();
@@ -203,6 +203,11 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
                 Debug.Log("현재스킬게이지" + mp);
             }
         }
+    }
+    [PunRPC]
+    public void PlayAttackParticle()
+    {
+        playSkill.Play();
     }
     public void SkillEnd()
     {

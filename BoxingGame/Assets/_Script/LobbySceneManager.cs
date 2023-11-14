@@ -10,7 +10,7 @@ using Unity.VisualScripting;
 
 public class LobbySceneManager : MonoBehaviourPunCallbacks
 {
-    [SerializeField] Button GameStartButton;
+    [SerializeField] public Button GameStartButton;
     [SerializeField] public Button ReadyButton;
     [SerializeField] public Button ReadyButtonRed;
     [SerializeField] GameObject CharacterInfoPanel;
@@ -29,7 +29,7 @@ public class LobbySceneManager : MonoBehaviourPunCallbacks
     void Start()
     {
         characterSelectController = FindObjectOfType<CharacterSelectController>();
-        ReadyButton.interactable = false;
+        //ReadyButton.interactable = false;
         GameStartButton.interactable = false; //처음엔 비활성화
         characterInfoindex = 0;
         if(PhotonNetwork.IsMasterClient)

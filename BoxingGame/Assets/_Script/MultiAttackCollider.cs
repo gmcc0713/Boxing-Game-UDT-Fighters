@@ -45,13 +45,14 @@ public class MultiAttackCollider : MonoBehaviourPun
                     if (multiPlayer.isSkill)
                     {
                         multiPlayer.TakeDamage(damage * 2, other);
-                        attack.Play();
+                        photonView.RPC("SyncParticle", RpcTarget.All);
+                        
                         return;
                     }
 
                     multiPlayer.TakeDamage(damage, other);               // 공격 대상 플레이어에게 데미지를 주도록 수정합니다.
-
-                    attack.Play();
+                    photonView.RPC("SyncParticle", RpcTarget.All);
+                    
                     Debug.Log("play particle");
                     player.TakeMp(MpUp); //자신의 Mp를 회복하게
                 }
@@ -59,5 +60,10 @@ public class MultiAttackCollider : MonoBehaviourPun
             }
         }
 
+    }
+    [PunRPC]
+    public void SyncParticle()
+    {
+        attack.Play();
     }
 }
