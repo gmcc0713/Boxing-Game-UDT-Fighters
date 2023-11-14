@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1680
     height: 967
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Hierarchy
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 84
+  controlID: 63
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 144
+  controlID: 119
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -321,8 +321,8 @@ MonoBehaviour:
     y: 0
     width: 365
     height: 917
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -649,9 +649,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 640, y: 907.02704, z: 0}
+    m_Target: {x: 695.068, y: 687.16815, z: -19.043945}
     speed: 2
-    m_Value: {x: 640, y: 907.02704, z: 0}
+    m_Value: {x: 695.068, y: 687.16815, z: -19.043945}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -698,13 +698,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.007806141, y: 0.040400825, z: -0.00023803941, w: -0.99917144}
+    m_Target: {x: -0.09315967, y: 0.019333573, z: -0.0017318763, w: -0.9954806}
     speed: 2
-    m_Value: {x: -0.0078059975, y: 0.040400084, z: -0.00023803505, w: -0.9991531}
+    m_Value: {x: -0.09315793, y: 0.019333214, z: -0.001731844, w: -0.99546206}
   m_Size:
-    m_Target: 454.90924
+    m_Target: 646.9267
     speed: 2
-    m_Value: 454.90924
+    m_Value: 646.9267
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1044,24 +1044,24 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 122}
-      m_SelectedIDs: 5ed00000
-      m_LastClickedID: 53342
-      m_ExpandedIDs: a036ffff823fffff124bffff5053ffff005cffffb86effff929dffffcee4ffff7eedffffe4faffff16800000a6800000488100005c8300003e9100000a9200007a9200009a920000b8920000d292000098ae0000e2b0000084b100000ab300002ec6000090c90000
+      scrollPos: {x: 0, y: 60}
+      m_SelectedIDs: ca840000
+      m_LastClickedID: 33994
+      m_ExpandedIDs: 8acafffffecaffff0acbffff4acbffff74cbffff60ccffff0ed7ffff2aecffffb8faffffaa7c0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: ExitPanel
+        m_OriginalName: ExitPanel
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -13452
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 2}
       m_SearchString: 
@@ -1142,22 +1142,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources
+    - Assets/Graphic/UI/RealUI
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Resources
+  - Assets/Graphic/UI/RealUI
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\GameEngineering\_GameClub\ProjectF_2\Club_Project\ProjectF\BoxingGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: fc6f0000
-    m_LastClickedID: 28668
-    m_ExpandedIDs: 00000000b06f0000b26f0000b46f0000b66f0000b86f0000ba6f0000bc6f0000be6f0000c06f0000c26f000000ca9a3b
+    scrollPos: {x: 0, y: 88}
+    m_SelectedIDs: fa790000
+    m_LastClickedID: 31226
+    m_ExpandedIDs: 000000002a7900002c7900002e79000030790000327900003479000036790000387900003a7900003c79000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1185,7 +1185,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: f0610000
     m_LastClickedID: 25072
-    m_ExpandedIDs: 00000000b06f0000b26f0000b46f0000b66f0000b86f0000ba6f0000bc6f0000be6f0000c06f0000c26f0000
+    m_ExpandedIDs: 000000002a7900002c7900002e79000030790000327900003479000036790000387900003a7900003c790000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
