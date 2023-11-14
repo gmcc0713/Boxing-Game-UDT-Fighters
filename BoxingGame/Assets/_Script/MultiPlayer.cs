@@ -40,6 +40,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     //클릭 횟수 스테틱 변수 선언
     public int noOfClicks = 0;
 
+    public ParticleSystem playSkill;
+
     [Header("Health")]
     public float startHealth = 100;
     public float health;
@@ -172,6 +174,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             if (mp >= 50)
             {
                 animator.SetTrigger("IsSkill");
+                playSkill.Play();
 
                 Debug.Log("스킬게이지 100!");
                 skill.SkillUse();
