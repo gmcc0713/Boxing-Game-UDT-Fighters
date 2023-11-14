@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 8808504700512803389}
   - component: {fileID: 3294841709440865429}
   - component: {fileID: 6859953146684388665}
-  - component: {fileID: 7535188088768518217}
+  - component: {fileID: 8346123212466601096}
   m_Layer: 5
   m_Name: AttackA
   m_TagString: Untagged
@@ -162,10 +162,10 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6658680680572885792}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 701425923256664640}
   m_Father: {fileID: 0}
@@ -258,9 +258,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7535188088768518217}
-        m_TargetAssemblyTypeName: ButtonSmanager, Assembly-CSharp
-        m_MethodName: OnClickSButton
+      - m_Target: {fileID: 8346123212466601096}
+        m_TargetAssemblyTypeName: ButtonAManager, Assembly-CSharp
+        m_MethodName: OnClickAButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -270,7 +270,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7535188088768518217
+--- !u!114 &8346123212466601096
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6658680680572885792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 323fd29ac7a95e14ea28d12ac060e6be, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d461b7246d022747b1bc0b4301b450f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   multiPlayerScript: {fileID: 0}

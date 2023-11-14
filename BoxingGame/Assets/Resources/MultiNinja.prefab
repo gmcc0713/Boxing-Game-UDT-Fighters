@@ -265,7 +265,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -150, y: -36}
+  m_AnchoredPosition: {x: -180, y: -36}
   m_SizeDelta: {x: 300, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5520358937457508727
@@ -1133,7 +1133,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -89}
+  m_AnchoredPosition: {x: 180, y: -89}
   m_SizeDelta: {x: 300, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1597985944665830491
@@ -1381,7 +1381,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -150, y: -89}
+  m_AnchoredPosition: {x: -180, y: -89}
   m_SizeDelta: {x: 300, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1186810913461505447
@@ -2043,7 +2043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -36}
+  m_AnchoredPosition: {x: 180, y: -36}
   m_SizeDelta: {x: 300, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3178983288418056580
@@ -2849,34 +2849,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2996189724291318900}
     m_Modifications:
-    - target: {fileID: 127071151545685410, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-      propertyPath: multiPlayerScript
-      value: 
-      objectReference: {fileID: -8440736864515474039}
-    - target: {fileID: 1974444787420473226, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3824939858980290154}
-    - target: {fileID: 1974444787420473226, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickSButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 1974444787420473226, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonSmanager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3918795936799389906, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8346123212466601096}
-    - target: {fileID: 3918795936799389906, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickAButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 3918795936799389906, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonAManager, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 5511341408577776862, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
       propertyPath: m_Name
       value: PlayerController
@@ -2969,103 +2941,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6957157755671806537, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-      propertyPath: multiPlayerScript
-      value: 
-      objectReference: {fileID: -8440736864515474039}
-    - target: {fileID: 8168205546753015219, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8168205546753015219, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8168205546753015219, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7516350508742492634}
-    - target: {fileID: 8168205546753015219, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8168205546753015219, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickDButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 8168205546753015219, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonDManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8168205546753015219, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 127071151545685410, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-    - {fileID: 6957157755671806537, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
 --- !u!224 &357444322846765632 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6336338565400385844, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
   m_PrefabInstance: {fileID: 5988336068876741492}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2239787463896732061 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5480745753691208425, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-  m_PrefabInstance: {fileID: 5988336068876741492}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7516350508742492634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2239787463896732061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dfd71b3324f7e542a12fcb03983ea1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  multiPlayerScript: {fileID: -8440736864515474039}
 --- !u!1 &2262742303110285226 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5511341408577776862, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
   m_PrefabInstance: {fileID: 5988336068876741492}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7359895605949955519 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3835182192847509195, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-  m_PrefabInstance: {fileID: 5988336068876741492}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8346123212466601096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7359895605949955519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d461b7246d022747b1bc0b4301b450f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  multiPlayerScript: {fileID: -8440736864515474039}
---- !u!1 &8548849135603018736 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2718286399014649988, guid: 8a9fd22a7a2773741a78f4ed5cce0bb1, type: 3}
-  m_PrefabInstance: {fileID: 5988336068876741492}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3824939858980290154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8548849135603018736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 323fd29ac7a95e14ea28d12ac060e6be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  multiPlayerScript: {fileID: -8440736864515474039}
