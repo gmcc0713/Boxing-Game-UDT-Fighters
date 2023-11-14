@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 
@@ -68,6 +69,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject P2GiveUp;
     public GameObject OptionPanel;
     public TextImageEffectManager textImageEffectMgr;
+    public Image roundImage;
+    public Sprite[] roundArr;
+    private int roundidx;
+    public bool isEnd = false;
     private void Awake()
     {
         // 씬에 싱글톤 오브젝트가 된 다른 GameManager 오브젝트가 있다면
@@ -86,6 +91,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         m_instance = this;
         DontDestroyOnLoad(gameObject);
         pv = GetComponent<PhotonView>();
+        roundidx = 0;
+        isEnd = false;
     }
     // Start is called before the first frame update
     void Start()
@@ -157,6 +164,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         m_player1Score++;
         P1WinScore++;
+        roundidx++;
         photonView.RPC("RoundWin", RpcTarget.All); //모든pc에게 준비상태 전달
     }
     [PunRPC]
@@ -164,7 +172,32 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         m_player2Score++;
         P2WinScore++;
+        roundidx++;
         photonView.RPC("RoundWin", RpcTarget.All);
+    }
+    //누적 스코어 활성화 시키기위함
+    void RoundImageActive()
+    {
+        if (P1WinScore == 1)
+            P1Round1.SetActive(true);
+        if (P1WinScore == 2)
+            P1Round2.SetActive(true);
+        if (P1WinScore == 3)
+        {
+            isEnd = true;
+            P1Round3.SetActive(true);
+            EndGame();
+        }
+        if (P2WinScore == 1)
+            P2Round1.SetActive(true);
+        if (P2WinScore == 2)
+            P2Round2.SetActive(true);
+        if (P2WinScore == 3)
+        {
+            isEnd = true;
+            P2Round3.SetActive(true);
+            EndGame();
+        }
     }
     [PunRPC]
     public void RoundWin()
@@ -182,40 +215,33 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             //textImageEffectMgr.KOTextStart();
             StartCoroutine(DeactivateWinImage()); // 3초 뒤에 이미지 비활성화
         }
+        if(isEnd != true)
+        {
+            textImageEffectMgr.KOTextStart();
+        }
     }
 
     private IEnumerator DeactivateWinImage()
     {
         yield return new WaitForSeconds(3.0f);
+        photonView.RPC("ReadyRPC", RpcTarget.All);
         m_player1Score = 0;
         m_player2Score = 0;
         player1WinImage.SetActive(false); // 이미지 비활성화
         player2WinImage.SetActive(false);
         //textImageEffectMgr.ReadyFightTextStart();
-
+    }
+    [PunRPC]
+    public void ReadyRPC()
+    {
+        if (isEnd != true)
+            textImageEffectMgr.ReadyFightTextStart();
     }
 
-    //누적 스코어 활성화 시키기위함
-    void RoundImageActive()
+   
+    public void ChangeRoundImage()
     {
-        if (P1WinScore == 1)
-            P1Round1.SetActive(true);
-        if (P1WinScore == 2)
-            P1Round2.SetActive(true);
-        if (P1WinScore == 3)
-        {
-            P1Round3.SetActive(true);
-            EndGame();
-        }
-        if (P2WinScore == 1)
-            P2Round1.SetActive(true);
-        if (P2WinScore == 2)
-            P2Round2.SetActive(true);
-        if (P2WinScore == 3)
-        {
-            P2Round3.SetActive(true);
-            EndGame();
-        }
+        roundImage.sprite = roundArr[roundidx];
     }
 
     [PunRPC]
@@ -227,14 +253,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         if (P1WinScore == 3)
         {
             pv.RPC("ShowEndWinImage", RpcTarget.All, 1);
-            EndP1Win.SetActive(true);
+            //EndP1Win.SetActive(true);
             StartCoroutine(FinalWinImage());
         }
 
         if (P2WinScore == 3)
         {
             pv.RPC("ShowEndWinImage", RpcTarget.All, 2);
-            EndP2Win.SetActive(true);
+            //EndP2Win.SetActive(true);
             StartCoroutine(FinalWinImage());
         }
 
@@ -312,6 +338,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(P2Round3.activeSelf);
             stream.SendNext(EndP1Win.activeSelf);
             stream.SendNext(EndP2Win.activeSelf);
+            stream.SendNext(roundidx);
         }
         else
         {
@@ -329,6 +356,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             P2Round3.SetActive((bool)stream.ReceiveNext());
             EndP1Win.SetActive((bool)stream.ReceiveNext());
             EndP2Win.SetActive((bool)stream.ReceiveNext());
+            roundidx = (int)stream.ReceiveNext();
         }
     }
 }

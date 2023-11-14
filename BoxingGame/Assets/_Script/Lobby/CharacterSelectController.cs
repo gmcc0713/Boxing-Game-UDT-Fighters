@@ -182,10 +182,10 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
             PlayerPrefs.SetInt("Player2Character", (int)curCharacterP2);
             Debug.Log((int)curCharacterP2);
 
-            LobbySceneManager lobbySceneManager = FindObjectOfType<LobbySceneManager>();
-            if (lobbySceneManager != null)
+            
+            if (lobbyScene != null)
             {
-                lobbySceneManager.ReadyButton.interactable = true;
+                lobbyScene.ReadyButton.interactable = true;
             }
         }
 
@@ -242,6 +242,10 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
         characters[2].SetActive(false);
         characters[3].SetActive(false);
         characters[4].SetActive(false);
+        lobbyScene.ReadyButtonRed.gameObject.SetActive(false);
+        lobbyScene.ReadyButton.gameObject.SetActive(false);
+        rightButtonP1.interactable = true;
+        leftButtonP1.interactable = true;
     }
 
     public override void OnLeftRoom()
