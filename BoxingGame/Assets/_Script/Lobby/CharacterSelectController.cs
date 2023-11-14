@@ -242,6 +242,7 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
         characters[2].SetActive(false);
         characters[3].SetActive(false);
         characters[4].SetActive(false);
+        lobbyScene.GameStartButton.interactable = false;
         lobbyScene.ReadyButtonRed.gameObject.SetActive(false);
         lobbyScene.ReadyButton.gameObject.SetActive(false);
         rightButtonP1.interactable = true;
