@@ -482,7 +482,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             {
                 player.useAttack = false;
                 player.useMove = false;
-                textImageEffectManager.KOTextStart();
+                //textImageEffectManager.KOTextStart();
             }
 
             if (PhotonNetwork.IsMasterClient)
@@ -527,7 +527,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         foreach (MultiPlayer player in FindObjectsOfType<MultiPlayer>())
         {
             player.ResetHP();
-            textImageEffectManager.ReadyFightTextStart();
+            //textImageEffectManager.ReadyFightTextStart();
             //player.useAttack = true;
             //player.useMove = true;
 
@@ -550,6 +550,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             RemoteMpBar.fillAmount = 0f;
             animator.SetBool("IsWin", false);
         }
+        gameManager.ChangeRoundImage();
         // HP초기화와 동시에 초기 위치로 이동
         transform.position = initialPosition;
         transform.rotation = initialRotation;

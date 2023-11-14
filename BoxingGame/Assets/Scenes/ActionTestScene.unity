@@ -10158,6 +10158,14 @@ MonoBehaviour:
   P2GiveUp: {fileID: 1570377322}
   OptionPanel: {fileID: 7180764483835977005}
   textImageEffectMgr: {fileID: 2102131015}
+  roundImage: {fileID: 7180764483835977004}
+  roundArr:
+  - {fileID: 21300000, guid: a8b1495a6bcda194288667be5341fabe, type: 3}
+  - {fileID: 21300000, guid: 1a0fb45b3d0eb6147b3a6329afdffe2a, type: 3}
+  - {fileID: 21300000, guid: b7c5f5e8902f71840a97f439fd08e559, type: 3}
+  - {fileID: 21300000, guid: 33d82fdf14a9c754db413c1810b52449, type: 3}
+  - {fileID: 21300000, guid: fc1495f1d7f21604686be5d43461cc5a, type: 3}
+  isEnd: 0
 --- !u!4 &1409422281
 Transform:
   m_ObjectHideFlags: 0
@@ -16014,6 +16022,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7e5e92b1e5d2cc4bba1c91df15dfd90, type: 3}
+--- !u!114 &7180764483835977004 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1551973534, guid: f7e5e92b1e5d2cc4bba1c91df15dfd90, type: 3}
+  m_PrefabInstance: {fileID: 7180764483835977003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7180764483835977005 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9145023154508635706, guid: f7e5e92b1e5d2cc4bba1c91df15dfd90, type: 3}
