@@ -215,10 +215,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             //textImageEffectMgr.KOTextStart();
             StartCoroutine(DeactivateWinImage()); // 3초 뒤에 이미지 비활성화
         }
-        if(isEnd != true)
-        {
+        //if(isEnd != true)
+        //{
             textImageEffectMgr.KOTextStart();
-        }
+        //}
     }
 
     private IEnumerator DeactivateWinImage()
@@ -234,7 +234,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void ReadyRPC()
     {
-        if (isEnd != true)
+        //if (isEnd != true)
             textImageEffectMgr.ReadyFightTextStart();
     }
 
@@ -269,6 +269,12 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void ShowEndWinImage(int winner)
     {
+        StartCoroutine(WinImage(winner));
+    }
+    private IEnumerator WinImage(int winner)
+    {
+        textImageEffectMgr.canStartReadyFight = false;
+        yield return new WaitForSeconds(3.0f);
         if (winner == 1)
         {
             EndP1Win.SetActive(true);
@@ -312,7 +318,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private IEnumerator FinalWinImage()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(7.0f);
         //SceneManager.LoadScene("TitleScene");
         PhotonNetwork.LeaveRoom();
     }

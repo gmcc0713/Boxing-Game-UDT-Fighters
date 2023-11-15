@@ -19,6 +19,8 @@ public class TextImageEffectManager : MonoBehaviour
     public TextImageEffecter[] effecters;
 
     private MultiPlayer multy;
+
+    public bool canStartReadyFight = true;
     void Start()
     {
         multy = FindObjectOfType<MultiPlayer>();
@@ -60,6 +62,9 @@ public class TextImageEffectManager : MonoBehaviour
     }
     public void ReadyFightTextStart()
     {
-        StartCoroutine(GameStartReadyFightImageAnimation());
+        if(canStartReadyFight)
+        {
+            StartCoroutine(GameStartReadyFightImageAnimation());
+        }
     }
 }
