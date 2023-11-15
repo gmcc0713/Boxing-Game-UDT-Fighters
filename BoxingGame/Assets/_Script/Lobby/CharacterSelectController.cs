@@ -33,9 +33,10 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
     //public bool isReady = false;
     [SerializeField] private Button ReadyButton;
 
-    private Character curCharacterP1 = Character.Empty;
+    private Character curCharacterP1 = Character.Random;
     private Character curCharacterP2 = Character.Empty;
     private LobbySceneManager lobbyScene;
+    public GameObject P2Ran; // 미안 이거말고 방법 없다
     void Start()
     {
         leftButtonP1.interactable = false;
@@ -55,6 +56,8 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
                 photonView.RPC("SyncCharacterChangeP1", RpcTarget.Others, (int)curCharacterP1);
                 PlayerPrefs.SetInt("Player1Character", (int)curCharacterP1);
             }
+            photonView.RPC("SyncCharacterChangeP1", RpcTarget.Others, (int)curCharacterP1);
+            PlayerPrefs.SetInt("Player1Character", (int)curCharacterP1);
         }
         else
         {
@@ -62,21 +65,9 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
             rightButtonP1.gameObject.SetActive(false);
             //마스터에게 정보를 받음
             photonView.RPC("RequestMasterClientCharacterSelection", RpcTarget.MasterClient);
+            curCharacterP2 = Character.Random;
+            photonView.RPC("ChangeP2", RpcTarget.All, (int)curCharacterP2);
         }
-
-        if (PhotonNetwork.IsMasterClient)
-        {
-            photonView.RPC("SyncCharacterChangeP1", RpcTarget.Others, (int)curCharacterP1);
-            PlayerPrefs.SetInt("Player1Character", (int)curCharacterP1);
-        }
-   //     else
-   //     {
-   //         //여기가 들어왔을때 플레이어2가 랜덤캐릭터로 변경하는 부분 여기서 준비가 활성화 되어야함 그치?
-   //         curCharacterP2 = Character.Random;
-           
-			//photonView.RPC("SyncCharacterChangeP2", RpcTarget.All, (int)curCharacterP2);
-   //         PlayerPrefs.SetInt("Player2Character", (int)curCharacterP2);
-   //     }
     }
     
     //방장의 왼쪽 버튼클릭 이벤트
@@ -92,10 +83,11 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
                 leftButtonP1.interactable = false;
             }
         }
-        OnCharacterSelected((int)curCharacterP1);
+        
         if (photonView.IsMine)
         {
-            photonView.RPC("SyncCharacterChangeP1", RpcTarget.Others, (int)curCharacterP1);
+            OnCharacterSelected((int)curCharacterP1);
+            //photonView.RPC("SyncCharacterChangeP1", RpcTarget.Others, (int)curCharacterP1);
             //게임매니저에 선택한 열거형값 전달
             PlayerPrefs.SetInt("Player1Character", (int)curCharacterP1);
 
@@ -115,10 +107,11 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
                 rightButtonP1.interactable = false;
             }
         }
-        OnCharacterSelected((int)curCharacterP1);
+      
         if (photonView.IsMine)
         {
-            photonView.RPC("SyncCharacterChangeP1", RpcTarget.Others, (int)curCharacterP1);
+            OnCharacterSelected((int)curCharacterP1);
+            //photonView.RPC("SyncCharacterChangeP1", RpcTarget.Others, (int)curCharacterP1);
             //게임매니저에 선택한 열거형값 전달
             PlayerPrefs.SetInt("Player1Character", (int)curCharacterP1);
             Debug.Log((int)curCharacterP1);
@@ -133,6 +126,11 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
             photonView.RPC("SyncCharacterChangeP1", RpcTarget.Others, (int)curCharacterP1);
             PlayerPrefs.SetInt("Player1Character", (int)curCharacterP1);
         }
+    }
+    [PunRPC]
+    void ChangeP2(int curCharacter)
+    {
+        P2Ran.SetActive(true);
     }
 
     [PunRPC]
@@ -202,7 +200,7 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
     {
 
         // 선택된 캐릭터 정보를 RPC로 다른 플레이어들에게 전달
-        photonView.RPC("SyncCharacterSelection", RpcTarget.OthersBuffered, selectedCharacter);
+        photonView.RPC("SyncCharacterSelection", RpcTarget.AllBufferedViaServer, selectedCharacter);
     }
 
     [PunRPC]
@@ -244,7 +242,7 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
         characters[4].SetActive(false);
         lobbyScene.GameStartButton.interactable = false;
         lobbyScene.ReadyButtonRed.gameObject.SetActive(false);
-        lobbyScene.ReadyButton.gameObject.SetActive(false);
+        lobbyScene.ReadyButton.gameObject.SetActive(true);
         rightButtonP1.interactable = true;
         leftButtonP1.interactable = true;
     }

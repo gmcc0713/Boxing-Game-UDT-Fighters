@@ -2709,7 +2709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &363297015
 Transform:
   m_ObjectHideFlags: 0
@@ -3043,6 +3043,7 @@ MonoBehaviour:
   - {fileID: 1263675457}
   - {fileID: 351858096}
   ReadyButton: {fileID: 0}
+  P2Ran: {fileID: 390271907}
 --- !u!114 &542033795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3734,6 +3735,7 @@ MonoBehaviour:
   - {fileID: 808307311}
   - {fileID: 514949926}
   ReadyButton: {fileID: 0}
+  P2Ran: {fileID: 390271907}
 --- !u!114 &661151160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4567,7 +4569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7223528514074816869, guid: 66eaac85757272b41a8ad13db36f0502, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7223528514547903995, guid: 66eaac85757272b41a8ad13db36f0502, type: 3}
       propertyPath: m_Layer
