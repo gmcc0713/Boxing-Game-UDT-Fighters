@@ -9,7 +9,7 @@ public class SkillHorse : Skill
 
     private void Start()
     {
-        dashSpeed = 20;
+        dashSpeed = 10;
         dashTime = 0.25f;
     }
     [PunRPC]
@@ -32,9 +32,10 @@ public class SkillHorse : Skill
         {
             Debug.Log("Dash update");
             playerController. transform.position += transform.forward * dashSpeed * Time.deltaTime;
+
             yield return null;
         }
         playerController.animator.SetBool("IsSkill", false);
 	}
-
+    
 }

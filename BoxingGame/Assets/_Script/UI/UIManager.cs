@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+	public void ExitGames()
+	{
+		Application.Quit();
+	}
 	public void OpenPanel(GameObject panel)
 	{
 		if (panel)
