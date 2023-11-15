@@ -89,7 +89,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         }
 
         m_instance = this;
-        DontDestroyOnLoad(gameObject);
         pv = GetComponent<PhotonView>();
         roundidx = 0;
         isEnd = false;
