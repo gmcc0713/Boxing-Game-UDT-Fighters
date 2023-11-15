@@ -1946,6 +1946,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 975430057403139300, guid: 9c3235d81c6f17e418a325e8ffc895c6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10.75
+      objectReference: {fileID: 0}
     - target: {fileID: 1586389635724226738, guid: 9c3235d81c6f17e418a325e8ffc895c6, type: 3}
       propertyPath: m_RootOrder
       value: 14
