@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviourPun
 
 			    if (attackerID != targetID)
 			    {
-				    other.gameObject.GetComponent<MultiPlayer>().TakeDamage(40, other);
+				    other.gameObject.GetComponent<MultiPlayer>().TakeDamage(30, other);
 
 
 

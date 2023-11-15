@@ -35,7 +35,6 @@ public class SkillHorse : Skill
             yield return null;
         }
         playerController.animator.SetBool("IsSkill", false);
-
 	}
 
 }

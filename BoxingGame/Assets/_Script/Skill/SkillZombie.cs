@@ -22,7 +22,7 @@ public class SkillZombie : Skill
     IEnumerator Heal()
     {
         Debug.Log("Heal");
-        for(int i =0;i<5;i++)
+        for(int i =0;i<3; i++)
         {
             playerController.HPHeal(10);
             Debug.Log(playerController.health);
