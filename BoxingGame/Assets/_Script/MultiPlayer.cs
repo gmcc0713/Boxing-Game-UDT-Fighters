@@ -56,6 +56,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public Image RemoteMpBar;
     public GameObject MasterMpCanvas;
     public GameObject RemoteMpCanvas;
+    public Image MstProfile;
+    public Image RmtProfile;
     [SerializeField] private Skill skill;
 
     private GameManager gameManager;
@@ -87,12 +89,14 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
                 // 현재 플레이어가 자신의 객체면 아닌 경우, RemoteCanvas를 비활성화합니다.
                 RemoteCanvas.SetActive(false);
                 RemoteMpCanvas.SetActive(false);
+                RmtProfile.gameObject.SetActive(false);
             }
             else
             {
                 // 현재 플레이어가 자신의 객체가 아니면, MasterCanvas를 비활성화합니다.
                 MasterCanvas.SetActive(false);
                 MasterMpCanvas.SetActive(false);
+                MstProfile.gameObject.SetActive(false);
             }
         }
         else
@@ -107,12 +111,14 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
                 // 현재 플레이어가 자신의 객체가 아니면 RemoteCanvas를 비활성화합니다.
                 RemoteCanvas.SetActive(false);
                 RemoteMpCanvas.SetActive(false);
+                RmtProfile.gameObject.SetActive(false);
             }
             else
             {
                 // 현재 플레이어가 자신의 객체면 , MasterCanvas를 비활성화합니다.
                 MasterCanvas.SetActive(false);
                 MasterMpCanvas.SetActive(false);
+                MstProfile.gameObject.SetActive(false);
             }
         }
         skill.Initilize(this);

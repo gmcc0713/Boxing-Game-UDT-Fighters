@@ -33,7 +33,7 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
     //public bool isReady = false;
     [SerializeField] private Button ReadyButton;
 
-    private Character curCharacterP1 = Character.Random;
+    private Character curCharacterP1 = Character.Empty;
     private Character curCharacterP2 = Character.Empty;
     private LobbySceneManager lobbyScene;
     void Start()
@@ -69,14 +69,14 @@ public class CharacterSelectController : MonoBehaviourPunCallbacks
             photonView.RPC("SyncCharacterChangeP1", RpcTarget.Others, (int)curCharacterP1);
             PlayerPrefs.SetInt("Player1Character", (int)curCharacterP1);
         }
-        else
-        {
-            //여기가 들어왔을때 플레이어2가 랜덤캐릭터로 변경하는 부분 여기서 준비가 활성화 되어야함 그치?
-            curCharacterP2 = Character.Random;
+   //     else
+   //     {
+   //         //여기가 들어왔을때 플레이어2가 랜덤캐릭터로 변경하는 부분 여기서 준비가 활성화 되어야함 그치?
+   //         curCharacterP2 = Character.Random;
            
-			photonView.RPC("SyncCharacterChangeP2", RpcTarget.All, (int)curCharacterP2);
-            PlayerPrefs.SetInt("Player2Character", (int)curCharacterP2);
-        }
+			//photonView.RPC("SyncCharacterChangeP2", RpcTarget.All, (int)curCharacterP2);
+   //         PlayerPrefs.SetInt("Player2Character", (int)curCharacterP2);
+   //     }
     }
     
     //방장의 왼쪽 버튼클릭 이벤트

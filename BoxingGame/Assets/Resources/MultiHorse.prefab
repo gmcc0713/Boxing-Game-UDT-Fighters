@@ -785,6 +785,8 @@ MonoBehaviour:
   RemoteMpBar: {fileID: 8878558158060258401}
   MasterMpCanvas: {fileID: 6759732804317439275}
   RemoteMpCanvas: {fileID: 4076684197938533322}
+  MstProfile: {fileID: 3921732040308279316}
+  RmtProfile: {fileID: 3810985101115275082}
   skill: {fileID: -3983749934621556830}
   isSkill: 0
 --- !u!114 &-3983749934621556830
@@ -2880,7 +2882,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -65.99951, y: -10.7499695}
+  m_AnchoredPosition: {x: -65.99951, y: -10.75}
   m_SizeDelta: {x: 300, y: 35}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &5275011279651475115

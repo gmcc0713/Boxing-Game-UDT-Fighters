@@ -1764,6 +1764,8 @@ MonoBehaviour:
   RemoteMpBar: {fileID: 1339153848}
   MasterMpCanvas: {fileID: 2108882849}
   RemoteMpCanvas: {fileID: 82811357}
+  MstProfile: {fileID: 2328114792450044137}
+  RmtProfile: {fileID: 3312603828346718819}
   skill: {fileID: -8913469356915715373}
   isSkill: 0
 --- !u!114 &7453504556928756397
