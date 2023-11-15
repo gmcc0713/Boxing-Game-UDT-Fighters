@@ -291,6 +291,7 @@ RectTransform:
   - {fileID: 503225021}
   - {fileID: 2121479404}
   - {fileID: 776484356}
+  - {fileID: 1878538614}
   m_Father: {fileID: 707377265}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -389,7 +390,7 @@ RectTransform:
   m_Children:
   - {fileID: 268841377}
   m_Father: {fileID: 926085383}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -3104,7 +3105,7 @@ RectTransform:
   m_Children:
   - {fileID: 1145274113}
   m_Father: {fileID: 926085383}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -6294,10 +6295,9 @@ RectTransform:
   - {fileID: 185528793}
   - {fileID: 1350033012}
   - {fileID: 32652333}
-  - {fileID: 1878538614}
   - {fileID: 1212811750}
   m_Father: {fileID: 926085383}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6718,6 +6718,7 @@ GameObject:
   - component: {fileID: 776484359}
   - component: {fileID: 776484358}
   - component: {fileID: 776484357}
+  - component: {fileID: 776484360}
   m_Layer: 5
   m_Name: CharacterBtn
   m_TagString: Untagged
@@ -6813,6 +6814,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 776484360}
+        m_TargetAssemblyTypeName: ClickButtonManager, Assembly-CSharp
+        m_MethodName: BtnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &776484358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6851,6 +6864,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776484355}
   m_CullTransparentMesh: 1
+--- !u!114 &776484360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776484355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d74624d448be0a44b70be6553b4d101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 21edcc70197d3a34d822f755e66dd90f, type: 3}
+  - {fileID: 21300000, guid: 9e41074f238d5f04593396ae27398192, type: 3}
+  isClicked: 0
+  buttonSprite: {fileID: 0}
 --- !u!1001 &785270299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7631,6 +7661,7 @@ GameObject:
   - component: {fileID: 880760359}
   - component: {fileID: 880760358}
   - component: {fileID: 880760357}
+  - component: {fileID: 880760360}
   m_Layer: 5
   m_Name: UIBtn
   m_TagString: Untagged
@@ -7726,6 +7757,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 880760360}
+        m_TargetAssemblyTypeName: ClickButtonManager, Assembly-CSharp
+        m_MethodName: BtnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &880760358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7764,6 +7807,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880760355}
   m_CullTransparentMesh: 1
+--- !u!114 &880760360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880760355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d74624d448be0a44b70be6553b4d101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 21edcc70197d3a34d822f755e66dd90f, type: 3}
+  - {fileID: 21300000, guid: 9e41074f238d5f04593396ae27398192, type: 3}
+  isClicked: 0
+  buttonSprite: {fileID: 0}
 --- !u!4 &881062464 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4278621369827266, guid: f48ca42bbf7370343a33a9e87b1d9fdb, type: 3}
@@ -8552,11 +8612,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1147512725}
-  - {fileID: 40840361}
   - {fileID: 1318378314}
+  - {fileID: 40840361}
+  - {fileID: 1892637674}
   - {fileID: 313388861}
   - {fileID: 707377265}
-  - {fileID: 1892637674}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8678,6 +8738,7 @@ MonoBehaviour:
   - {fileID: 943238353}
   - {fileID: 943238355}
   - {fileID: 943238354}
+  audioImage: []
   audioBGMClips:
   - {fileID: 8300000, guid: 879dd7ee296a7dd4382efffdb50cd96a, type: 3}
   - {fileID: 8300000, guid: c63fee34338adc64197e9a2fd814b0a5, type: 3}
@@ -11276,7 +11337,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 707377265}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -12185,7 +12246,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 926085383}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13804,6 +13865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundType: 0
+  clickBtnManger: {fileID: 1991027839}
 --- !u!1001 &1512358105
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16967,7 +17029,7 @@ RectTransform:
   - {fileID: 1981235111}
   - {fileID: 1886868526}
   - {fileID: 880760356}
-  m_Father: {fileID: 707377265}
+  m_Father: {fileID: 32652333}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -17341,6 +17403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundType: 1
+  clickBtnManger: {fileID: 880760360}
 --- !u!1 &1892637673
 GameObject:
   m_ObjectHideFlags: 0
@@ -17372,7 +17435,7 @@ RectTransform:
   - {fileID: 2069009647}
   - {fileID: 474169638}
   m_Father: {fileID: 926085383}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -18355,6 +18418,7 @@ GameObject:
   - component: {fileID: 1991027838}
   - component: {fileID: 1991027837}
   - component: {fileID: 1991027836}
+  - component: {fileID: 1991027839}
   m_Layer: 5
   m_Name: BGBtn
   m_TagString: Untagged
@@ -18450,6 +18514,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1991027839}
+        m_TargetAssemblyTypeName: ClickButtonManager, Assembly-CSharp
+        m_MethodName: BtnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1991027837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18488,6 +18564,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991027834}
   m_CullTransparentMesh: 1
+--- !u!114 &1991027839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991027834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d74624d448be0a44b70be6553b4d101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 21edcc70197d3a34d822f755e66dd90f, type: 3}
+  - {fileID: 21300000, guid: 9e41074f238d5f04593396ae27398192, type: 3}
+  isClicked: 0
+  buttonSprite: {fileID: 0}
 --- !u!4 &1993174090 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4497011438508190, guid: 7446a392a730ac14d9cc70d21cf7ace0, type: 3}
@@ -19912,6 +20005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundType: 2
+  clickBtnManger: {fileID: 776484360}
 --- !u!1001 &2125129812
 PrefabInstance:
   m_ObjectHideFlags: 0

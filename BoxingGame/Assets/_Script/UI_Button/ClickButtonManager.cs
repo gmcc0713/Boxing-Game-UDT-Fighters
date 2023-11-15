@@ -14,8 +14,17 @@ public class ClickButtonManager : MonoBehaviour
     {
         isClicked =!isClicked;
         if(isClicked)
-            buttonSprite.GetComponent<Image>().sprite = sprites[1];
+            this.GetComponent<Image>().sprite = sprites[1];
         else
-            buttonSprite.GetComponent<Image>().sprite = sprites[0];
+			this.GetComponent<Image>().sprite = sprites[0];
+    }
+    public void MuteImageCheck(bool isMute)
+    {
+        if(isMute)
+        {
+            Debug.Log(isMute);
+			this.GetComponent<Image>().sprite = sprites[1];
+		}
+        
     }
 }

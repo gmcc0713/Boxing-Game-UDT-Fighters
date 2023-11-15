@@ -5698,6 +5698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundType: 2
+  clickBtnManger: {fileID: 0}
 --- !u!114 &963363440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8223,6 +8224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundType: 0
+  clickBtnManger: {fileID: 0}
 --- !u!114 &1615928176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10275,6 +10277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundType: 1
+  clickBtnManger: {fileID: 0}
 --- !u!114 &2027813649
 MonoBehaviour:
   m_ObjectHideFlags: 0

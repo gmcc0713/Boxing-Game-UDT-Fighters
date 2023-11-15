@@ -24,11 +24,14 @@ public class SoundManager : MonoBehaviour
     }
 
     [SerializeField] private AudioSource[] audioSources;
-
+    
+    [SerializeField] private Sprite[] audioImage;
     [SerializeField] private AudioClip[] audioBGMClips;
     [SerializeField] private AudioClip[] audioSFXClips;
     [SerializeField] private AudioClip[] audioCharacterClips;
+    private bool[] isMute = { false};
     private float[] volumeValue;
+    public bool[] _isMute => isMute;
     public float GetVolumValue(Sound_Type type) => volumeValue[(int)type];
     void Start()
     {
@@ -75,6 +78,11 @@ public class SoundManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    public void Mute(Sound_Type type, bool mute)
+    {
+        isMute[(int)type] = mute;
+	}
+
     // 체인을 걸어서 이 함수는 매 씬마다 호출된다.
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -95,6 +103,7 @@ public class SoundManager : MonoBehaviour
 
     void OnDisable()
     {
+
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 	public void ClickButton()
