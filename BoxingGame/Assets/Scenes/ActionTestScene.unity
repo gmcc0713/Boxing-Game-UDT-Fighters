@@ -15136,6 +15136,7 @@ MonoBehaviour:
   - {fileID: 65083497}
   - {fileID: 1498745542}
   - {fileID: 1729563869}
+  canStartReadyFight: 1
 --- !u!4 &2102131016
 Transform:
   m_ObjectHideFlags: 0
