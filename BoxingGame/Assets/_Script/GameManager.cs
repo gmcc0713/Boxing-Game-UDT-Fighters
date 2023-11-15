@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         }
 
         m_instance = this;
+        //DontDestroyOnLoad(gameObject);
         pv = GetComponent<PhotonView>();
         roundidx = 0;
         isEnd = false;
@@ -117,6 +118,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             playerRotation = Quaternion.Euler(0f, -90f, 0f);
             SpawnPlayer(player2, player2SpawnPoint.position, playerRotation);
         }
+
         textImageEffectMgr.ReadyFightTextStart();
     }
     void SpawnPlayer(int playerCharacter, Vector3 spawnPosition, Quaternion playerRotation)
@@ -155,7 +157,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             PhotonNetwork.LeaveRoom();
         }
 
-        RoundImageActive();
+        photonView.RPC("RoundImageActive", RpcTarget.All);
+
     }
 
     [PunRPC]
@@ -163,19 +166,47 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         m_player1Score++;
         P1WinScore++;
-        roundidx++;
-        photonView.RPC("RoundWin", RpcTarget.All); //모든pc에게 준비상태 전달
+
+        //    //[0] 1 [1] 2 [2] 3 // 1 2
+        //roundidx++;
+        //photonView.RPC("RoundWin", RpcTarget.All); //모든pc에게 준비상태 전달
+        if (P1WinScore < 3)
+        {
+            roundidx++;
+            photonView.RPC("RoundWin", RpcTarget.All); // 모든 클라이언트에게 준비 상태 전달
+        }
+        else
+        {
+            photonView.RPC("EndGame", RpcTarget.All);
+            photonView.RPC("KOCorou", RpcTarget.All);
+        }
+
     }
     [PunRPC]
     public void Player2Win()
     {
         m_player2Score++;
         P2WinScore++;
-        roundidx++;
-        photonView.RPC("RoundWin", RpcTarget.All);
+
+        //roundidx++;
+        //photonView.RPC("RoundWin", RpcTarget.All);
+        if (P2WinScore < 3)
+        {
+            roundidx++;
+            photonView.RPC("RoundWin", RpcTarget.All); // 모든 클라이언트에게 준비 상태 전달
+        }
+        else
+        {
+            photonView.RPC("EndGame", RpcTarget.All);
+            photonView.RPC("KOCorou", RpcTarget.All);
+            // 이겼을 경우에는 바로 게임 종료
+        }
+
+
     }
     //누적 스코어 활성화 시키기위함
-    void RoundImageActive()
+    [PunRPC]
+    public void RoundImageActive()
     {
         if (P1WinScore == 1)
             P1Round1.SetActive(true);
@@ -183,9 +214,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             P1Round2.SetActive(true);
         if (P1WinScore == 3)
         {
-            isEnd = true;
+            //isEnd = true;
             P1Round3.SetActive(true);
-            EndGame();
+            //EndGame();
         }
         if (P2WinScore == 1)
             P2Round1.SetActive(true);
@@ -193,9 +224,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             P2Round2.SetActive(true);
         if (P2WinScore == 3)
         {
-            isEnd = true;
+            //isEnd = true;
             P2Round3.SetActive(true);
-            EndGame();
+            //EndGame();
         }
     }
     [PunRPC]
@@ -216,8 +247,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         }
         //if(isEnd != true)
         //{
-            textImageEffectMgr.KOTextStart();
+        photonView.RPC("KOCorou", RpcTarget.All);
         //}
+    }
+    [PunRPC]
+    public void KOCorou()
+    {
+        textImageEffectMgr.KOTextStart();
     }
 
     private IEnumerator DeactivateWinImage()
@@ -233,11 +269,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void ReadyRPC()
     {
-        //if (isEnd != true)
-            textImageEffectMgr.ReadyFightTextStart();
+        textImageEffectMgr.ReadyFightTextStart();
     }
 
-   
+    [PunRPC]
     public void ChangeRoundImage()
     {
         roundImage.sprite = roundArr[roundidx];
@@ -317,7 +352,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private IEnumerator FinalWinImage()
     {
-        yield return new WaitForSeconds(7.0f);
+        yield return new WaitForSeconds(4.0f);
         //SceneManager.LoadScene("TitleScene");
         PhotonNetwork.LeaveRoom();
     }

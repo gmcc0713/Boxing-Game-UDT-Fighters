@@ -289,8 +289,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-			//transform.position += moveVec * speed/4 * Time.deltaTime;
-		}    
+            //transform.position += moveVec * speed/4 * Time.deltaTime;
+        }
     }
 
     //상태체크 함수
@@ -486,7 +486,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         if (health <= 0)
         {
             health = 0;
-            animator.SetBool("IsDead", true);
+            //animator.SetBool("IsDead", true);
+            photonView.RPC("DeadAni", RpcTarget.All);
             Debug.Log("사망");
 
             foreach (MultiPlayer player in FindObjectsOfType<MultiPlayer>())
@@ -552,19 +553,32 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             MasterHealthBar.fillAmount = 100.0f;
             MasterMpBar.fillAmount = 0f;
-            animator.SetBool("IsDead", false);
-            animator.SetBool("IsWin", false);
+            //photonView.RPC("DeadAni", RpcTarget.All);
+            //animator.SetBool("IsDead", false);
+            //animator.SetBool("IsWin", false);
+            gameManager.ChangeRoundImage();
         }
         else
         {
             remoteHealthBar.fillAmount = 100.0f;
             RemoteMpBar.fillAmount = 0f;
-            animator.SetBool("IsWin", false);
+            //photonView.RPC("DeadAni", RpcTarget.All);
+            //animator.SetBool("IsDead", false);
+            //animator.SetBool("IsWin", false);
+            gameManager.ChangeRoundImage();
         }
-        gameManager.ChangeRoundImage();
+
         // HP초기화와 동시에 초기 위치로 이동
         transform.position = initialPosition;
         transform.rotation = initialRotation;
+    }
+    [PunRPC]
+    public void DeadAni()
+    {
+        if (health <= 0)
+            animator.SetBool("IsDead", true);
+        else
+            animator.SetBool("IsDead", false);
     }
 
     [PunRPC] //중복호출 방지용

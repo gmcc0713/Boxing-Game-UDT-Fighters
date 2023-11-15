@@ -47,14 +47,14 @@ public class TextImageEffectManager : MonoBehaviour
     }
     IEnumerator KOAnimation()
     {
-        //multy.useAttack = false;
-        // multy.useMove = false;
+        multy.useAttack = false;
+        multy.useMove = false;
         effecters[(int)EffectImage.K].gameObject.SetActive(true);
         yield return new WaitForSeconds(0.7f);
-		effecters[(int)EffectImage.O].gameObject.SetActive(true);
-		//multy.useAttack = true;
-		//multy.useMove = true;
-	}
+        effecters[(int)EffectImage.O].gameObject.SetActive(true);
+        //multy.useAttack = true;
+        //multy.useMove = true;
+    }
     public void KOTextStart()
     {
         StartCoroutine(KOAnimation());
@@ -62,7 +62,7 @@ public class TextImageEffectManager : MonoBehaviour
     }
     public void ReadyFightTextStart()
     {
-        if(canStartReadyFight)
+        if (canStartReadyFight)
         {
             StartCoroutine(GameStartReadyFightImageAnimation());
         }
