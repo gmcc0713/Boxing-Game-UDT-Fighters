@@ -2,7 +2,6 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 using Unity.VisualScripting;
 
 public class Bullet : MonoBehaviourPun
@@ -57,6 +56,7 @@ public class Bullet : MonoBehaviourPun
                 Debug.Log("맞아라 이놈아");
                 MultiPlayer multiPlayer = other.GetComponent<MultiPlayer>();
                 multiPlayer.TakeDamage(damage, other);
+                //SoundManager.Instance.PlayCharacterAttackSound();
                 //other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage, other);
 
 

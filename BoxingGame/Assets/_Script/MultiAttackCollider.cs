@@ -45,12 +45,14 @@ public class MultiAttackCollider : MonoBehaviourPun
                     if (multiPlayer.isSkill)
                     {
                         multiPlayer.TakeDamage(damage * 2, other);
+                        photonView.RPC("SyncAudio", RpcTarget.All);
                         photonView.RPC("SyncParticle", RpcTarget.All);
                         
                         return;
                     }
 
                     multiPlayer.TakeDamage(damage, other);               // 공격 대상 플레이어에게 데미지를 주도록 수정합니다.
+                    photonView.RPC("SyncAudio", RpcTarget.All);
                     photonView.RPC("SyncParticle", RpcTarget.All);
                     
                     Debug.Log("play particle");
@@ -66,4 +68,11 @@ public class MultiAttackCollider : MonoBehaviourPun
     {
         attack.Play();
     }
+
+    [PunRPC]
+    public void SyncAudio()
+    {
+        SoundManager.Instance.PlayCharacterAttackSound(0);
+    }
+
 }

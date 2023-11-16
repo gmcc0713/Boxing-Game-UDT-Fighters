@@ -20,13 +20,13 @@ public class AnimationEvent : MonoBehaviour
     {
 		attackCollider.gameObject.SetActive(false);
 	}
-    public void AttackSound(int idx)
-    {
-        SoundManager.Instance.PlayCharacterAttackSound(idx);
-	}
+    //public void AttackSound(int idx)
+    //{
+    //    SoundManager.Instance.PlayCharacterAttackSound();
+    //}
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //void Update()
+    //{
+
+    //}
 }

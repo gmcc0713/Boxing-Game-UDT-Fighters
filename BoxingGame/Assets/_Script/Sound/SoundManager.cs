@@ -111,9 +111,9 @@ public class SoundManager : MonoBehaviour
 		audioSources[(int)Sound_Type.Sound_SFX].Play(0);
 
 	}
-	public void PlayCharacterAttackSound(int clipIndex)
+	public void PlayCharacterAttackSound(int index)
 	{
-		audioSources[(int)Sound_Type.Sound_SFX].clip = audioBGMClips[clipIndex];
-		audioSources[(int)Sound_Type.Sound_SFX].Play(0);
+		audioSources[(int)Sound_Type.Sound_Character].clip = audioCharacterClips[index];
+		audioSources[(int)Sound_Type.Sound_Character].Play(0);
 	}
 }
