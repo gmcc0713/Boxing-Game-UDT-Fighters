@@ -659,7 +659,6 @@ GameObject:
   - component: {fileID: 7137615059542690086}
   - component: {fileID: 1208345029662038357}
   - component: {fileID: 7486721902764600005}
-  - component: {fileID: 7183188144094406850}
   m_Layer: 0
   m_Name: SingleHorse
   m_TagString: Untagged
@@ -745,18 +744,6 @@ MonoBehaviour:
   attackComboSing: 0
   noOfClicksSing: 0
   playSkill: {fileID: 0}
---- !u!114 &7183188144094406850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4514325828905519590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd953c592af0a1840b0f988b19d41df6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5056186452486177498
 GameObject:
   m_ObjectHideFlags: 0
