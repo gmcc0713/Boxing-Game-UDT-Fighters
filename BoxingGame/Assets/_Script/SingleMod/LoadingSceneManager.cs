@@ -38,7 +38,7 @@
 //    }
 
 //    //로딩 코루틴
-//    IEnumerator LoadSceneProgress() 
+//    IEnumerator LoadSceneProgress()
 //    {
 //        //비동기방식으로 씬 로드하기, AsyncOperation 클래스 객체에 로딩 진행도 저장하기
 //        AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
@@ -50,23 +50,23 @@
 //        float timer = 0f;
 
 //        //씬 로딩이 끝나기 전까지 반복하는 코드
-//        while(!op.isDone)
+//        while (!op.isDone)
 //        {
 //            yield return null;
 
 //            //씬 로딩 진행도가 90%보다 적을 때, 로딩바 이미지를 로딩 진행도와 같게 만들기
-//            if(op.progress < 0.9f)
+//            if (op.progress < 0.9f)
 //            {
 //                progressImage.fillAmount = op.progress;
 //            }
 //            //씬 로딩 진행도가 90%를 넘었을 때, 1초 동안 페이크 로딩으로 로딩바 채우기
-//            else 
+//            else
 //            {
 //                timer += Time.unscaledDeltaTime;
 //                progressImage.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
 
 //                //페이크 로딩으로 로딩바가 다 채워졌을 때, 자동으로 로딩할 씬으로 이동하고 코루틴 끝내기
-//                if(progressImage.fillAmount >= 1f)
+//                if (progressImage.fillAmount >= 1f)
 //                {
 //                    op.allowSceneActivation = true;
 //                    yield break;

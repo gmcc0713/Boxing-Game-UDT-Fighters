@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScene.unity
     guid: 9c985bd060be2f84f93e6d33597b1999
   - enabled: 0
-    path: Assets/Scenes/LoadingScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
     path: Assets/Scenes/TestScene.unity
     guid: df885505b30fd8c438c4c6a4a7f98f06
   - enabled: 0
@@ -23,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ActionTestScene.unity
     guid: f3dcdb865013ddd4e8fe7f5a6fb48264
+  - enabled: 1
+    path: Assets/Scenes/SingleScene.unity
+    guid: c3a9721457d8a24438d193ba703e3396
   m_configObjects: {}

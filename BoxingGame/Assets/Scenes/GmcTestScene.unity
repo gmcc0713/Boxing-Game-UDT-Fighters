@@ -213,6 +213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8344233e724dc264b8dcd1cc1706dee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _upSizeTime: 0.2
+  _size: 5
+  type: 0
 --- !u!1 &565018884
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +577,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8344233e724dc264b8dcd1cc1706dee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _upSizeTime: 0.2
+  _size: 5
+  type: 0
 --- !u!1 &1154652954
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,6 +812,8 @@ MonoBehaviour:
   - {fileID: 397963345}
   - {fileID: 1866773164}
   - {fileID: 1068255351}
+  canStartReadyFight: 1
+  isEnd: 0
 --- !u!4 &1505913394
 Transform:
   m_ObjectHideFlags: 0
@@ -1034,3 +1042,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8344233e724dc264b8dcd1cc1706dee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _upSizeTime: 0.2
+  _size: 5
+  type: 0
