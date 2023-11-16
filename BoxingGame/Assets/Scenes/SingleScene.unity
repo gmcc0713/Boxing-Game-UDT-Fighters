@@ -492,17 +492,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1877625222 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6436032256168915347, guid: 893d0ca6979a60d4fb12e011f917f02f, type: 3}
-  m_PrefabInstance: {fileID: 1999694110}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1999694110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -825,14 +814,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SingleHorse
       objectReference: {fileID: 0}
-    - target: {fileID: 7486721902764600005, guid: 131932a855826af40b10a14e4f3f9a34, type: 3}
-      propertyPath: mpSingBar
-      value: 
-      objectReference: {fileID: 1877625222}
-    - target: {fileID: 7486721902764600005, guid: 131932a855826af40b10a14e4f3f9a34, type: 3}
-      propertyPath: skillSing
-      value: 
-      objectReference: {fileID: 2035203537}
     - target: {fileID: 7552854183836090973, guid: 131932a855826af40b10a14e4f3f9a34, type: 3}
       propertyPath: m_Drag
       value: 5
@@ -860,17 +841,6 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 7552854183836090973, guid: 131932a855826af40b10a14e4f3f9a34, type: 3}
   m_PrefabInstance: {fileID: 2035203533}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2035203537 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5005658266442135194, guid: 131932a855826af40b10a14e4f3f9a34, type: 3}
-  m_PrefabInstance: {fileID: 2035203533}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035203535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f6bbf33bda1c70479e10ff22ab457f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8629553804951157439
 PrefabInstance:
   m_ObjectHideFlags: 0
