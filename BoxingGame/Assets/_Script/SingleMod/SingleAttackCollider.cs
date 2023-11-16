@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class SingleAttackCollider : MonoBehaviour
 {
-    public SinglePlayer playerSing;
+    public SingleSendbackManager sendBack;
     public ParticleSystem attacked;
+
+    private void Start()
+    {
+        sendBack = GameObject.Find("SinglePlayerSendback").GetComponent<SingleSendbackManager>();
+    }
 
     public void OnTriggerEnter(Collider other)
     {
+        Debug.Log("collider");
         if(other.CompareTag("Player"))
+        {
+            Debug.Log("attack");
+            sendBack.TakeDamageSige();
             attacked.Play();
+        }
     }
 }
