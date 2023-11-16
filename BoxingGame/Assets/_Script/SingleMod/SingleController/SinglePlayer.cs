@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SinglePlayer : MonoBehaviour
 {
@@ -38,11 +40,23 @@ public class SinglePlayer : MonoBehaviour
     public int noOfClicksSing = 0;
 
     public ParticleSystem playSkill;
+    [SerializeField] private SingleSkill skillSing;
+    public bool isSkillSing;
+
+    public Image mpSingBar;
+
+    public float startMPSing = 0;
+    public float startHealthSing = 100;
+    private float mpSing;
 
     // Start is called before the first frame update
     void Start()
     {
         animatorSing = GetComponent<Animator>();
+        skillSing.InitilizeSing(this);
+
+        useAttackSing = false;
+        useMoveSing = false;
     }
 
     private void FixedUpdate()
@@ -248,11 +262,35 @@ public class SinglePlayer : MonoBehaviour
 
     }
 
+    public void OnSkillUseSing()
+    {
+        if (useAttackSing)
+        {
+            if (mpSing >= 50)
+            {
+                animatorSing.SetBool("IsSkill", true);
+                playSkill.Play();
+                StartCoroutine(WaitForAttackEndSing(1.0f));
+
+
+                Debug.Log("스킬게이지 100!");
+                skillSing.SkillUseSing();
+            }
+        }
+    }
+
+    public void TakeMpSing(float damageAmount)
+    {
+        mpSing += damageAmount;
+        mpSingBar.fillAmount = mpSing / startHealthSing;
+    }
+
     IEnumerator WaitForAttackEndSing(float time)
     {
         yield return new WaitForSeconds(time);
         attackColliderSing.SetActive(false);
     }
+
     // Update is called once per frame
     //void Update()
     //{
