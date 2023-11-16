@@ -473,14 +473,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         health -= damageAmount;
         if (damageAmount == 10)
         {
-            //상대의 방향 구해오기
-            float otherAngle = (other.GetComponent<Transform>().transform.rotation.eulerAngles.y);
-            //상대 방향쪽으로 자연스럽게 변환
-            float turnAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, otherAngle, ref turnSmoothVelocity, turnSmoothTime);
-            //회전 바꾸기
-            transform.rotation = Quaternion.Euler(0f, turnAngle, 0f);
-
             animator.SetTrigger("GetHit");
+            photonView.RPC("SyncAudio", RpcTarget.All);
         }
 
         //HP가 0이 됐을때 실행
@@ -516,6 +510,13 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         // 다른 클라이언트에도 데미지를 적용
         photonView.RPC("ApplyDamage", RpcTarget.Others, damageAmount);
     }
+
+    [PunRPC]
+    public void SyncAudio()
+    {
+        SoundManager.Instance.PlayCharacterAttackSound(0);
+    }
+
 
     [PunRPC]
     private void NotifyPlayerDeath()

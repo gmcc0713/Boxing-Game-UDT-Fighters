@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 
 public class Bullet : MonoBehaviourPun
 {
-    private float damage = 25f;
+    private float damage = 10f;
     public float rotateSpeed;
     public Vector3 lookForward;
     MultiPlayer me;
@@ -56,7 +56,7 @@ public class Bullet : MonoBehaviourPun
                 Debug.Log("맞아라 이놈아");
                 MultiPlayer multiPlayer = other.GetComponent<MultiPlayer>();
                 multiPlayer.TakeDamage(damage, other);
-                //SoundManager.Instance.PlayCharacterAttackSound();
+                //SoundManager.Instance.PlayCharacterAttackSound(1);
                 //other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage, other);
 
 
