@@ -24,7 +24,7 @@ public class TextImageEffectManager : MonoBehaviour
     private MultiPlayer multy;
 
     public bool canStartReadyFight = true;
-    public bool isEnd = false;
+    //public bool isEnd = false;
     //bool winlose;
     void Start()
     {
@@ -91,7 +91,7 @@ public class TextImageEffectManager : MonoBehaviour
     }
     public void WinLoseTextStart(int winner)
     {
-        if (isEnd != true)
+        //if (isEnd != true)
             StartCoroutine(WinLoseAnimation(winner));
     }
     public void ReadyFightTextStart()
@@ -100,5 +100,10 @@ public class TextImageEffectManager : MonoBehaviour
         {
             StartCoroutine(GameStartReadyFightImageAnimation());
         }
+    }
+    public void ChangeReset(bool useReset)
+    {
+        Debug.Log("리셋막아!!" + useReset);
+        multy.useReset = useReset;
     }
 }

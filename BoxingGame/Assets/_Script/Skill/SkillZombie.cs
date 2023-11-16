@@ -24,7 +24,7 @@ public class SkillZombie : Skill
         Debug.Log("Heal");
         for(int i =0;i<3; i++)
         {
-            playerController.HPHeal(10);
+            playerController.HPHeal(5);
             Debug.Log(playerController.health);
             yield return new WaitForSeconds(1.0f);
         }

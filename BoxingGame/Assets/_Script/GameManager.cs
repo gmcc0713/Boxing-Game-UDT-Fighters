@@ -94,11 +94,12 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         pv = GetComponent<PhotonView>();
         roundidx = 0;
         isEnd = false;
-        multy = FindObjectOfType<MultiPlayer>();
+        
     }
     // Start is called before the first frame update
     void Start()
     {
+
         int player1Character = PlayerPrefs.GetInt("Player1Character", 1);
         int player2Character = PlayerPrefs.GetInt("Player2Character", 1);
         player1 = player1Character;
@@ -120,7 +121,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             playerRotation = Quaternion.Euler(0f, -90f, 0f);
             SpawnPlayer(player2, player2SpawnPoint.position, playerRotation);
         }
-
+        multy = FindObjectOfType<MultiPlayer>();
         textImageEffectMgr.ReadyFightTextStart();
     }
     void SpawnPlayer(int playerCharacter, Vector3 spawnPosition, Quaternion playerRotation)
@@ -276,11 +277,12 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     private IEnumerator DeactivateWinImage()
     {
         yield return new WaitForSeconds(6.0f);
+        photonView.RPC("ChangeRoundImage", RpcTarget.All);
         photonView.RPC("ReadyRPC", RpcTarget.All);
         m_player1Score = 0;
         m_player2Score = 0;
-        player1WinImage.SetActive(false); // 이미지 비활성화
-        player2WinImage.SetActive(false);
+        //player1WinImage.SetActive(false); // 이미지 비활성화
+        //player2WinImage.SetActive(false);
         //textImageEffectMgr.ReadyFightTextStart();
     }
     [PunRPC]
@@ -288,12 +290,12 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         textImageEffectMgr.ReadyFightTextStart();
     }
-
     [PunRPC]
     public void ChangeRoundImage()
     {
         roundImage.sprite = roundArr[roundidx];
     }
+
 
     [PunRPC]
     public void EndGame()
@@ -304,6 +306,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         if (P1WinScore == 3)
         {
             pv.RPC("ShowEndWinImage", RpcTarget.All, 1);
+            pv.RPC("ChanegeUseReset", RpcTarget.All);
             //EndP1Win.SetActive(true);
             //StartCoroutine(FinalWinImage());
         }
@@ -311,6 +314,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         if (P2WinScore == 3)
         {
             pv.RPC("ShowEndWinImage", RpcTarget.All, 2);
+            pv.RPC("ChanegeUseReset", RpcTarget.All);
             //EndP2Win.SetActive(true);
             //StartCoroutine(FinalWinImage());
         }
@@ -322,13 +326,26 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         StartCoroutine(WinImage(winner));
     }
+    //[PunRPC]
+    //public void ChanegeUseReset()
+    //{
+    //    StartCoroutine(Cuse());
+    //    //multy.useReset = false;
+    //}
+    //private IEnumerator Cuse()
+    //{
+    //    yield return new WaitForSeconds(5.0f);
+    //    multy.useReset = false;
+    //}
     private IEnumerator WinImage(int winner)
     {
-        textImageEffectMgr.isEnd = true;
+        //textImageEffectMgr.isEnd = true;
+        textImageEffectMgr.ChangeReset(false);
         textImageEffectMgr.canStartReadyFight = false;
+       
         //multy.useReset = false;
         //Debug.Log("짜증나" + multy.useReset);
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(6.0f);
         if (winner == 1)
         {
             EndP1Win.SetActive(true);
