@@ -1059,6 +1059,7 @@ MonoBehaviour:
   RmtProfile: {fileID: 6638661974944065221}
   skill: {fileID: -5979784128835483548}
   isSkill: 0
+  useReset: 1
 --- !u!114 &-5979784128835483548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3364,15 +3365,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2433282508538045228, guid: 97d8423cfaea4724287c788daf0bb7a1, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2433282508538045228, guid: 97d8423cfaea4724287c788daf0bb7a1, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2433282508538045228, guid: 97d8423cfaea4724287c788daf0bb7a1, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2433282508538045228, guid: 97d8423cfaea4724287c788daf0bb7a1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3380,11 +3381,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2433282508538045228, guid: 97d8423cfaea4724287c788daf0bb7a1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 1.14
       objectReference: {fileID: 0}
     - target: {fileID: 2433282508538045228, guid: 97d8423cfaea4724287c788daf0bb7a1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.8
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 2433282508538045228, guid: 97d8423cfaea4724287c788daf0bb7a1, type: 3}
       propertyPath: m_LocalRotation.w
