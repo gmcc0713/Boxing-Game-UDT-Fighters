@@ -200,6 +200,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             if (mp >= 50)
             {
                 animator.SetBool("IsSkill", true);
+                playSkill.Play();
                 StartCoroutine(WaitForAttackEnd(1.0f));
 
 

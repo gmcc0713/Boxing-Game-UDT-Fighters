@@ -790,6 +790,7 @@ MonoBehaviour:
   RmtProfile: {fileID: 3810985101115275082}
   skill: {fileID: -3983749934621556830}
   isSkill: 0
+  useReset: 1
 --- !u!114 &-3983749934621556830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3562,11 +3563,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1141330259687333424, guid: 0731ac87b7602c84ab6a160364b47cdc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.631
       objectReference: {fileID: 0}
     - target: {fileID: 1141330259687333424, guid: 0731ac87b7602c84ab6a160364b47cdc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.64
+      value: -0.72
       objectReference: {fileID: 0}
     - target: {fileID: 1141330259687333424, guid: 0731ac87b7602c84ab6a160364b47cdc, type: 3}
       propertyPath: m_LocalRotation.w
