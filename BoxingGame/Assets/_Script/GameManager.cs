@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject P2GiveUp;
     public GameObject OptionPanel;
     public TextImageEffectManager textImageEffectMgr;
+    private MultiPlayer multy;
     public Image roundImage;
     public Sprite[] roundArr;
     private int roundidx;
@@ -93,6 +94,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         pv = GetComponent<PhotonView>();
         roundidx = 0;
         isEnd = false;
+        multy = FindObjectOfType<MultiPlayer>();
     }
     // Start is called before the first frame update
     void Start()
@@ -167,9 +169,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         m_player1Score++;
         P1WinScore++;
 
-        //    //[0] 1 [1] 2 [2] 3 // 1 2
-        //roundidx++;
-        //photonView.RPC("RoundWin", RpcTarget.All); //모든pc에게 준비상태 전달
+
         if (P1WinScore < 3)
         {
             roundidx++;
@@ -180,7 +180,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             photonView.RPC("EndGame", RpcTarget.All);
             photonView.RPC("KOCorou", RpcTarget.All);
         }
-
+        photonView.RPC("ShowWinLoseEffect", RpcTarget.All, 1);
     }
     [PunRPC]
     public void Player2Win()
@@ -201,33 +201,50 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             photonView.RPC("KOCorou", RpcTarget.All);
             // 이겼을 경우에는 바로 게임 종료
         }
-
-
+        photonView.RPC("ShowWinLoseEffect", RpcTarget.All, 2);
     }
     //누적 스코어 활성화 시키기위함
     [PunRPC]
     public void RoundImageActive()
     {
         if (P1WinScore == 1)
+        {
             P1Round1.SetActive(true);
-        if (P1WinScore == 2)
+            //textImageEffectMgr.WinLoseTextStart(true);
+        }
+        else if (P1WinScore == 2)
+        {
             P1Round2.SetActive(true);
-        if (P1WinScore == 3)
+            //textImageEffectMgr.WinLoseTextStart(true);
+        }
+        else if (P1WinScore == 3)
         {
-            //isEnd = true;
+            //textImageEffectMgr.isEnd = true;
             P1Round3.SetActive(true);
-            //EndGame();
         }
+
+
         if (P2WinScore == 1)
-            P2Round1.SetActive(true);
-        if (P2WinScore == 2)
-            P2Round2.SetActive(true);
-        if (P2WinScore == 3)
         {
-            //isEnd = true;
-            P2Round3.SetActive(true);
-            //EndGame();
+            P2Round1.SetActive(true);
+            //textImageEffectMgr.WinLoseTextStart(true);
         }
+        else if (P2WinScore == 2)
+        {
+            P2Round2.SetActive(true);
+            //textImageEffectMgr.WinLoseTextStart(true);
+        }
+        else if (P2WinScore == 3)
+        {
+            //textImageEffectMgr.isEnd = true;
+            P2Round3.SetActive(true);
+        }
+
+    }
+    [PunRPC]
+    public void ShowWinLoseEffect(int winner)
+    {
+        textImageEffectMgr.WinLoseTextStart(winner);
     }
     [PunRPC]
     public void RoundWin()
@@ -258,7 +275,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private IEnumerator DeactivateWinImage()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(6.0f);
         photonView.RPC("ReadyRPC", RpcTarget.All);
         m_player1Score = 0;
         m_player2Score = 0;
@@ -281,8 +298,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void EndGame()
     {
-        Destroy(player1WinImage);
-        Destroy(player2WinImage);
+        //Destroy(player1WinImage);
+        //Destroy(player2WinImage);
 
         if (P1WinScore == 3)
         {
@@ -307,7 +324,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     }
     private IEnumerator WinImage(int winner)
     {
+        textImageEffectMgr.isEnd = true;
         textImageEffectMgr.canStartReadyFight = false;
+        //multy.useReset = false;
+        //Debug.Log("짜증나" + multy.useReset);
         yield return new WaitForSeconds(3.0f);
         if (winner == 1)
         {

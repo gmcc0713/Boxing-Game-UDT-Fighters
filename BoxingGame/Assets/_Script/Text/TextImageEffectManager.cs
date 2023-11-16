@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,6 +12,8 @@ public enum EffectImage
     Fight,
     K,
     O,
+    Win,
+    Lose,
     Count,
 }
 public class TextImageEffectManager : MonoBehaviour
@@ -21,6 +24,8 @@ public class TextImageEffectManager : MonoBehaviour
     private MultiPlayer multy;
 
     public bool canStartReadyFight = true;
+    public bool isEnd = false;
+    //bool winlose;
     void Start()
     {
         multy = FindObjectOfType<MultiPlayer>();
@@ -43,7 +48,6 @@ public class TextImageEffectManager : MonoBehaviour
         multy.useAttack = true;
         multy.useMove = true;
         Debug.Log(multy.useAttack);
-
     }
     IEnumerator KOAnimation()
     {
@@ -55,10 +59,40 @@ public class TextImageEffectManager : MonoBehaviour
         //multy.useAttack = true;
         //multy.useMove = true;
     }
+    IEnumerator WinLoseAnimation(int winner)
+    {
+        //multy.useAttack = false;
+        //multy.useMove = false;
+        yield return new WaitForSeconds(3.0f);
+        if (winner == 1)
+        {
+            if (PhotonNetwork.IsMasterClient)
+                effecters[(int)EffectImage.Win].gameObject.SetActive(true);
+            else
+                effecters[(int)EffectImage.Lose].gameObject.SetActive(true);
+        }
+
+        else if (winner == 2)
+        {
+            if (PhotonNetwork.IsMasterClient)
+                effecters[(int)EffectImage.Lose].gameObject.SetActive(true);
+            else
+                effecters[(int)EffectImage.Win].gameObject.SetActive(true);
+        }
+
+        //multy.useAttack = true;
+        //multy.useMove = true;
+    }
+
     public void KOTextStart()
     {
         StartCoroutine(KOAnimation());
         StartCoroutine(KOAnimation());
+    }
+    public void WinLoseTextStart(int winner)
+    {
+        if (isEnd != true)
+            StartCoroutine(WinLoseAnimation(winner));
     }
     public void ReadyFightTextStart()
     {
