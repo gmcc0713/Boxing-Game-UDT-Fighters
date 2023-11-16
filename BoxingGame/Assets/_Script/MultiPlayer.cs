@@ -67,6 +67,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     private Vector3 initialPosition;
     private Quaternion initialRotation; //초기 방향
     public bool isSkill;
+    public bool useReset = true;
 
     void Start()
     {
@@ -126,7 +127,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         initialRotation = transform.rotation;
         useAttack = false;
         useMove = false;
-
+        useReset = true;
         if (!pv.IsMine)
         {
             plyCon.SetActive(false);
@@ -487,7 +488,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             health = 0;
             //animator.SetBool("IsDead", true);
-            photonView.RPC("DeadAni", RpcTarget.All);
+            //photonView.RPC("DeadAni", RpcTarget.All);
             Debug.Log("사망");
 
             foreach (MultiPlayer player in FindObjectsOfType<MultiPlayer>())
@@ -531,7 +532,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     }
     private IEnumerator ResetPlayerHP()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(6.0f);
 
         // health = startHealth;
         Debug.Log("전 플레이어 체력 초기화");
@@ -549,6 +550,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         health = startHealth;
         mp = startMP;
+
+
         if (PhotonNetwork.IsMasterClient)
         {
             MasterHealthBar.fillAmount = 100.0f;
@@ -568,18 +571,20 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             gameManager.ChangeRoundImage();
         }
 
-        // HP초기화와 동시에 초기 위치로 이동
         transform.position = initialPosition;
         transform.rotation = initialRotation;
+
+        // HP초기화와 동시에 초기 위치로 이동
+        //animator.SetBool("IsDead", false);
     }
-    [PunRPC]
-    public void DeadAni()
-    {
-        if (health <= 0)
-            animator.SetBool("IsDead", true);
-        else
-            animator.SetBool("IsDead", false);
-    }
+    //[PunRPC]
+    //public void DeadAni()
+    //{
+    //    if (health <= 0)
+    //        animator.SetBool("IsDead", true);
+    //    //else
+    //    //    animator.SetBool("IsDead", false);
+    //}
 
     [PunRPC] //중복호출 방지용
     private void ApplyDamage(float damageAmount)
