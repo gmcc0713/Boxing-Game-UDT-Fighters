@@ -1768,6 +1768,7 @@ MonoBehaviour:
   RmtProfile: {fileID: 3312603828346718819}
   skill: {fileID: -8913469356915715373}
   isSkill: 0
+  useReset: 1
 --- !u!114 &7453504556928756397
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 5913926384615609622}
   - component: {fileID: 8912954450364533091}
   - component: {fileID: 5188467001215628620}
+  - component: {fileID: 8500169084399296742}
   m_Layer: 0
   m_Name: attackCollider
   m_TagString: Untagged
@@ -287,6 +288,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8500169084399296742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2365753802462543733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c28343b23de734390b722ab862b82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSing: {fileID: 7486721902764600005}
+  attacked: {fileID: 6698694570715372907}
 --- !u!1 &2827524951542587725
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +675,7 @@ GameObject:
   - component: {fileID: 1208345029662038357}
   - component: {fileID: 7552854183836090973}
   - component: {fileID: 7486721902764600005}
-  - component: {fileID: 5505694692821398780}
+  - component: {fileID: 8578645678454898849}
   m_Layer: 0
   m_Name: SingleHorse
   m_TagString: Untagged
@@ -735,7 +750,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &7486721902764600005
 MonoBehaviour:
@@ -762,7 +777,7 @@ MonoBehaviour:
   attackComboSing: 0
   noOfClicksSing: 0
   playSkill: {fileID: 0}
---- !u!114 &5505694692821398780
+--- !u!114 &8578645678454898849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -771,12 +786,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4514325828905519590}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8742c74d186d3fd48b4b6249410c6b74, type: 3}
+  m_Script: {fileID: 11500000, guid: 51c896cff61c6964fb33ac87c5aadce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getForce: 0
-  singlePlayer: {fileID: 7552854183836090973}
-  singlePlayerPos: {fileID: 0}
+  attackColliderSingle: {fileID: 8500169084399296742}
+  soundManager: {fileID: 0}
 --- !u!1 &5056186452486177498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,5 +1185,10 @@ PrefabInstance:
 --- !u!4 &6698694570715372885 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4021103657954561942, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
+  m_PrefabInstance: {fileID: 7726874315965338307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6698694570715372907 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4021103657954561960, guid: 66f8f0d1388784c47b51f372a35b2fa9, type: 3}
   m_PrefabInstance: {fileID: 7726874315965338307}
   m_PrefabAsset: {fileID: 0}

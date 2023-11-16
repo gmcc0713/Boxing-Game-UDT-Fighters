@@ -45,6 +45,10 @@ public class SinglePlayer : MonoBehaviour
         animatorSing = GetComponent<Animator>();
     }
 
+    private void FixedUpdate()
+    {
+        IdleSing();
+    }
 
     public void MobieMoveSing(Vector2 inputDirectionSing)
     {
@@ -79,6 +83,175 @@ public class SinglePlayer : MonoBehaviour
 
             }
         }
+    }
+
+    public void IdleSing()
+    {
+        //조건이 기본상태일 때 작동
+        if (animatorSing.GetCurrentAnimatorStateInfo(0).IsName("Idle") && isAttackSing)
+        {
+            attackComboSing = 0;
+            //클릭횟수 초기화
+            noOfClicksSing = 0;
+            //공격중 상태 거짓
+            isAttackSing = false;
+            //공격 가능 상태 참
+            canAttackSing = true;
+            //콤보 가능 상태 거짓
+            canComboSing = false;
+
+            //콜라이더 선언
+            CapsuleCollider collider = gameObject.GetComponent<CapsuleCollider>();
+            //콜라이더 반지름
+            collider.radius = 0.4f;
+            //콜라이더 중심
+            collider.center = new Vector3(0, 1, 0f);
+        }
+
+        //조건이 기본상태가 아니고, 이동 상태도 아닐 때 작동(= 공격중일때)
+        else if (!(animatorSing.GetCurrentAnimatorStateInfo(0).IsName("Run") && noOfClicksSing == 2))
+        {
+            //진행도가 0.5이상 되면 상태 변화(=콤보가능 상태 조작)
+            if (animatorSing.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f)
+            {
+                //콤보가능 상태 참
+                canComboSing = true;
+
+                //진행도가 0.7이상 되면 상태 변화(= 콤보가능 상태 불가로 조작)
+                if (animatorSing.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f)
+                {
+                    //콤보 가능 상태 거짓
+                    canComboSing = false;
+                    attackColliderSing.SetActive(false);
+                }
+            }
+        }
+    }
+
+    public void OnAttackAButtonSing()
+    {
+        if (useAttackSing)
+        {
+            //클릿횟수 범위 제한
+            noOfClicksSing = Mathf.Clamp(noOfClicksSing, 0, 3);
+
+            //공격가능 상태일 시 작동(=기본 상태일때 버튼 누를 시 작동)
+            if (canAttackSing)
+            {
+
+                animatorSing.SetTrigger("Attack_A");
+                //공격중 상태 참
+                isAttackSing = true;
+                //공격가능 상태 거짓(=기본상태가 아님을 의미함)
+                canAttackSing = false;
+                //클릭횟수 증가
+                noOfClicksSing++;
+            }
+            //콤보가능 상태일 시 작동(=기본 공격을 하고 난후 일정 타이밍 때 버튼 누를 시 작동)
+            if (canComboSing)
+            {
+                //콤보가능 상태 거짓(버튼을 연속으로 눌러 트리거가 또 켜지는 현상 방지)
+                canComboSing = false;
+
+                //클릭 횟수에 따른 공격 모션 분기
+                switch (noOfClicksSing)
+                {
+                    //클릭횟수가 1번이었다면 작동
+                    case 1:
+                        //현재 누적 클릭횟수가 1이고, 작동되는 애니메이션이 A일때 버튼을 눌렀다면 AA진행
+                        if (animatorSing.GetCurrentAnimatorStateInfo(0).IsName("A"))
+                        {
+                            animatorSing.SetTrigger("Attack_AA");
+                            StartCoroutine(WaitForAttackEndSing(0.5f));
+                            //클릭횟수 증가
+                            noOfClicksSing++;
+                        }
+                        break;
+                    //클릭횟수가 2번이었다면 분기가 갈라짐
+                    case 2:
+                        //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OA일 때 버튼을 눌렀다면 SSA진행
+                        if (animatorSing.GetCurrentAnimatorStateInfo(0).IsName("OA"))
+                        {
+                            animatorSing.SetTrigger("Attack_AAA");
+                        }
+                        //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OS일때 버튼을 눌렀다면 AAA진행
+                        else if (animatorSing.GetCurrentAnimatorStateInfo(0).IsName("OS"))
+                        {
+
+                            animatorSing.SetTrigger("Attack_SSA");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+    //S 공격함수
+    public void OnAttackSButtonSing()
+    {
+        if (useAttackSing)
+        {
+            //클릭횟수 범위 제한
+            noOfClicksSing = Mathf.Clamp(noOfClicksSing, 0, 3);
+
+            //공격가능 상태일 시 작동(=기본 상태일때 버튼 누를 시 작동)
+            if (canAttackSing)
+            {
+                //기본 A공격 애니메이션 작동
+                animatorSing.SetTrigger("Attack_S");
+                //공격중 상태 참
+                isAttackSing = true;
+                //공격가능 상태 거짓(=기본상태가 아님을 의미함)
+                canAttackSing = false;
+                //클릭횟수 증가
+                noOfClicksSing++;
+            }
+            //콤보가능 상태일 시 작동(=기본 공격을 하고 난후 일정 타이밍 때 버튼 누를 시 작동)
+            if (canComboSing)
+            {
+                //콤보가능 상태 거짓(버튼을 연속으로 눌러 트리거가 또 켜지는 현상 방지)
+                canComboSing = false;
+
+                //클릭 횟수에 따른 공격 모션 분기
+                switch (noOfClicksSing)
+                {
+                    //클릭횟수가 1번이었다면 SS공격 작동
+                    case 1:
+                        //현재 누적 클릭횟수가 1이고, 작동되는 애니메이션이 S일때 버튼을 눌렀다면 SS진행
+                        if (animatorSing.GetCurrentAnimatorStateInfo(0).IsName("S"))
+                        {
+                            animatorSing.SetTrigger("Attack_SS");
+                            //클릭횟수 증가
+                            noOfClicksSing++;
+                        }
+                        break;
+                    //클릭횟수가 2번이었다면 분기가 갈라짐
+                    case 2:
+                        //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OS일 때 버튼을 눌렀다면 SSS진행
+                        if (animatorSing.GetCurrentAnimatorStateInfo(0).IsName("OS"))
+                        {
+                            animatorSing.SetTrigger("Attack_SSS");
+                        }
+                        //현재 누적 클릭횟수가 2이고, 작동되는 애니메이션이 OA일때 버튼을 눌렀다면 AAS진행
+                        else if (animatorSing.GetCurrentAnimatorStateInfo(0).IsName("OA"))
+                        {
+                            animatorSing.SetTrigger("Attack_AAS");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+    }
+
+    IEnumerator WaitForAttackEndSing(float time)
+    {
+        yield return new WaitForSeconds(time);
+        attackColliderSing.SetActive(false);
     }
     // Update is called once per frame
     //void Update()
