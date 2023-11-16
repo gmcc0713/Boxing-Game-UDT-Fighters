@@ -67,7 +67,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     private Vector3 initialPosition;
     private Quaternion initialRotation; //초기 방향
     public bool isSkill;
-    public bool useReset = true;
+    public bool useReset = false;
 
     void Start()
     {
@@ -201,7 +201,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             {
                 animator.SetBool("IsSkill", true);
                 StartCoroutine(WaitForAttackEnd(1.0f));
-
+                playSkill.Play();
 
                 Debug.Log("스킬게이지 100!");
                 skill.SkillUse();
@@ -525,10 +525,14 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         //animator.SetBool("IsWin", true);
         Debug.Log("플레이어2Win");
     }
+   
     [PunRPC]
     private void ResetPlayerHealth()
     {
-        StartCoroutine(ResetPlayerHP());
+        
+            StartCoroutine(ResetPlayerHP());
+       
+        
     }
     private IEnumerator ResetPlayerHP()
     {
@@ -539,7 +543,11 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
         foreach (MultiPlayer player in FindObjectsOfType<MultiPlayer>())
         {
-            player.ResetHP();
+            if(useReset != false)
+            {
+                player.ResetHP();
+            }
+           
             //textImageEffectManager.ReadyFightTextStart();
             //player.useAttack = true;
             //player.useMove = true;
@@ -548,32 +556,37 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     }
     public void ResetHP()
     {
-        health = startHealth;
-        mp = startMP;
+        
+            health = startHealth;
+            mp = startMP;
 
 
-        if (PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient)
+            {
+                MasterHealthBar.fillAmount = 100.0f;
+                MasterMpBar.fillAmount = 0f;
+                //photonView.RPC("DeadAni", RpcTarget.All);
+                //animator.SetBool("IsDead", false);
+                //animator.SetBool("IsWin", false);
+                //gameManager.ChangeRoundImage();
+            }
+            else
+            {
+                remoteHealthBar.fillAmount = 100.0f;
+                RemoteMpBar.fillAmount = 0f;
+                //photonView.RPC("DeadAni", RpcTarget.All);
+                //animator.SetBool("IsDead", false);
+                //animator.SetBool("IsWin", false);
+                //gameManager.ChangeRoundImage();
+            }
+        if (useReset != false)
         {
-            MasterHealthBar.fillAmount = 100.0f;
-            MasterMpBar.fillAmount = 0f;
-            //photonView.RPC("DeadAni", RpcTarget.All);
-            //animator.SetBool("IsDead", false);
-            //animator.SetBool("IsWin", false);
-            gameManager.ChangeRoundImage();
+            transform.position = initialPosition;
+            transform.rotation = initialRotation;
         }
-        else
-        {
-            remoteHealthBar.fillAmount = 100.0f;
-            RemoteMpBar.fillAmount = 0f;
-            //photonView.RPC("DeadAni", RpcTarget.All);
-            //animator.SetBool("IsDead", false);
-            //animator.SetBool("IsWin", false);
-            gameManager.ChangeRoundImage();
-        }
-
-        transform.position = initialPosition;
-        transform.rotation = initialRotation;
-
+          
+        
+     
         // HP초기화와 동시에 초기 위치로 이동
         //animator.SetBool("IsDead", false);
     }
