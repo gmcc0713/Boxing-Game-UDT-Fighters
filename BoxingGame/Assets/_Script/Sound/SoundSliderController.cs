@@ -5,72 +5,66 @@ using UnityEngine.UI;
 
 public class SoundSliderController : MonoBehaviour
 {
-    [SerializeField] private Sound_Type soundType;
+	[SerializeField] private Sound_Type soundType;
+	[SerializeField] GameObject[] muteImage;
 	[SerializeField] private ClickButtonManager clickBtnManger;
-    private Slider soundSlider;
-    private float priviousVolume;
-    private bool isMute;
+	private Slider soundSlider;
+	[SerializeField] private float priviousVolume;
+	private bool isMute;
 	private void Awake()
 	{
-        isMute = false;
+		isMute = false;
 	}
 	private void Start()
 	{
+		soundSlider = gameObject.GetComponent<Slider>();
+		Initialized();
+	}
+	private void Initialized()
+	{
+		Debug.Log("Init");
 		isMute = SoundManager.Instance._isMute[(int)soundType];
-		MuteSetting();
-	}
-	void OnEnable()
-    {
-        soundSlider = gameObject.GetComponent<Slider>();
-        SetValue();
-    }
-    public void onChange()
-    {
-        if(isMute)
-        {
-			SoundManager.Instance.ChangeAudioVolume(soundType,0);
-            return;
-		}
-		SoundManager.Instance.ChangeAudioVolume(soundType, soundSlider.value);
-	}
-    public void SetValue()
-    {
+		soundSlider.value = SoundManager.Instance.GetVolumValue(soundType);
+		priviousVolume = soundSlider.value;
 		if (isMute)
 		{
-			soundSlider.value = priviousVolume ;
+			soundSlider.interactable = false;
+		}
+	}
+	public void ChangeVolume()
+	{
+		SoundManager.Instance.ChangeAudioVolume(soundType,soundSlider.value);
+	}
+	public void SetValue()
+	{
+		if (isMute)
+		{
+			soundSlider.value = priviousVolume;
 			return;
 		}
 		soundSlider.value = SoundManager.Instance.GetVolumValue(soundType);
 	}
-	public void MuteSetting()
-	{
-		if(isMute)
-		{
-			priviousVolume = 0.5f;
-			soundSlider.interactable = false;
-		}
-		else
-		{
-			priviousVolume = 0.5f;
-			soundSlider.interactable = true;
-		}
 
-	}
-    public void MuteOrListenVolume()
-    {
-        if(isMute)
-        {
+	public void MuteOrListenVolume()
+	{
+		Debug.Log("Initmute");
+		if (isMute)
+		{
 			soundSlider.interactable = true;
-            isMute = false;
+			isMute = false;
 			SoundManager.Instance.ChangeAudioVolume(soundType, priviousVolume);
-			SoundManager.Instance.Mute(soundType,false);
+			SoundManager.Instance.Mute(soundType, false);
+			muteImage[0].SetActive(true);
+			muteImage[1].SetActive(false);
 			return;
-        }
+		}
 		isMute = true;
 		priviousVolume = soundSlider.value;
-        soundSlider.interactable = false;
+		soundSlider.interactable = false;
+		SoundManager.Instance.Mute(soundType, true);
 		SoundManager.Instance.ChangeAudioVolume(soundType, 0);
-		SoundManager.Instance.Mute(soundType,true);
+		muteImage[0].SetActive(false);
+		muteImage[1].SetActive(true);
 	}
 
 }

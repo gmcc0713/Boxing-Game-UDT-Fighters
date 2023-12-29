@@ -26,11 +26,13 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource[] audioSources;
     
     [SerializeField] private Sprite[] audioImage;
+
     [SerializeField] private AudioClip[] audioBGMClips;
     [SerializeField] private AudioClip[] audioSFXClips;
     [SerializeField] private AudioClip[] audioCharacterClips;
-    private bool[] isMute = { false};
-    private float[] volumeValue;
+
+	[SerializeField] private bool[] isMute = { false};
+	[SerializeField] private float[] volumeValue;
     public bool[] _isMute => isMute;
     public float GetVolumValue(Sound_Type type) => volumeValue[(int)type];
     void Start()
@@ -43,7 +45,7 @@ public class SoundManager : MonoBehaviour
         volumeValue = new float[3] { 0.5f, 0.5f, 0.5f };
 
 
-    }
+	}
     public void Initialize()
     {
     }
@@ -66,8 +68,11 @@ public class SoundManager : MonoBehaviour
     public void ChangeAudioVolume(Sound_Type sound_Type,float value)
     {
         audioSources[(int)sound_Type].volume = value;
-        volumeValue[(int)sound_Type] = value;
-    }
+        Debug.Log("Initmute" + isMute[(int)sound_Type]);
+        if (!isMute[(int)sound_Type])
+		    volumeValue[(int)sound_Type] = value;
+	}
+          
     public void StopBGM()
     {
         audioSources[(int)Sound_Type.Sound_BGM].Stop();
@@ -80,7 +85,8 @@ public class SoundManager : MonoBehaviour
 
     public void Mute(Sound_Type type, bool mute)
     {
-        isMute[(int)type] = mute;
+		volumeValue[(int)type] = audioSources[(int)type].volume;
+		isMute[(int)type] = mute;
 	}
 
     // 체인을 걸어서 이 함수는 매 씬마다 호출된다.
@@ -99,17 +105,17 @@ public class SoundManager : MonoBehaviour
         }
 
         audioSources[(int)Sound_Type.Sound_BGM].Play();
+
+
     }
 
     void OnDisable()
     {
-
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 	public void ClickButton()
 	{
 		audioSources[(int)Sound_Type.Sound_SFX].Play(0);
-
 	}
 	public void PlayCharacterAttackSound(int index)
 	{
