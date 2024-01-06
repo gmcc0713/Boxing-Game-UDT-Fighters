@@ -3001,7 +3001,7 @@ MonoBehaviour:
   - {fileID: 2100770884}
   - {fileID: 1263675457}
   - {fileID: 351858096}
-  ReadyButton: {fileID: 349486567}
+  ReadyButton: {fileID: 0}
   P2Ran: {fileID: 390271907}
 --- !u!114 &542033795
 MonoBehaviour:
@@ -3692,7 +3692,7 @@ MonoBehaviour:
   - {fileID: 757252874}
   - {fileID: 808307311}
   - {fileID: 514949926}
-  ReadyButton: {fileID: 349486567}
+  ReadyButton: {fileID: 0}
   P2Ran: {fileID: 390271907}
 --- !u!114 &661151160
 MonoBehaviour:
