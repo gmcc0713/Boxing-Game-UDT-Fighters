@@ -54,8 +54,6 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     private float mp;
     public Image MasterMpBar;
     public Image RemoteMpBar;
-    public GameObject MasterMpCanvas;
-    public GameObject RemoteMpCanvas;
     public Image MstProfile;
     public Image RmtProfile;
     [SerializeField] private Skill skill;
@@ -81,44 +79,37 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         if (PhotonNetwork.IsMasterClient)
         {
             // 마스터 클라이언트이므로 왼쪽 상단의 UI를 할당합니다.
-            MasterHealthBar = transform.Find("MasterCanvas/Master/MasterHP").GetComponent<Image>();
             MasterHealthBar.fillAmount = health / startHealth;
-            MasterMpBar = transform.Find("MasterMpCanvas/MasterMP/MasterMP").GetComponent<Image>();
             MasterMpBar.fillAmount = mp / startHealth;
             if (pv.IsMine)
             {
                 // 현재 플레이어가 자신의 객체면 아닌 경우, RemoteCanvas를 비활성화합니다.
                 RemoteCanvas.SetActive(false);
-                RemoteMpCanvas.SetActive(false);
+               
                 RmtProfile.gameObject.SetActive(false);
             }
             else
             {
                 // 현재 플레이어가 자신의 객체가 아니면, MasterCanvas를 비활성화합니다.
                 MasterCanvas.SetActive(false);
-                MasterMpCanvas.SetActive(false);
                 MstProfile.gameObject.SetActive(false);
             }
         }
         else
         {
             // 일반 클라이언트이므로 오른쪽 상단의 UI를 할당합니다.
-            remoteHealthBar = transform.Find("RemoteCanvas/Remote/RemoteHP").GetComponent<Image>();
             remoteHealthBar.fillAmount = health / startHealth;
-            RemoteMpBar = transform.Find("RemoteMpCanvas/RemoteMP/RemoteMP").GetComponent<Image>();
             RemoteMpBar.fillAmount = mp / startHealth;
             if (!pv.IsMine)
             {
                 // 현재 플레이어가 자신의 객체가 아니면 RemoteCanvas를 비활성화합니다.
                 RemoteCanvas.SetActive(false);
-                RemoteMpCanvas.SetActive(false);
                 RmtProfile.gameObject.SetActive(false);
             }
             else
             {
                 // 현재 플레이어가 자신의 객체면 , MasterCanvas를 비활성화합니다.
                 MasterCanvas.SetActive(false);
-                MasterMpCanvas.SetActive(false);
                 MstProfile.gameObject.SetActive(false);
             }
         }
@@ -604,6 +595,8 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     private void ApplyDamage(float damageAmount)
     {
         health -= damageAmount;
+        if (health > 100)
+            health = 100;
 
         if (PhotonNetwork.IsMasterClient)
         {
