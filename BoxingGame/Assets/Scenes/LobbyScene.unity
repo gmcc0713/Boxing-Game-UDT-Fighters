@@ -3001,7 +3001,7 @@ MonoBehaviour:
   - {fileID: 2100770884}
   - {fileID: 1263675457}
   - {fileID: 351858096}
-  ReadyButton: {fileID: 0}
+  ReadyButton: {fileID: 349486567}
   P2Ran: {fileID: 390271907}
 --- !u!114 &542033795
 MonoBehaviour:
@@ -3692,7 +3692,7 @@ MonoBehaviour:
   - {fileID: 757252874}
   - {fileID: 808307311}
   - {fileID: 514949926}
-  ReadyButton: {fileID: 0}
+  ReadyButton: {fileID: 349486567}
   P2Ran: {fileID: 390271907}
 --- !u!114 &661151160
 MonoBehaviour:
@@ -10746,6 +10746,7 @@ GameObject:
   - component: {fileID: 2112119434}
   - component: {fileID: 2112119433}
   - component: {fileID: 2112119432}
+  - component: {fileID: 2112119435}
   m_Layer: 5
   m_Name: RemoteImage
   m_TagString: Untagged
@@ -10812,6 +10813,28 @@ RectTransform:
   m_AnchoredPosition: {x: 850, y: 450}
   m_SizeDelta: {x: 400, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2112119435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112119431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 7
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &7223528514389451462
 PrefabInstance:
   m_ObjectHideFlags: 0
