@@ -87,7 +87,7 @@ public class TextImageEffectManager : MonoBehaviour
     public void KOTextStart()
     {
         StartCoroutine(KOAnimation());
-        StartCoroutine(KOAnimation());
+        //StartCoroutine(KOAnimation());
     }
     public void WinLoseTextStart(int winner)
     {

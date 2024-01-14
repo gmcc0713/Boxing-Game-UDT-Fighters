@@ -271,6 +271,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void KOCorou()
     {
+        Debug.Log("KO");
         textImageEffectMgr.KOTextStart();
     }
 

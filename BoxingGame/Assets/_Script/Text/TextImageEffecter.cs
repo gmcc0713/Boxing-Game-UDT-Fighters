@@ -130,7 +130,8 @@ public class TextImageEffecter : MonoBehaviour
 	{
 		yield return new WaitForSeconds(1.0f);
 		gameObject.SetActive(false);
-		yield return new WaitForSeconds(1.0f);
+		gameObject.transform.localScale = new Vector3(1, 1, 1);
+        yield return new WaitForSeconds(1.0f);
 	}
 
 	public void resetAnim()
