@@ -6,11 +6,12 @@ public class SkillHorse : Skill
 {
     private float dashSpeed;
     private float dashTime;
-
+    private Rigidbody rb;
     private void Start()
     {
-        dashSpeed = 10;
+        dashSpeed = 700;
         dashTime = 0.25f;
+        rb = playerController.GetComponent<Rigidbody>();
     }
     [PunRPC]
     public override void SkillUse()
@@ -31,8 +32,9 @@ public class SkillHorse : Skill
         while (Time.time < startTime + dashTime)
         {
             Debug.Log("Dash update");
-            playerController. transform.position += transform.forward * dashSpeed * Time.deltaTime;
 
+            //playerController. transform.position += transform.forward * dashSpeed * Time.deltaTime;
+            rb.AddForce(transform.forward * dashSpeed);
             yield return null;
         }
         playerController.animator.SetBool("IsSkill", false);

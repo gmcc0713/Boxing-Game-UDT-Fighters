@@ -214,7 +214,7 @@ public class MultiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     }
     public void MobieMove(Vector2 inputDirection)
     {
-        if (useAttack)
+        if (useAttack&& !isSkill)
         {
             //이동 값 구하기
             Vector3 movement = new Vector3(inputDirection.x, 0f, inputDirection.y).normalized;

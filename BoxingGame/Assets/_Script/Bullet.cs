@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 
 public class Bullet : MonoBehaviourPun
 {
-    private float damage = 10f;
+    private float damage = 40f;
     public float rotateSpeed;
     public Vector3 lookForward;
     MultiPlayer me;
